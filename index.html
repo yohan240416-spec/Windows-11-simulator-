@@ -1,15 +1,48 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Windows 11</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Windows 11 - Yohan</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif;user-select:none}
-body{overflow:hidden;background:#000;height:100vh;width:100vw}
-#wallpaper{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1627856014759-085229246708?q=80&w=1920') center/cover no-repeat}
-#lockScreen{position:absolute;inset:0;z-index:10000;background:url('https://images.unsplash.com/photo-1627856014759-085229246708?q=80&w=1920') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform .7s;cursor:pointer}
-#lockScreen.hide{transform:translateY(-100%)}
-#lockTime{font-size:92px;font-weight:200;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,.5)}
-#lockDate{font-size:22px;color:#fff;margin-top:8px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI'}
+body{height:100vh;overflow:hidden;background:#0078d4}
+#wallpaper{position:absolute;inset:0;background:linear-gradient(135deg,#1a2a6c,#b21f1f,#fdbb2d)}
+#lockScreen{position:absolute;inset:0;backdrop-filter:blur(30px);background:rgba(0,0,0,.3);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:100;transition:.6s}
+#lockScreen.hide{transform:translateY(-100%);opacity:0;pointer-events:none}
+#lockTime{font-size:84px;color:#fff}
+#taskbar{position:absolute;bottom:0;left:0;right:0;height:48px;background:#f3f3f3;display:flex;justify-content:center;gap:8px;align-items:center}
+#startMenu{position:absolute;bottom:58px;left:50%;transform:translateX(-50%);width:640px;background:#fff;border-radius:8px;padding:24px;opacity:0;pointer-events:none;transition:.25s;z-index:90}
+#startMenu.open{opacity:1;pointer-events:auto}
+.window{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:750px;height:480px;background:#fff;border-radius:8px;display:none;flex-direction:column;z-index:20}
+.window.open{display:flex}
+.titlebar{height:42px;background:#f3f3f3;display:flex;justify-content:space-between;padding:0 12px;align-items:center}
+.content{flex:1;padding:16px}
+</style>
+</head>
+<body>
+<div id="wallpaper"></div>
+<div id="lockScreen" onclick="unlock()">
+<div id="lockTime">11:16</div>
+<div id="lockHint">Clique para desbloquear</div>
+</div>
+<div id="startMenu">
+<div onclick="openWin('explorer')">📁 Explorador</div>
+<div onclick="openWin('calc')">🔢 Calculadora</div>
+<div onclick="openWin('notepad')">📝 Notas</div>
+</div>
+<div class="window" id="explorer"><div class="titlebar"><span>Explorador</span><button onclick="closeWin('explorer')">X</button></div><div class="content">Feito por Yohan v2.0</div></div>
+<div class="window" id="calc"><div class="titlebar"><span>Calc</span><button onclick="closeWin('calc')">X</button></div><div class="content"><h2 id="calcDisplay">0</h2><button onclick="cIn('7')">7</button><button onclick="cIn('8')">8</button><button onclick="cIn('9')">9</button><button onclick="cIn('+')">+</button><br><button onclick="cClear()">C</button><button onclick="cIn('0')">0</button><button onclick="cEq()">=</button></div></div>
+<div class="window" id="notepad"><div class="titlebar"><span>Bloco</span><button onclick="closeWin('notepad')">X</button></div><div class="content"><textarea style="width:100%;height:90%">Bem-vindo Yohan!</textarea></div></div>
+<div id="taskbar"><div onclick="toggleStart()">🪟</div><div onclick="openWin('explorer')">📁</div><div onclick="openWin('calc')">🔢</div></div>
+<script>
+function unlock(){document.getElementById('lockScreen').classList.add('hide')}
+function toggleStart(){document.getElementById('startMenu').classList.toggle('open')}
+function openWin(id){document.getElementById(id).classList.add('open')}
+function closeWin(id){document.getElementById(id).classList.remove('open')}
+let expr='';function cIn(v){expr+=v;document.getElementById('calcDisplay').innerText=expr}
+function cClear(){expr='';document.getElementById('calcDisplay').innerText='0'}
+function cEq(){try{let r=eval(expr);document.getElementById('calcDisplay').innerText=r;expr=String(r)}catch{}}
+</script>
+</body>
+</html>
