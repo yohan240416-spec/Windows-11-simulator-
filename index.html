@@ -1,117 +1,58 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Windows 11 Simulator</title>
+<title>Windows 11</title>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI, sans-serif}
-    body{background:url('https://4kwallpapers.com/images/wallpapers/windows-11-blue-abstract-4480x2520-12684.jpg') center/cover no-repeat;height:100vh;overflow:hidden}
-      .desktop{display:flex;flex-direction:column;gap:20px;padding:20px}
-        .icon{width:80px;text-align:center;color:white;font-size:12px;cursor:pointer}
-          .icon img{width:48px;height:48px}
-            .taskbar{position:absolute;bottom:0;width:100%;height:50px;background:rgba(255,255,255,0.8);backdrop-filter:blur(20px);display:flex;justify-content:center;align-items:center;gap:15px}
-              .taskbar .start{background:white;padding:6px 12px;border-radius:6px;cursor:pointer;font-weight:bold}
-                .taskbar .time{position:absolute;right:20px;font-size:13px}
-                  .start-menu{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);width:600px;height:500px;background:white;border-radius:12px;display:none;box-shadow:0 10px 30px rgba(0,0,0,0.3);padding:20px}
-                    .start-menu.active{display:block}
-                      .app{width:90px;display:inline-block;text-align:center;margin:10px;cursor:pointer}
-                        .app img{width:40px}
-                          .window{position:absolute;top:100px;left:100px;width:700px;height:400px;background:white;border-radius:8px;display:none;box-shadow:0 10px 30px rgba(0,0,0,0.4);overflow:hidden}
-                            .window.active{display:block}
-                              .titlebar{height:35px;background:#f3f3f3;display:flex;justify-content:space-between;align-items:center;padding:0 12px;cursor:move}
-                                .content{padding:15px;height:calc(100% - 35px);overflow:auto}
-                                </style>
-                                </head>
-                                <body>
-                                <div class="desktop">
-                                  <div class="icon" onclick="openWindow('explorer')"><img src="https://img.icons8.com/fluency/48/folder-invoices.png"><br>Explorador</div>
-                                    <div class="icon" onclick="openWindow('edge')"><img src="https://img.icons8.com/fluency/48/ms-edge.png"><br>Edge</div>
-                                      <div class="icon" onclick="openWindow('notepad')"><img src="https://img.icons8.com/fluency/48/notepad.png"><br>Bloco Notas</div>
-                                      </div>
-
-                                      <div class="window" id="explorer"><div class="titlebar"><span>Explorador de Arquivos</span><span onclick="closeWindow('explorer')" style="cursor:pointer">X</span></div><div class="content"><h3>Meus Arquivos</h3><p>📁 Documentos<br>📁 Downloads<br>📁 Imagens<br>📁 Meu Jogo (GitHub)</p></div></div>
-                                      <div class="window" id="edge"><div class="titlebar"><span>Microsoft Edge</span><span onclick="closeWindow('edge')" style="cursor:pointer">X</span></div><div class="content"><h1>Google</h1><input style="width:100%;padding:8px;border-radius:20px;border:1px solid #ccc" placeholder="Pesquisar..."><p style="margin-top:20px">Seu Windows 11 Simulator está no ar! 😎</p></div></div>
-                                      <div class="window" id="notepad"><div class="titlebar"><span>Bloco de Notas</span><span onclick="closeWindow('notepad')" style="cursor:pointer">X</span></div><div class="content"><textarea style="width:100%;height:100%;border:none;outline:none">Bem-vindo ao seu Windows 11 criado no GitHub!</textarea></div></div>
-
-                                      <div class="start-menu" id="startMenu">
-                                        <h3 style="margin-bottom:20px">Fixado</h3>
-                                          <div class="app" onclick="openWindow('explorer')"><img src="https://img.icons8.com/fluency/48/folder-invoices.png"><br>Arquivos</div>
-                                            <div class="app" onclick="openWindow('edge')"><img src="https://img.icons8.com/fluency/48/ms-edge.png"><br>Edge</div>
-                                              <div class="app" onclick="openWindow('notepad')"><img src="https://img.icons8.com/fluency/48/notepad.png"><br>Notas</div>
-                                                <div class="app"><img src="https://img.icons8.com/fluency/48/visual-studio-code-2019.png"><br>VS Code</div>
-                                                  <div class="app"><img src="https://img.icons8.com/fluency/48/roblox.png"><br>Roblox</div>
-                                                  </div>
-
-                                                  <div class="taskbar">
-                                                    <div class="start" onclick="toggleStart()">⊞ Iniciar</div>
-                                                      <span>🔍</span><span>🗂️</span><span>🌐</span>
-                                                        <div class="time" id="time"></div>
-                                                        </div>
-
-                                                        <script>
-                                                        function toggleStart(){document.getElementById('startMenu').classList.toggle('active')}
-                                                        function openWindow(id){document.getElementById(id).classList.add('active');document.getElementById('startMenu').classList.remove('active')}
-                                                        function closeWindow(id){document.getElementById(id).classList.remove('active')}
-                                                        setInterval(()=>{document.getElementById('time').innerHTML=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})},1000)
-                                                        </script>
-                                                        </body>
-                                                        </html><!DOCTYPE html>
-                                                        <html lang="pt-br">
-                                                        <head>
-                                                        <meta charset="UTF-8">
-                                                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                                                        <title>Windows 11 Simulator</title>
-                                                        <style>
-                                                          *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI, sans-serif}
-                                                            body{background:url('https://4kwallpapers.com/images/wallpapers/windows-11-blue-abstract-4480x2520-12684.jpg') center/cover no-repeat;height:100vh;overflow:hidden}
-                                                              .desktop{display:flex;flex-direction:column;gap:20px;padding:20px}
-                                                                .icon{width:80px;text-align:center;color:white;font-size:12px;cursor:pointer}
-                                                                  .icon img{width:48px;height:48px}
-                                                                    .taskbar{position:absolute;bottom:0;width:100%;height:50px;background:rgba(255,255,255,0.8);backdrop-filter:blur(20px);display:flex;justify-content:center;align-items:center;gap:15px}
-                                                                      .taskbar .start{background:white;padding:6px 12px;border-radius:6px;cursor:pointer;font-weight:bold}
-                                                                        .taskbar .time{position:absolute;right:20px;font-size:13px}
-                                                                          .start-menu{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);width:600px;height:500px;background:white;border-radius:12px;display:none;box-shadow:0 10px 30px rgba(0,0,0,0.3);padding:20px}
-                                                                            .start-menu.active{display:block}
-                                                                              .app{width:90px;display:inline-block;text-align:center;margin:10px;cursor:pointer}
-                                                                                .app img{width:40px}
-                                                                                  .window{position:absolute;top:100px;left:100px;width:700px;height:400px;background:white;border-radius:8px;display:none;box-shadow:0 10px 30px rgba(0,0,0,0.4);overflow:hidden}
-                                                                                    .window.active{display:block}
-                                                                                      .titlebar{height:35px;background:#f3f3f3;display:flex;justify-content:space-between;align-items:center;padding:0 12px;cursor:move}
-                                                                                        .content{padding:15px;height:calc(100% - 35px);overflow:auto}
-                                                                                        </style>
-                                                                                        </head>
-                                                                                        <body>
-                                                                                        <div class="desktop">
-                                                                                          <div class="icon" onclick="openWindow('explorer')"><img src="https://img.icons8.com/fluency/48/folder-invoices.png"><br>Explorador</div>
-                                                                                            <div class="icon" onclick="openWindow('edge')"><img src="https://img.icons8.com/fluency/48/ms-edge.png"><br>Edge</div>
-                                                                                              <div class="icon" onclick="openWindow('notepad')"><img src="https://img.icons8.com/fluency/48/notepad.png"><br>Bloco Notas</div>
-                                                                                              </div>
-
-                                                                                              <div class="window" id="explorer"><div class="titlebar"><span>Explorador de Arquivos</span><span onclick="closeWindow('explorer')" style="cursor:pointer">X</span></div><div class="content"><h3>Meus Arquivos</h3><p>📁 Documentos<br>📁 Downloads<br>📁 Imagens<br>📁 Meu Jogo (GitHub)</p></div></div>
-                                                                                              <div class="window" id="edge"><div class="titlebar"><span>Microsoft Edge</span><span onclick="closeWindow('edge')" style="cursor:pointer">X</span></div><div class="content"><h1>Google</h1><input style="width:100%;padding:8px;border-radius:20px;border:1px solid #ccc" placeholder="Pesquisar..."><p style="margin-top:20px">Seu Windows 11 Simulator está no ar! 😎</p></div></div>
-                                                                                              <div class="window" id="notepad"><div class="titlebar"><span>Bloco de Notas</span><span onclick="closeWindow('notepad')" style="cursor:pointer">X</span></div><div class="content"><textarea style="width:100%;height:100%;border:none;outline:none">Bem-vindo ao seu Windows 11 criado no GitHub!</textarea></div></div>
-
-                                                                                              <div class="start-menu" id="startMenu">
-                                                                                                <h3 style="margin-bottom:20px">Fixado</h3>
-                                                                                                  <div class="app" onclick="openWindow('explorer')"><img src="https://img.icons8.com/fluency/48/folder-invoices.png"><br>Arquivos</div>
-                                                                                                    <div class="app" onclick="openWindow('edge')"><img src="https://img.icons8.com/fluency/48/ms-edge.png"><br>Edge</div>
-                                                                                                      <div class="app" onclick="openWindow('notepad')"><img src="https://img.icons8.com/fluency/48/notepad.png"><br>Notas</div>
-                                                                                                        <div class="app"><img src="https://img.icons8.com/fluency/48/visual-studio-code-2019.png"><br>VS Code</div>
-                                                                                                          <div class="app"><img src="https://img.icons8.com/fluency/48/roblox.png"><br>Roblox</div>
-                                                                                                          </div>
-
-                                                                                                          <div class="taskbar">
-                                                                                                            <div class="start" onclick="toggleStart()">⊞ Iniciar</div>
-                                                                                                              <span>🔍</span><span>🗂️</span><span>🌐</span>
-                                                                                                                <div class="time" id="time"></div>
-                                                                                          </div>
-
-                                                                                                                <script>
-                                                                                                                function toggleStart(){document.getElementById('startMenu').classList.toggle('active')}
-                                                                                                                function openWindow(id){document.getElementById(id).classList.add('active');document.getElementById('startMenu').classList.remove('active')}
-                                                                                                                function closeWindow(id){document.getElementById(id).classList.remove('active')}
-                                                                                                                setInterval(()=>{document.getElementById('time').innerHTML=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})},1000)
-                                                                                                                </script>
-                                                                                                                </body>
-                                                                                                                </html>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{height:100vh;overflow:hidden;background:#0a0a0a}
+#wallpaper{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?q=80&w=1920') center/cover}
+#desktop{display:grid;grid-template-columns:80px;gap:18px;padding:18px;position:relative;z-index:1}
+.icon{width:76px;text-align:center;color:white;text-shadow:0 1px 3px #000;cursor:pointer;padding:4px;border-radius:4px}
+.icon:hover{background:rgba(255,255,255,.15)}
+.icon img{width:48px;height:48px}
+.icon span{font-size:12px;display:block;margin-top:4px}
+#taskbar{position:absolute;bottom:0;left:0;right:0;height:52px;background:rgba(243,243,243,.85);backdrop-filter:blur(30px);display:flex;align-items:center;justify-content:center;gap:10px;z-index:100}
+.task-icon{width:40px;height:40px;border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px}
+.task-icon:hover{background:rgba(0,0,0,.08)}
+#start{font-size:24px;background:#0078d4;color:white;width:36px;height:36px;border-radius:6px}
+#startMenu{position:absolute;bottom:62px;left:50%;transform:translateX(-50%) translateY(20px);width:600px;max-width:92vw;background:rgba(252,252,252,.95);backdrop-filter:blur(30px);border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:.25s;z-index:200;overflow:hidden}
+#startMenu.open{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.start-top{padding:24px}
+.search{background:#f0f0f0;border-radius:20px;padding:8px 16px;display:flex;gap:8px;color:#666}
+.apps{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:20px}
+.app{padding:10px;text-align:center;border-radius:6px;cursor:pointer}
+.app:hover{background:#f0f0f0}
+.app div{font-size:28px}
+.app span{font-size:11px;display:block;margin-top:4px}
+.window{position:absolute;top:10%;left:10%;width:72%;height:68%;background:#f3f3f3;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.4);display:none;flex-direction:column;overflow:hidden;z-index:10}
+.window.active{display:flex}
+.win-header{height:40px;background:#f3f3f3;display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:1px solid #e5e5e5}
+.dot{width:12px;height:12px;border-radius:50%}
+.win-content{flex:1;background:white;overflow:auto;padding:16px}
+#clock{position:absolute;right:12px;text-align:right;font-size:12px}
+</style>
+</head>
+<body>
+<div id="wallpaper"></div>
+<div id="desktop">
+<div class="icon" onclick="openWin('explorer')"><img src="https://img.icons8.com/fluency/96/folder-invoices.png"/><span>Explorador</span></div>
+<div class="icon" onclick="openWin('edge')"><img src="https://img.icons8.com/fluency/96/ms-edge-new.png"/><span>Edge</span></div>
+<div class="icon" onclick="openWin('notepad')"><img src="https://img.icons8.com/fluency/96/notepad.png"/><span>Bloco Notas</span></div>
+<div class="icon"><img src="https://img.icons8.com/fluency/96/trash-can.png"/><span>Lixeira</span></div>
+</div>
+<div class="window" id="win-explorer"><div class="win-header"><b>📁 Explorador</b><div style="display:flex;gap:8px"><div class="dot" style="background:#ff5f56" onclick="closeWin('explorer')"></div><div class="dot" style="background:#ffbd2e"></div><div class="dot" style="background:#27ca3f"></div></div></div><div class="win-content">Seus arquivos aqui 📁</div></div>
+<div class="window" id="win-edge"><div class="win-header"><b>🌐 Edge</b><div style="display:flex;gap:8px"><div class="dot" style="background:#ff5f56" onclick="closeWin('edge')"></div><div class="dot" style="background:#ffbd2e"></div><div class="dot" style="background:#27ca3f"></div></div></div><div class="win-content"><h3>Windows 11 Simulator no ar! 🎉</h3><p>Feito por Yohan</p></div></div>
+<div class="window" id="win-notepad"><div class="win-header"><b>📝 Bloco</b><div style="display:flex;gap:8px"><div class="dot" style="background:#ff5f56" onclick="closeWin('notepad')"></div><div class="dot" style="background:#ffbd2e"></div><div class="dot" style="background:#27ca3f"></div></div></div><div class="win-content"><textarea style="width:100%;height:100%;border:0;outline:none">Bem-vindo! Digite aqui :)</textarea></div></div>
+<div id="startMenu"><div class="start-top"><div class="search">🔍 Pesquisar</div><div class="apps"><div class="app" onclick="openWin('edge');toggleStart()"><div>🌐</div><span>Edge</span></div><div class="app" onclick="openWin('explorer');toggleStart()"><div>📁</div><span>Arquivos</span></div><div class="app" onclick="openWin('notepad');toggleStart()"><div>📝</div><span>Notas</span></div><div class="app"><div>🎨</div><span>Paint</span></div><div class="app"><div>🎮</div><span>Xbox</span></div><div class="app"><div>⚙️</div><span>Config</span></div></div></div></div>
+<div id="taskbar"><div class="task-icon" id="start" onclick="toggleStart()">⊞</div><div class="task-icon" onclick="openWin('explorer')">📁</div><div class="task-icon" onclick="openWin('edge')">🌐</div><div class="task-icon" onclick="openWin('notepad')">📝</div><div id="clock"><div id="time">10:49</div><div>25/09/2026</div></div></div>
+<script>
+function toggleStart(){document.getElementById('startMenu').classList.toggle('open')}
+function openWin(id){document.querySelectorAll('.window').forEach(w=>w.style.zIndex=10);let el=document.getElementById('win-'+id);el.style.display='flex';el.style.zIndex=50;document.getElementById('startMenu').classList.remove('open')}
+function closeWin(id){document.getElementById('win-'+id).style.display='none'}
+setInterval(()=>{document.getElementById('time').textContent=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})},1000)
+document.querySelectorAll('.win-header').forEach(h=>{let d=false,sx,sy;h.onmousedown=e=>{d=true;sx=e.clientX;sy=e.clientY;h.parentElement.style.zIndex=50};document.onmousemove=e=>{if(!d)return;let w=h.parentElement;w.style.left=(w.offsetLeft+e.clientX-sx)+'px';w.style.top=(w.offsetTop+e.clientY-sy)+'px';sx=e.clientX;sy=e.clientY};document.onmouseup=()=>d=false})
+</script>
+</body>
+</html>
