@@ -1,1 +1,57 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Win11 Fix</title><style>html,body{height:100%;margin:0}body{background:#0078d4;display:flex;align-items:center;justify-content:center;font-family:Segoe UI,sans-serif}#box{background:rgba(255,255,255,.9);padding:30px;border-radius:16px;text-align:center;box-shadow:0 20px 40px rgba(0,0,0,.4)}button{padding:12px 22px;border-radius:20px;border:0;background:#0078d4;color:#fff;font-size:15px}#wall{position:fixed;inset:0;background:radial-gradient(at 50% 20%, #7ec4ff, #0078d4 50%, #003a75)}#desk{position:fixed;inset:0;padding:12px;display:none}#task{position:fixed;bottom:0;left:0;right:0;height:50px;background:#f3f3f3;display:flex;align-items:center;justify-content:center}</style></head><body><div id="wall"></div><div id="box"><h2>Windows 11 v1.2.2</h2><p style="margin:10px 0">Corrigido! Agora abre!</p><button onclick="document.getElementById('box').style.display='none';document.getElementById('desk').style.display='block'">ENTRAR ▶</button></div><div id="desk"><div style="color:#fff">💻 Este PC<br><br>📁 MEUS APPS<br><br>🗑️ Lixeira</div><div id="task">⊞ Windows 11 - Funcionando!</div></div></body></html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Windows 11 v1.2.0 Real Classico</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{height:100vh;overflow:hidden;background:#0078d4}
+/* BLOOM CLASSICO FEITO EM CSS - SEM IMAGEM EXTERNA */
+#wall{position:fixed;inset:0;background:#0e6ccf;overflow:hidden}
+#bloom{position:absolute;width:140%;height:90%;left:-20%;top:10%;background:radial-gradient(ellipse at 30% 20%, #8ecfff 0%, #3a9bff 25%, #0078d4 50%, #0055a5 80%);border-radius:50% 50% 0 0;filter:blur(1px)}
+#bloom2{position:absolute;width:100%;height:70%;left:0;top:25%;background:radial-gradient(ellipse at 70% 30%, #5db0ff 0%, transparent 60%);opacity:.8}
+#lock{position:fixed;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.2), rgba(0,0,0,.4)), radial-gradient(at 50% 0%, #5db0ff, #004a8f);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;transition:.5s}
+#lock h1{font-size:58px;font-weight:200}
+#desk{position:relative;height:calc(100vh - 52px);padding:14px;display:grid;grid-template-columns:80px;gap:14px;align-content:start}
+.ic{width:80px;color:#fff;text-align:center;font-size:11px;padding:6px;border-radius:6px;text-shadow:0 1px 3px #000}
+.ic b{font-size:32px;display:block}
+#task{position:fixed;bottom:0;left:0;right:0;height:52px;background:rgba(243,243,243,.88);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;gap:8px;z-index:9999}
+.t{width:44px;height:44px;display:grid;place-items:center;border-radius:6px}
+.t:hover{background:rgba(0,0,0,.08)}
+#start{position:fixed;bottom:64px;left:50%;transform:translateX(-50%);width:92%;max-width:620px;height:580px;background:#f9f9f9;border-radius:12px;display:none;flex-direction:column;z-index:9000;box-shadow:0 30px 80px rgba(0,0,0,.5);border:1px solid #fff}
+#clock{position:absolute;right:14px;font-size:11px;text-align:right;color:#111}
+.win{position:absolute;top:8%;left:2%;width:96%;max-width:700px;height:62vh;background:#fcfcfc;border-radius:10px;display:none;flex-direction:column;z-index:100;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.wtop{height:44px;background:#f3f3f3;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-weight:600;border-bottom:1px solid #e5e5e5}
+.x{width:32px;height:32px;display:grid;place-items:center;border-radius:4px}.x:hover{background:#e81123;color:#fff}
+</style>
+</head>
+<body>
+<div id="wall"><div id="bloom"></div><div id="bloom2"></div></div>
+
+<div id="lock" onclick="this.style.opacity=0;setTimeout(()=>this.style.display='none',500)">
+<h1 id="h">15:35</h1>
+<p>segunda, papel clássico Bloom</p>
+<button style="margin-top:24px;padding:12px 28px;border-radius:24px;border:0;background:rgba(255,255,255,.25);color:#fff;font-size:15px;backdrop-filter:blur(10px)">Clique para entrar</button>
+<p style="font-size:11px;margin-top:40px;opacity:.7">v1.2.0 REAL - Papel Clássico Windows 11</p>
+</div>
+
+<div id="desk">
+<div class="ic" ondblclick="openA('files')"><b>📁</b>MEUS APPS</div>
+<div class="ic"><b>💻</b>Este PC</div>
+<div class="ic"><b>🌐</b>Edge</div>
+<div class="ic"><b>🎨</b>Paint</div>
+<div class="ic"><b>🗑️</b>Lixeira</div>
+</div>
+
+<div id="start" style="display:none;padding:0">
+<div style="padding:18px"><input placeholder="Pesquisar no Windows" style="width:100%;padding:12px 18px;border-radius:24px;border:1px solid #ddd;outline:none"></div>
+<div style="flex:1;padding:0 18px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px"><div style="background:#fff;padding:12px;border-radius:8px;text-align:center">📁<br>Arquivos</div><div style="background:#fff;padding:12px;border-radius:8px;text-align:center">⚙️<br>Config</div><div style="background:#fff;padding:12px;border-radius:8px;text-align:center">🎨<br>Paint</div><div style="background:#fff;padding:12px;border-radius:8px;text-align:center">🌐<br>Edge</div></div>
+<div style="height:56px;background:#fff;border-top:1px solid #eee;display:flex;align-items:center;padding:0 18px">👤 yohan • v1.2.0 REAL Clássico</div>
+</div>
+
+<div id="w-files" class="win" style="display:flex"><div class="wtop">📁 MEUS APPS<div class="x" onclick="this.parentElement.parentElement.style.display='none'">✕</div></div><div style="padding:14px">Papel Bloom clássico carregado em CSS! Sem link externo. Nunca mais tela preta.</div></div>
+
+<div id="task">
+<div class="t" style="background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2)" onclick="let s=document.getElementById('start');s.style.display=s.style.display==='flex'?'none':'flex'">⊞</div>
+<div class="t" onclick="document.getElementById('w-files').style.display='flex
