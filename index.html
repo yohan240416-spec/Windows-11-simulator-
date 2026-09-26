@@ -3,22 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Windows 11 v1.2.0 Classico</title>
+<title>Win11 v1.2.1 Fix</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-body{height:100vh;overflow:hidden;background:#000}
-/* PAPEL DE PAREDE CLASSICO OFICIAL */
-#wall{position:fixed;inset:0;background:url('https://cdn.wallpapersafari.com/34/62/5Q3Y8P.jpg') center/cover;background-color:#0078d4}
-#lock{position:fixed;inset:0;background:url('https://4kwallpapers.com/images/wallpapers/windows-11-dark-mode-3840x2160-9328.jpg') center/cover;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;transition:.6s}
-#lock h1{font-size:54px;font-weight:200;text-shadow:0 2px 10px #000}
-#lock p{margin-top:8px;text-shadow:0 1px 4px #000}
-#lock button{margin-top:30px;padding:12px 28px;border-radius:24px;border:0;background:rgba(255,255,255,.2);backdrop-filter:blur(10px);color:#fff;font-size:15px}
-#desk{position:relative;height:calc(100vh - 52px);padding:14px;display:grid;grid-template-columns:80px;gap:12px;align-content:start}
-.icon{width:80px;color:#fff;text-align:center;font-size:11px;padding:6px;border-radius:6px;text-shadow:0 1px 3px #000}
-.icon b{font-size:30px;display:block}
-.icon:active{background:rgba(255,255,255,.18)}
-#task{position:fixed;bottom:0;left:0;right:0;height:52px;background:rgba(243,243,243,.85);backdrop-filter:blur(25px);display:flex;align-items:center;justify-content:center;gap:8px;z-index:9999;border-top:1px solid rgba(0,0,0,.08)}
-.t{width:42px;height:42px;display:grid;place-items:center;border-radius:6px;font-size:18px}
-.t:hover{background:rgba(0,0,0,.08)}#sBtn{background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.15)}
-#clock{position:absolute;right:14px;font-size:11px;text-align:right;color:#000;line-height:1.2}
-#start{position:fixed;bottom:64px;left:50%;transform:translateX(-50%);width:92%;max-width:600px;height:560px;background:rgba(249,249,249,.97);backdrop-filter:blur(30px);border-radius:12px;display:none;flex-direction:column;z-index:9000;box-shadow:0 25px 60px rgba(0,0,0,.4);border:1px solid rgba(255,255,
+body{height:100vh;overflow:hidden;background:#0a5dc2}
+/* PAPEL SEM IMAGEM - NUNCA FICA PRETO */
+#wall{position:fixed;inset:0;background:radial-gradient(circle at 50% 0%, #6eb6ff 0%, #0078d4 40%, #002a5c 100%)}
+#lock{position:fixed;inset:0;background:linear-gradient(180deg,#0a3d8f,#0078d4);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff}
+#lock h1{font-size:56px;font-weight:200}#lock button{margin-top:24px;padding:12px 26px;border-radius:20px;border:0;background:rgba(255,255,255,.25);color:#fff}
+#desk{position:relative;height:calc(100vh - 52px);padding:12px;display:grid;grid-template-columns:80px;gap:10px;align-content:start}
+.ic{width:78px;color:#fff;text-align:center;font-size:11px;padding:6px;border-radius:6px;text-shadow:0 1px 2px #000}
+.ic b{font-size:28px;display:block}
+#task{position:fixed;bottom:0;left:0;right:0;height:52px;background:#f3f3f3;display:flex;align-items:center;justify-content:center;gap:8px;z-index:9999}
+.t{width:42px;height:42px;display:grid;place-items:center;border-radius:6px}
+#start{position:fixed;bottom:62px;left:50%;transform:translateX(-50%);width:94%;max-width:580px;height:
