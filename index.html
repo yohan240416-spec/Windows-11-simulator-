@@ -1,44 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Windows 11</title>
-<style>
-body{margin:0;background:url('https://cdn.wallpapersafari.com/9/87/JKNNPA.jpg');background-size:cover;font-family:Segoe UI;overflow:hidden}
-#taskbar{position:fixed;bottom:0;width:100%;height:50px;background:rgba(255,255,255,0.8);backdrop-filter:blur(10px);display:flex;justify-content:center;align-items:center;gap:15px}
-.app{cursor:pointer;text-align:center}
-.app img{width:32px;height:32px}
-.window{display:none;position:fixed;top:10%;left:15%;width:70%;height:70%;background:white;border-radius:8px;box-shadow:0 0 20px black;overflow:hidden}
-.window header{background:#eee;padding:10px;display:flex;justify-content:space-between}
-iframe{width:100%;height:90%;border:none}
-</style>
-</head>
-<body>
-
-<div id="taskbar">
-  <div class="app" onclick="openWin('bing')"><img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Bing_Logo.png"><br>Bing</div>
-  <div class="app" onclick="openWin('store')"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Microsoft_Store_2022_icon.png"><br>Store</div>
+<html><body style="margin:0;background:blue;color:white;text-align:center;padding-top:100px;font-family:Arial">
+<h1>Windows 11 Loading...</h1>
+<div style="background:white;width:80%;height:70%;margin:auto;border-radius:10px;color:black;padding:20px">
+<p>Bing: <a href="https://bing.com" target="_blank">Abrir Bing</a></p>
+<p>Store:</p>
+<button onclick="window.open('https://agar.io')">Agar.io</button>
+<button onclick="window.open('https://slither.io')">Slither.io</button>
 </div>
-
-<div id="bing" class="window">
-  <header><span>Bing</span><button onclick="closeWin('bing')">X</button></header>
-  <iframe src="https://www.bing.com"></iframe>
-</div>
-
-<div id="store" class="window">
-  <header><span>Microsoft Store - Jogos</span><button onclick="closeWin('store')">X</button></header>
-  <div style="padding:20px">
-    <h2>Jogos pra instalar</h2>
-    <button onclick="window.open('https://play.agar.io','_blank')" style="padding:10px;margin:5px">Agar.io</button>
-    <button onclick="window.open('https://slither.io','_blank')" style="padding:10px;margin:5px">Slither.io</button>
-    <button onclick="window.open('https://www.minecraft.net/en-us/demo','_blank')" style="padding:10px;margin:5px">Minecraft Demo</button>
-    <button onclick="window.open('https://krunker.io','_blank')" style="padding:10px;margin:5px">Krunker (FPS)</button>
-    <p>Esses jogos abrem direto, sem precisar instalar!</p>
-  </div>
-</div>
-
-<script>
-function openWin(id){document.getElementById(id).style.display='block'}
-function closeWin(id){document.getElementById(id).style.display='none'}
-</script>
-</body>
-</html>
+<div style="position:fixed;bottom:0;background:#222;width:100%;padding:10px">Barra de tarefas</div>
+</body></html>
