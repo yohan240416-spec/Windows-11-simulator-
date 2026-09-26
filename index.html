@@ -3,54 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Win11 v1.5 FIX</title>
+<title>Win11 v1.6 Tudo</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
 body{height:100vh;overflow:hidden;background:#0078d4}
 #wall{position:fixed;inset:0;background:#0078d4}
 #bloom{position:absolute;left:15%;top:5%;width:70%;height:75%;background:radial-gradient(ellipse at 30% 20%,#8ecfff 0%,#3a9bff 30%,#005ca9 70%);border-radius:50%;filter:blur(10px)}
-#desk{position:relative;height:calc(100vh - 52px);padding:12px;display:flex;flex-direction:column;gap:12px;z-index:10}
-.ic{width:80px;text-align:center;color:#fff;font-size:12px;padding:8px;border-radius:6px;cursor:pointer}
-.ic b{font-size:32px;display:block}
-.ic:hover{background:rgba(255,255,255,.2)}
-.win{position:fixed;top:10%;left:5%;width:90%;max-width:600px;height:60vh;background:#fff;border-radius:12px;display:none;flex-direction:column;box-shadow:0 20px 60px #000a;z-index:100;border:1px solid #ddd}
-.top{height:44px;background:#f0f0f0;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:1px solid #ddd;font-weight:600;border-radius:12px 12px 0 0}
+#lock{position:fixed;inset:0;z-index:99999;background:rgba(0,60,130,.85);display:flex;align-items:center;justify-content:center;flex-direction:column;color:#fff;cursor:pointer}
+#desk{position:relative;height:calc(100vh - 52px);padding:12px;display:flex;flex-direction:column;gap:14px;z-index:10}
+.ic{width:80px;text-align:center;color:#fff;font-size:11px;padding:8px;border-radius:6px;cursor:pointer;text-shadow:0 1px 2px #000}
+.ic b{font-size:34px;display:block}
+.ic:hover{background:rgba(255,255,255,.18)}
+.win{position:fixed;top:8%;left:5%;width:90%;max-width:650px;height:65vh;background:#fefefe;border-radius:12px;display:none;flex-direction:column;box-shadow:0 20px 60px #000a;z-index:100;border:1px solid #ddd}
+.top{height:44px;background:#f3f3f3;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:1px solid #ddd;font-weight:600;border-radius:12px 12px 0 0}
 .body{flex:1;padding:16px;overflow:auto}
 .x{width:32px;height:32px;display:grid;place-items:center;border-radius:6px;cursor:pointer}
 .x:hover{background:#e11;color:#fff}
-#task{position:fixed;bottom:0;left:0;right:0;height:52px;background:#f3f3f3;display:flex;align-items:center;justify-content:center;gap:8px;z-index:999;border-top:1px solid #ddd}
-.t{width:44px;height:44px;display:grid;place-items:center;border-radius:6px;cursor:pointer;font-size:20px}
+#task{position:fixed;bottom:0;left:0;right:0;height:54px;background:rgba(243,243,243,.95);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;gap:10px;z-index:999;border-top:1px solid #ddd}
+.t{width:46px;height:46px;display:grid;place-items:center;border-radius:6px;cursor:pointer;font-size:22px}
 .t:hover{background:#ddd}
+#start{position:fixed;bottom:62px;left:50%;transform:translateX(-50%);width:92%;max-width:560px;background:#f9f9f9;border-radius:14px;display:none;flex-direction:column;z-index:500;box-shadow:0 20px 60px #0008;padding:16px}
+.s-app{padding:14px;background:#fff;border-radius:10px;display:flex;align-items:center;gap:12px;cursor:pointer;border:1px solid #eee}
+.s-app:hover{background:#eef5ff}
 </style>
 </head>
 <body>
 <div id="wall"><div id="bloom"></div></div>
+<div id="lock" onclick="this.style.display='none'"><h1 style="font-size:60px;font-weight:200" id="lockH">15:50</h1><p id="lockD">Sábado, 26 de Setembro</p><button style="margin-top:24px;padding:12px 28px;border-radius:24px;border:0;background:#fff;font-weight:600">Entrar no Windows 11</button></div>
 
 <div id="desk">
 <div class="ic" onclick="document.getElementById('w-files').style.display='flex'"><b>📁</b>MEUS APPS</div>
 <div class="ic" onclick="document.getElementById('w-pc').style.display='flex'"><b>💻</b>Este PC</div>
 <div class="ic" onclick="document.getElementById('w-edge').style.display='flex'"><b>🌐</b>Edge</div>
-<div class="ic" onclick="document.getElementById('w-paint').style.display='flex'"><b>🎨</b>Paint</div>
+<div class="ic" onclick="document.getElementById('w-cfg').style.display='flex'"><b>⚙️</b>Config</div>
+<div class="ic"><b>🗑️</b>Lixeira</div>
 </div>
 
-<div id="w-files" class="win" style="display:flex"><div class="top">📁 MEUS APPS <div class="x" onclick="this.parentElement.parentElement.style.display='none'">✕</div></div><div class="body"><h3>✅ SE APARECER ISSO, FUNCIONOU!</h3><br>Se os apps não abriam antes, agora vão abrir.<br><br>📁 Pasta Projetos<br>📄 teste.txt</div></div>
+<div id="start">
+<input id="search" placeholder="🔍 Pesquisar no Windows" style="width:100%;padding:12px 16px;border-radius:20px;border:1px solid #ddd;margin-bottom:14px">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div class="s-app" onclick="document.getElementById('w-files').style.display='flex';toggleStart()"><span style="font-size:24px">📁</span> MEUS APPS</div>
+<div class="s-app" onclick="document.getElementById('w-edge').style.display='flex';toggleStart()"><span style="font-size:24px">🌐</span> Edge</div>
+<div class="s-app" onclick="document.getElementById('w-pc').style.display='flex';toggleStart()"><span style="font-size:24px">💻</span> Este PC</div>
+<div class="s-app" onclick="document.getElementById('w-cfg').style.display='flex';toggleStart()"><span style="font-size:24px">⚙️</span> Configurações</div>
+</div>
+</div>
 
-<div id="w-pc" class="win"><div class="top">💻 Este PC <div class="x" onclick="this.parentElement.parentElement.style.display='none'">✕</div></div><div class="body">💾 Disco C: 120GB</div></div>
+<div id="w-files" class="win"><div class="top">📁 MEUS APPS<div class="x" onclick="this.closest('.win').style.display='none'">✕</div></div><div class="body">✅ v1.6 TUDO FUNCIONANDO!<br><br><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><div style="padding:12px;background:#f5f5f5;border-radius:8px">📁 Projetos Web</div><div style="padding:12px;background:#f5f5f5;border-radius:8px">📁 Fotos</div><div style="padding:12px;background:#f5f5f5;border-radius:8px">📄 curriculo.pdf</div><div style="padding:12px;background:#f5f5f5;border-radius:8px">🎵 musicas</div></div></div></div>
 
-<div id="w-edge" class="win" style="max-width:850px"><div class="top">🌐 Edge Fake <div class="x" onclick="this.parentElement.parentElement.style.display='none'">✕</div></div><div class="body" style="text-align:center;padding-top:40px"><img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_Edge_logo_%282019%29.svg" width="70"><h2 style="margin:16px 0">Edge Fake Funcionando</h2><button onclick="window.open('https://google.com','_blank')" style="padding:10px 20px;margin:4px">Google</button><button onclick="window.open('https://youtube.com','_blank')" style="padding:10px 20px;margin:4px">YouTube</button></div></div>
+<div id="w-pc" class="win"><div class="top">💻 Este PC<div class="x" onclick="this.closest('.win').style.display='none'">✕</div></div><div class="body"><div style="padding:12px;background:#eef;border-radius:8px;margin-bottom:8px">💾 Disco Local (C:) - 256GB livres</div><div style="padding:12px;background:#fef4e0;border-radius:8px">💿 DVD (D:)</div><br><b>Especificações:</b><br>Windows 11 Simulator v1.6<br>16GB RAM<br>Intel i7</div></div>
 
-<div id="w-paint" class="win"><div class="top">🎨 Paint <div class="x" onclick="this.parentElement.parentElement.style.display='none'">✕</div></div><div class="body">Paint aberto! Pode desenhar aqui depois.</div></div>
+<div id="w-edge" class="win" style="max-width:900px;height:72vh"><div class="top">🌐 Microsoft Edge<div class="x" onclick="this.closest('.win').style.display='none'">✕</div></div><div class="body" style="padding:0;display:flex;flex-direction:column;background:#fff"><div style="padding:8px;background:#f0f0f0;display:flex;gap:8px;align-items:center"><span>🔒</span><input value="https://www.bing.com" style="flex:1;padding:8px 14px;border-radius:20px;border:1px solid #ccc"><button onclick="window.open('https://www.bing.com','_blank')" style="padding:8px 16px;border-radius:20px;border:0;background:#0078d4;color:#fff;cursor:pointer">Ir</button></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center"><img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_Edge_logo_%282019%29.svg" width="80"><h2 style="font-weight:300;margin:16px 0">Bem-vindo ao Edge</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:320px;width:100%"><button onclick="window.open('https://google.com','_blank')" style="padding:14px;border-radius:10px;border:1px solid #ddd;background:#fff;cursor:pointer">🔍 Google</button><button onclick="window.open('https://youtube.com','_blank')" style="padding:14px;border-radius:10px;border:1px solid #ddd;background:#fff;cursor:pointer">▶️ YouTube</button><button onclick="window.open('https://github.com','_blank')" style="padding:14px;border-radius:10px;border:1px solid #ddd;background:#fff;cursor:pointer">💻 GitHub</button><button onclick="window.open('https://pt.wikipedia.org','_blank')" style="padding:14px;border-radius:10px;border:1px solid #ddd;background:#fff;cursor:pointer">📚 Wikipedia</button></div></div></div></div>
+
+<div id="w-cfg" class="win"><div class="top">⚙️ Configurações<div class="x" onclick="this.closest('.win').style.display='none'">✕</div></div><div class="body"><h3>Sistema</h3><br><div style="padding:12px;background:#f5f5f5;border-radius:8px">🎨 Personalização - Papel de parede azul</div><br><div style="padding:12px;background:#f5f5f5;border-radius:8px">🔊 Som - Ativado</div><br><div style="padding:12px;background:#f5f5f5;border-radius:8px">ℹ️ Sobre - Windows 11 Simulator v1.6</div></div></div>
 
 <div id="task">
-<div class="t">⊞</div>
+<div class="t" onclick="toggleStart()">⊞</div>
 <div class="t" onclick="document.getElementById('w-files').style.display='flex'">📁</div>
 <div class="t" onclick="document.getElementById('w-edge').style.display='flex'">🌐</div>
-<div style="position:absolute;right:12px;font-size:12px">15:45</div>
+<div class="t" onclick="document.getElementById('w-cfg').style.display='flex'">⚙️</div>
+<div style="position:absolute;right:14px;text-align:right;font-size:12px;line-height:1.2"><span id="clk">15:50</span><br><span id="clkD">26/09</span></div>
 </div>
 
 <script>
-// Esconde o MEUS APPS depois de 2 segundos pra vc testar clicar de novo
-setTimeout(()=>{document.getElementById('w-files').style.display='none'},2000)
+function toggleStart(){let s=document.getElementById('start');s.style.display=s.style.display==='flex'?'none':'flex'}
+setInterval(()=>{
+let d=new Date();
+let h=d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+let el=document.getElementById('clk');if(el)el.textContent=h;
+let lh=document.getElementById('lockH');if(lh)lh.textContent=h;
+},1000)
+document.addEventListener('click',e=>{
+let st=document.getElementById('start');
+if(!e.target.closest('#start') && !e.target.closest('.t')){if(st)st.style.display='none'}
+})
 </script>
 </body>
 </html>
