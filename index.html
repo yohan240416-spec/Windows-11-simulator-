@@ -2,89 +2,50 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" 
-content="width=device-width,initial-scale=1">
-<title>Win11 v1.3</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Win11 v1.3 FIX</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;
-font-family:Segoe UI,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
 body{height:100vh;overflow:hidden}
-#wall{position:fixed;inset:0;
-background:#0078d4}
-#bloom{position:absolute;left:15%;top:5%;
-width:70%;height:75%;
-background:radial-gradient(ellipse at 30% 20%,
-#8ecfff 0%,#3a9bff 30%,#005ca9 70%);
-border-radius:50%;filter:blur(10px)}
-#lock{position:fixed;inset:0;z-index:99999;
-background:rgba(0,60,130,.85);
-display:flex;align-items:center;
-justify-content:center;flex-direction:column;
-color:#fff;cursor:pointer}
-#desk{position:relative;
-height:calc(100vh - 52px);padding:12px;
-display:flex;flex-direction:column;gap:12px}
-.ic{width:75px;text-align:center;
-color:#fff;font-size:11px;padding:6px;
-border-radius:6px;user-select:none}
+#wall{position:fixed;inset:0;background:#0078d4}
+#bloom{position:absolute;left:15%;top:5%;width:70%;height:75%;background:radial-gradient(ellipse at 30% 20%,#8ecfff 0%,#3a9bff 30%,#005ca9 70%);border-radius:50%;filter:blur(10px)}
+#lock{position:fixed;inset:0;z-index:99999;background:rgba(0,60,130,.85);display:flex;align-items:center;justify-content:center;flex-direction:column;color:#fff;cursor:pointer}
+#desk{position:relative;height:calc(100vh - 52px);padding:12px;display:flex;flex-direction:column;gap:12px}
+.ic{width:75px;text-align:center;color:#fff;font-size:11px;padding:6px;border-radius:6px;user-select:none}
 .ic b{font-size:30px;display:block}
 .ic:hover{background:rgba(255,255,255,.15)}
-#task{position:fixed;bottom:0;left:0;right:0;
-height:52px;background:#f3f3f3;
-display:flex;align-items:center;
-justify-content:center;gap:8px;z-index:999}
-.t{width:44px;height:44px;display:grid;
-place-items:center;border-radius:6px}
+#task{position:fixed;bottom:0;left:0;right:0;height:52px;background:#f3f3f3;display:flex;align-items:center;justify-content:center;gap:8px;z-index:999}
+.t{width:44px;height:44px;display:grid;place-items:center;border-radius:6px}
 .t:hover{background:#ddd}
-.win{position:fixed;top:10%;left:5%;
-width:90%;max-width:600px;height:60vh;
-background:#fcfcfc;border-radius:10px;
-display:none;flex-direction:column;
-box-shadow:0 20px 60px #0006;z-index:100}
-.top{height:40px;background:#eee;
-display:flex;align-items:center;
-justify-content:space-between;
-padding:0 12px;border-bottom:1px solid #ddd}
+.win{position:fixed;top:10%;left:5%;width:90%;max-width:600px;height:60vh;background:#fcfcfc;border-radius:10px;display:none;flex-direction:column;box-shadow:0 20px 60px #0006;z-index:100}
+.top{height:40px;background:#eee;display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:1px solid #ddd}
 .body{flex:1;padding:16px;overflow:auto}
-.x{width:30px;height:30px;display:grid;
-place-items:center;border-radius:4px}
+.x{width:30px;height:30px;display:grid;place-items:center;border-radius:4px}
 .x:hover{background:#e11;color:#fff}
-#start{position:fixed;bottom:60px;left:50%;
-transform:translateX(-50%);width:90%;
-max-width:500px;height:400px;
-background:#f9f9f9;border-radius:12px;
-display:none;flex-direction:column;
-z-index:500;box-shadow:0 20px 60px #0008}
+#start{position:fixed;bottom:60px;left:50%;transform:translateX(-50%);width:90%;max-width:500px;height:400px;background:#f9f9f9;border-radius:12px;display:none;flex-direction:column;z-index:500;box-shadow:0 20px 60px #0008}
 </style>
 </head>
 <body>
 <div id="wall"><div id="bloom"></div></div>
-
-<div id="lock" onclick="hideLock()">
-<h1 style="font-size:56px;font-weight:200">15:45</h1>
-<p>Segunda-feira</p>
-<button style="margin-top:20px;padding:12px 24px;
-border-radius:20px;border:0;background:#fff">
-Clique para entrar
-</button>
-</div>
-
+<div id="lock" onclick="this.style.display='none'"><h1 style="font-size:56px;font-weight:200">15:45</h1><p>Segunda-feira</p><button style="margin-top:20px;padding:12px 24px;border-radius:20px;border:0;background:#fff">Clique para entrar</button></div>
 <div id="desk">
-<div class="ic" ondblclick="openW('files')">
-<b>📁</b>MEUS APPS</div>
-<div class="ic" ondblclick="openW('pc')">
-<b>💻</b>Este PC</div>
-<div class="ic" ondblclick="openW('edge')">
-<b>🌐</b>Edge</div>
-<div class="ic" ondblclick="openW('paint')">
-<b>🎨</b>Paint</div>
+<div class="ic" onclick="openW('files')"><b>📁</b>MEUS APPS</div>
+<div class="ic" onclick="openW('pc')"><b>💻</b>Este PC</div>
+<div class="ic" onclick="openW('edge')"><b>🌐</b>Edge</div>
+<div class="ic" onclick="openW('paint')"><b>🎨</b>Paint</div>
 <div class="ic"><b>🗑️</b>Lixeira</div>
 </div>
-
-<div id="start">
-<div style="padding:14px">
-<input placeholder="Pesquisar"
-style="width:100%;padding:10px 16px;
-border-radius:20px;border:1px solid #ccc">
-</div>
-<div style="padding:
+<div id="start"><div style="padding:14px"><input placeholder="Pesquisar" style="width:100%;padding:10px 16px;border-radius:20px;border:1px solid #ccc"></div><div style="padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:8px"><div>📁 Arquivos</div><div>🌐 Edge</div><div>🎨 Paint</div><div>⚙️ Config</div></div></div>
+<div id="w-files" class="win"><div class="top">📁 MEUS APPS<div class="x" onclick="closeW('files')">✕</div></div><div class="body">✅ AGORA ABRE!<br><br>📁 Pasta 1<br>📁 Pasta 2<br>📄 readme.txt</div></div>
+<div id="w-pc" class="win"><div class="top">💻 Este PC<div class="x" onclick="closeW('pc')">✕</div></div><div class="body">💾 Disco Local (C:) - 120GB</div></div>
+<div id="w-edge" class="win"><div class="top">🌐 Edge<div class="x" onclick="closeW('edge')">✕</div></div><div class="body">Google funcionando aqui dentro!</div></div>
+<div id="w-paint" class="win"><div class="top">🎨 Paint<div class="x" onclick="closeW('paint')">✕</div></div><div class="body">🎨 Paint aberto</div></div>
+<div id="task"><div class="t" onclick="toggleStart()">⊞</div><div class="t" onclick="openW('files')">📁</div><div class="t" onclick="openW('edge')">🌐</div><div style="position:absolute;right:12px;font-size:11px;text-align:right"><span id="clk">15:45</span><br>26/09</div></div>
+<script>
+function openW(id){document.getElementById('w-'+id).style.display='flex'}
+function closeW(id){document.getElementById('w-'+id).style.display='none'}
+function toggleStart(){let s=document.getElementById('start');s.style.display=s.style.display==='flex'?'none':'flex'}
+setInterval(()=>{let d=new Date();let el=document.getElementById('clk');if(el)el.textContent=d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})},1000)
+</script>
+</body>
+</html>
