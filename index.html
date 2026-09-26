@@ -2,38 +2,12 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Windows 11 - v1.1.0</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Windows 11 Simulator v1.1.0</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-body{background:#000 url('https://4kwallpapers.com/images/wallpapers/windows-11-stock-4480x2520-6747.jpg') center/cover;height:100vh;overflow:hidden}
-.window{position:absolute;top:100px;left:20px;width:320px;background:white;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,.5);display:none}
-.title{padding:10px;background:#f3f3f3;border-radius:8px 8px 0 0;display:flex;justify-content:space-between;cursor:move}
-.taskbar{position:fixed;bottom:0;width:100%;height:50px;background:rgba(243,243,243,.85);backdrop-filter:blur(20px);display:flex;justify-content:center;align-items:center;gap:15px}
-.start-btn{width:35px;height:35px;background:#0078d4;border-radius:5px;display:flex;align-items:center;justify-content:center;color:white;font-weight:bold}
-#startMenu{position:fixed;bottom:60px;left:50%;transform:translateX(-50%);width:90%;max-width:350px;background:white;border-radius:10px;padding:15px;display:none;box-shadow:0 10px 40px rgba(0,0,0,.3)}
-.app{padding:12px;background:#f9f9f9;border-radius:6px;margin-bottom:8px;display:flex;gap:10px}
-</style>
-</head>
-<body>
-<div id="startMenu">
-  <h3>Versão 1.1.0 - AGORA FUNCIONA!</h3><br>
-  <div class="app" onclick="openApp('youtube')">📺 YouTube</div>
-  <div class="app" onclick="openApp('pasta')">📁 MEUS APPS IMPORTANTES</div>
-  <div class="app" onclick="openApp('calc')">🧮 Calculadora</div>
-  <div class="app">⚙️ Windows 11 Simulator</div>
-</div>
-
-<div id="win-youtube" class="window"><div class="title"><span>YouTube</span><span onclick="closeApp('youtube')">X</span></div><iframe width="100%" height="250" src="https://www.youtube.com/embed/jNQXAC9IVRw" frameborder="0"></iframe></div>
-<div id="win-pasta" class="window"><div class="title"><span>MEUS APPS IMPORTANTES</span><span onclick="closeApp('pasta')">X</span></div><div style="padding:10px">✔️ MyPal<br>✔️ AMCap<br>✔️ Windows 11 Simulator 1.1.0</div></div>
-<div id="win-calc" class="window"><div class="title"><span>Calculadora</span><span onclick="closeApp('calc')">X</span></div><div style="padding:10px"><input id="c" style="width:100%;padding:10px"><br><br><button onclick="document.getElementById('c').value=eval(document.getElementById('c').value)">= Calcular</button></div></div>
-
-<div class="taskbar"><div class="start-btn" onclick="toggleStart()">⊞</div><div>🔍</div><div>🗂️</div></div>
-
-<script>
-function toggleStart(){let m=document.getElementById('startMenu');m.style.display=m.style.display=='block'?'none':'block'}
-function openApp(n){document.getElementById('win-'+n).style.display='block';toggleStart()}
-function closeApp(n){document.getElementById('win-'+n).style.display='none'}
-</script>
-</body>
-</html>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
+body{height:100vh;overflow:hidden;background:#000 url('https://4kwallpapers.com/images/wallpapers/windows-11-dark-3840x2160-8661.jpg') center/cover}
+#desktop{height:calc(100vh - 50px);position:relative;padding:10px}
+.icon{width:80px;text-align:center;color:white;font-size:12px;padding:8px;cursor:pointer}
+.icon:active{background:rgba(255,255,255,.2);border-radius:5px}
+#taskbar{position:fixed;bottom:0;width:100%;height:
