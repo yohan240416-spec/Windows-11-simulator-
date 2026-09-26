@@ -1,38 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Win11</title>
+<meta name="viewport" 
+content="width=device-width,initial-scale=1">
+<title>Win11 v1.3</title>
 <style>
-body{margin:0;height:100vh;overflow:hidden;font-family:Segoe UI}
-#wall{position:fixed;inset:0;background:#0078d4}
-#bloom{position:absolute;left:10%;top:5%;width:80%;height:80%;
-background:radial-gradient(ellipse,#6ec6ff 0%,#0078d4 60%);
-border-radius:50%;filter:blur(20px)}
-#lock{position:fixed;inset:0;z-index:9999;
-background:#005a9e;display:flex;
-align-items:center;justify-content:center;
-flex-direction:column;color:#fff}
-#task{position:fixed;bottom:0;left:0;right:0;
-height:50px;background:#f3f3f3;
+*{margin:0;padding:0;box-sizing:border-box;
+font-family:Segoe UI,sans-serif}
+body{height:100vh;overflow:hidden}
+#wall{position:fixed;inset:0;
+background:#0078d4}
+#bloom{position:absolute;left:15%;top:5%;
+width:70%;height:75%;
+background:radial-gradient(ellipse at 30% 20%,
+#8ecfff 0%,#3a9bff 30%,#005ca9 70%);
+border-radius:50%;filter:blur(10px)}
+#lock{position:fixed;inset:0;z-index:99999;
+background:rgba(0,60,130,.85);
 display:flex;align-items:center;
-justify-content:center;gap:10px}
+justify-content:center;flex-direction:column;
+color:#fff;cursor:pointer}
+#desk{position:relative;
+height:calc(100vh - 52px);padding:12px;
+display:flex;flex-direction:column;gap:12px}
+.ic{width:75px;text-align:center;
+color:#fff;font-size:11px;padding:6px;
+border-radius:6px;user-select:none}
+.ic b{font-size:30px;display:block}
+.ic:hover{background:rgba(255,255,255,.15)}
+#task{position:fixed;bottom:0;left:0;right:0;
+height:52px;background:#f3f3f3;
+display:flex;align-items:center;
+justify-content:center;gap:8px;z-index:999}
+.t{width:44px;height:44px;display:grid;
+place-items:center;border-radius:6px}
+.t:hover{background:#ddd}
+.win{position:fixed;top:10%;left:5%;
+width:90%;max-width:600px;height:60vh;
+background:#fcfcfc;border-radius:10px;
+display:none;flex-direction:column;
+box-shadow:0 20px 60px #0006;z-index:100}
+.top{height:40px;background:#eee;
+display:flex;align-items:center;
+justify-content:space-between;
+padding:0 12px;border-bottom:1px solid #ddd}
+.body{flex:1;padding:16px;overflow:auto}
+.x{width:30px;height:30px;display:grid;
+place-items:center;border-radius:4px}
+.x:hover{background:#e11;color:#fff}
+#start{position:fixed;bottom:60px;left:50%;
+transform:translateX(-50%);width:90%;
+max-width:500px;height:400px;
+background:#f9f9f9;border-radius:12px;
+display:none;flex-direction:column;
+z-index:500;box-shadow:0 20px 60px #0008}
 </style>
 </head>
 <body>
 <div id="wall"><div id="bloom"></div></div>
-<div id="lock" onclick="this.remove()">
-<h1 style="font-size:50px;font-weight:200">15:40</h1>
-<p>Clique para entrar</p>
-<button style="margin-top:20px;padding:10px 20px;
-border-radius:20px;border:0">
-Entrar
+
+<div id="lock" onclick="hideLock()">
+<h1 style="font-size:56px;font-weight:200">15:45</h1>
+<p>Segunda-feira</p>
+<button style="margin-top:20px;padding:12px 24px;
+border-radius:20px;border:0;background:#fff">
+Clique para entrar
 </button>
 </div>
-<div style="position:relative;padding:20px;color:#fff">
-📁 MEUS APPS<br><br>💻 Este PC<br><br>🌐 Edge
+
+<div id="desk">
+<div class="ic" ondblclick="openW('files')">
+<b>📁</b>MEUS APPS</div>
+<div class="ic" ondblclick="openW('pc')">
+<b>💻</b>Este PC</div>
+<div class="ic" ondblclick="openW('edge')">
+<b>🌐</b>Edge</div>
+<div class="ic" ondblclick="openW('paint')">
+<b>🎨</b>Paint</div>
+<div class="ic"><b>🗑️</b>Lixeira</div>
 </div>
-<div id="task">⊞ Windows 11 - v1.2.0 REAL</div>
-</body>
-</html>
+
+<div id="start">
+<div style="padding:14px">
+<input placeholder="Pesquisar"
+style="width:100%;padding:10px 16px;
+border-radius:20px;border:1px solid #ccc">
+</div>
+<div style="padding:
