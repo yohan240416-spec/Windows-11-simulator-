@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Win11 v1.3 FIX</title>
+<title>Win11 v1.3</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
 body{height:100vh;overflow:hidden}
@@ -38,7 +38,7 @@ body{height:100vh;overflow:hidden}
 <div id="start"><div style="padding:14px"><input placeholder="Pesquisar" style="width:100%;padding:10px 16px;border-radius:20px;border:1px solid #ccc"></div><div style="padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:8px"><div>📁 Arquivos</div><div>🌐 Edge</div><div>🎨 Paint</div><div>⚙️ Config</div></div></div>
 <div id="w-files" class="win"><div class="top">📁 MEUS APPS<div class="x" onclick="closeW('files')">✕</div></div><div class="body">✅ AGORA ABRE!<br><br>📁 Pasta 1<br>📁 Pasta 2<br>📄 readme.txt</div></div>
 <div id="w-pc" class="win"><div class="top">💻 Este PC<div class="x" onclick="closeW('pc')">✕</div></div><div class="body">💾 Disco Local (C:) - 120GB</div></div>
-<div id="w-edge" class="win"><div class="top">🌐 Edge<div class="x" onclick="closeW('edge')">✕</div></div><div class="body">Google funcionando aqui dentro!</div></div>
+<div id="w-edge" class="win" style="max-width:900px;height:70vh"><div class="top">🌐 Edge<div class="x" onclick="closeW('edge')">✕</div></div><div class="body" style="padding:0"><iframe src="https://www.bing.com" style="width:100%;height:100%;border:0"></iframe></div></div>
 <div id="w-paint" class="win"><div class="top">🎨 Paint<div class="x" onclick="closeW('paint')">✕</div></div><div class="body">🎨 Paint aberto</div></div>
 <div id="task"><div class="t" onclick="toggleStart()">⊞</div><div class="t" onclick="openW('files')">📁</div><div class="t" onclick="openW('edge')">🌐</div><div style="position:absolute;right:12px;font-size:11px;text-align:right"><span id="clk">15:45</span><br>26/09</div></div>
 <script>
