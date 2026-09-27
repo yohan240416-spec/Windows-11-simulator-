@@ -3,45 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Windows 11 Simulator 1.6.2 FIX</title>
+<title>Windows 11 1.6.2 FINAL</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI'}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
 body{width:100vw;height:100vh;overflow:hidden;background:#0078d4}
-#wall{position:fixed;inset:0;background:url('https://4kwallpapers.com/images/wallpapers/windows-11-blue-abstract-3840x2160-22091.jpg');background-size:cover;background-position:center}
-#icons{position:absolute;top:10px;left:10px;display:flex;flex-direction:column;gap:15px;z-index:10}
-.icon{width:80px;color:#fff;text-align:center;font-size:12px;cursor:pointer;text-shadow:0 1px 3px #000}
-.icon b{width:48px;height:48px;background:rgba(255,255,255,.25);backdrop-filter:blur(5px);border-radius:10px;display:flex;align-items:center;justify-content:center;margin:0 auto 5px;font-size:26px}
-#taskbar{position:fixed;bottom:0;width:100%;height:55px;background:rgba(242,242,242,.92);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;gap:8px;z-index:1000}
-.t{width:42px;height:42px;border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px}
-.t:hover{background:rgba(0,0,0,.1)}
-.win{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:92%;max-width:900px;height:72%;background:#fff;border-radius:10px;box-shadow:0 20px 60px #000;display:none;flex-direction:column;z-index:500}
-.win.ativo{display:flex}
-.title{height:40px;background:#f3f3f3;display:flex;justify-content:space-between;align-items:center;padding:0 12px;border-radius:10px 10px 0 0;font-size:14px;font-weight:600}
-.content{flex:1;overflow:auto;display:flex;flex-direction:column}
-#start{position:fixed;bottom:65px;left:50%;transform:translateX(-50%);width:580px;max-width:94vw;height:550px;background:rgba(255,255,255,.97);border-radius:10px;display:none;z-index:999;padding:20px;box-shadow:0 10px 40px #000}
-#start.ativo{display:block}
-.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:15px}
-.app{background:#f3f3f3;border-radius:8px;padding:12px;text-align:center;cursor:pointer;font-size:12px}
-.app:hover{background:#e5e5e5}
+#wall{position:fixed;inset:0;background:radial-gradient(circle at 50% 0%, #5aa9ff 0%, #0f6cbd 45%, #001a33 100%)}
+#icons{position:absolute;top:12px;left:12px;display:flex;flex-direction:column;gap:16px;z-index:10}
+.icon{width:78px;text-align:center;color:#fff;font-size:12px;cursor:pointer;text-shadow:0 1px 3px #000}
+.icon b{width:48px;height:48px;background:rgba(255,255,255,.22);backdrop-filter:blur(8px);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-size:26px}
+#taskbar{position:fixed;bottom:0;width:100%;height:56px;background:rgba(243,243,243,.92);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;gap:8px;z-index:1000;border-top:1px solid rgba(0,0,0,.1)}
+.t{width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px}
+.t:hover{background:rgba(0,0,0,.08)}
+.win{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:92%;max-width:900px;height:72%;background:#fff;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.5);display:none;flex-direction:column;z-index:500;overflow:hidden}
+.title{height:44px;background:#f5f5f5;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:1px solid #e5e5e5;font-weight:600;font-size:14px}
+.close{cursor:pointer;background:#ff5f57;color:#fff;padding:4px 12px;border-radius:20px;font-size:13px}
+.content{flex:1;overflow:auto;background:#fff}
+#start{position:fixed;bottom:68px;left:50%;transform:translateX(-50%);width:600px;max-width:95vw;background:#fdfdfd;border-radius:12px;display:none;flex-direction:column;padding:22px;z-index:999;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:14px}
+.app{background:#f2f2f2;border-radius:10px;padding:14px 4px;text-align:center;cursor:pointer;font-size:12px}
+.app span{font-size:26px;display:block;margin-bottom:4px}
+.app:hover{background:#e8e8e8}
 </style>
 </head>
 <body>
 <div id="wall"></div>
 
 <div id="icons">
-<div class="icon" onclick="abrir('explorer')"><b>📁</b>Explorador</div>
-<div class="icon" onclick="abrir('edge')"><b>🌐</b>Edge</div>
-<div class="icon" onclick="abrir('store')"><b>🛒</b>Store</div>
-<div class="icon" onclick="abrir('notepad')"><b>📝</b>Notas</div>
-<div class="icon" onclick="abrir('calc')"><b>🧮</b>Calc</div>
+<div class="icon" onclick="openWin('explorer')"><b>📁</b>Arquivos</div>
+<div class="icon" onclick="openWin('edge')"><b>🌐</b>Edge</div>
+<div class="icon" onclick="openWin('store')"><b>🛒</b>Store</div>
+<div class="icon" onclick="openWin('notepad')"><b>📝</b>Notas</div>
+<div class="icon" onclick="openWin('calc')"><b>🧮</b>Calc</div>
 </div>
 
-<div id="win-explorer" class="win"><div class="title"><b>📁 Explorador</b><span onclick="fechar('explorer')" style="cursor:pointer;color:red">✕ FECHAR</span></div><div class="content" style="padding:15px"><h3>Windows 11 Simulator 1.6.2 FIX</h3><br>📁 Área de Trabalho<br>📁 Downloads<br>📁 Documentos<br>💾 Disco Local (C:) 128GB<br><br><b style="color:#0078d4">Tudo funcionando agora!</b></div></div>
+<!-- JANELAS -->
+<div id="win-explorer" class="win"><div class="title"><span>📁 Explorador de Arquivos</span><span class="close" onclick="closeWin('explorer')">✕ Fechar</span></div><div class="content" style="padding:18px"><h2>Este Computador</h2><br><p>📁 Área de Trabalho</p><p>📁 Downloads</p><p>📁 Documentos</p><p>💾 Disco Local (C:) 128GB livres</p><br><p style="color:#0078d4;font-weight:bold">Windows 11 Simulator 1.6.2 FINAL - Apps consertados!</p></div></div>
 
-<div id="win-edge" class="win"><div class="title"><b>🌐 Microsoft Edge - FUNCIONANDO</b><span onclick="fechar('edge')" style="cursor:pointer;color:red">✕ FECHAR</span></div><div class="content">
-<div style="display:flex;padding:8px;gap:6px;background:#f3f3f3;border-bottom:1px solid #ddd;align-items:center">
-<span>🔒</span>
-<input id="edgeUrl" style="flex:1;padding:8px 14px;border-radius:20px;border:1px solid #ccc;outline:none" value="pt.wikipedia.org/wiki/Windows_11" onkeydown="if(event.key==='Enter') goEdge()">
-<button onclick="goEdge()" style="padding:8px 16px;border-radius:20px;border:0;background:#0078d4;color:#fff;cursor:pointer">Ir</button>
-</div>
-<div style="padding
+<div id="win-edge" class="win"><div class="title"><span>🌐 Microsoft Edge</span><span class="close" onclick="closeWin('edge')">✕ Fechar</span></div><div
