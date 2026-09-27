@@ -1,31 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Windows 11 v1.7</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<title>Win11 v2.0</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{height:100vh;width:100vw;overflow:hidden;font-family:Arial}
-#bg{position:fixed;inset:0;background: linear-gradient(180deg,#6cb6f5 0%,#2a8de8 30%,#0a5ac0 70%,#082b6b 100%);}
-#bg::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:200%;height:80%;background: radial-gradient(ellipse at center bottom, #aee1ff 0%, #4fa8f0 20%, transparent 60%);filter:blur(10px)}
-.desktop{position:relative;padding:15px;display:flex;flex-direction:column;gap:25px}
-.ico{width:70px;text-align:center;color:white;text-shadow:0 1px 2px #000}
-.ico div{font-size:42px}
-.ico p{font-size:11px;margin-top:2px}
-#task{position:fixed;bottom:8px;left:50%;transform:translateX(-50%);width:92%;max-width:420px;height:52px;background:rgba(255,255,255,0.8);backdrop-filter:blur(20px);border-radius:12px;display:flex;align-items:center;justify-content:space-around;padding:0 10px;box-shadow:0 4px 20px rgba(0,0,0,0.2);z-index:999}
-#task div{font-size:26px}
-</style>
-</head>
-<body>
-<div id="bg"></div>
-<div class="desktop">
-  <div class="ico"><div>🗑️</div><p>Lixeira</p></div>
-  <div class="ico"><div style="filter:hue-rotate(200deg)">🌐</div><p>Edge</p></div>
-  <div class="ico"><div>📁</div><p>Pastas</p></div>
-</div>
-<div id="task">
-  <div>🪟</div><div>🔍</div><div>🗔</div><div>🌥️</div><div>🌐</div><div>📁</div><div>🛍️</div><div>⚙️</div>
-</div>
-</body>
-</html>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui}
+html,body{height:100%;width:100%;overflow:hidden;background:#000}
+body{
+  background: url('https://images.unsplash.com/photo-1620121478247-ec70f9e2e26d?q=80&w=1000') no-repeat center/cover;
+  background-color:#1e1e2f;
+}
+#icons{padding:20px;display:flex;flex-direction:column;gap:28px}
+.app{width:80px;color:white;text-align:center;font-size:12px;text-shadow:0 2px 4
