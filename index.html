@@ -1,1 +1,41 @@
-<!DOCTYPE html><html lang="pt-br"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Win11 v2.0</title><style>*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI'}html,body{height:100%;width:100%;overflow:hidden}body{background:#000 url('https://images.unsplash.com/photo-1620121478247-ec70f9e2e26d?q=80&w=1200') center/cover}#desktop{position:absolute;inset:0 0 52px 0;padding:16px;display:flex;flex-direction:column;gap:24px}.icon{width:84px;text-align:center;color:#fff;text-shadow:0 2px 5px #000}.icon b{font-size:46px;display:block}#taskbar{position:fixed;bottom:0;left:0;right:0;height:52px;background:rgba(243,243,243,.94);display:flex;align-items:center;justify-content:center;gap:20px}.task{font-size:24px;width:40px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:6px}.window{position:absolute;top:20%;left:5%;width:90%;height:60%;background:#f9f9f9;border-radius:8px;display:none;flex-direction:column;z-index:5}.window.active{display:flex}.win-header{height:36px;background:#e5e5e5;display:flex;align-items:center;justify-content:space-between;padding:0 10px}</style></head><body><div id="desktop"><div class="icon" onclick="openWin('lixeira')"><b>🗑️</b><p>Lixeira</p></div><div class="icon" onclick="openWin('pc')"><b>💻</b><p>Este PC</p></div><div class="icon" onclick="openWin('explorer')"><b>📁</b><p>Arquivos</p></div><div class="icon" onclick="openWin('edge')"><b>🌐</b><p>Edge</p></div></div><div class="window" id="w-lixeira"><div class="win-header">Lixeira <button onclick="closeWin('lixeira')">✕</button></div><div style="padding:20px">Pasta vazia</div></div><div class="window" id="w-pc"><div class="win-header">Este PC <button onclick="closeWin('pc')">✕</button></div><div style="padding:20px">Disco C: 120GB livre<br>Win11 v2.0</div></div><div class="window" id="w-explorer"><div class="win-header">Arquivos <button onclick="closeWin('explorer')">✕</button></div><div style="padding:20px">📄 Documentos<br>🖼️ Imagens</div></div><div class="window" id="w-edge"><div class="win-header">Edge <button onclick="closeWin('edge')">✕</button></div><div style="padding:20px">Bem-vindo! Seu Windows tá funcionando ✅</div></div><div id="taskbar"><div class="task">⊞</div><div class="task" onclick="openWin('explorer')">📁</div><div class="task" onclick="openWin('edge')">🌐</div><div class="task">⚙️</div></div><script>function openWin(id){document.querySelectorAll('.window').forEach(w=>w.classList.remove('active'));document.getElementById('w-'+id).classList.add('active')}function closeWin(id){document.getElementById('w-'+id).classList.remove('active')}</script></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  height:100vh;width:100vw;overflow:hidden;
+  background: #0d47a1;
+  background: radial-gradient(ellipse at 50% 120%, #42a5f5 0%, #1e88e5 25%, #1565c0 50%, #0d47a1 80%);
+  font-family: 'Segoe UI', sans-serif;
+}
+#icons{padding:18px;display:flex;flex-direction:column;gap:26px}
+.icon{width:80px;text-align:center;color:white}
+.icon b{font-size:48px;display:block}
+.icon p{font-size:12px;text-shadow:0 1px 3px black}
+#taskbar{
+  position:fixed;bottom:0;left:0;right:0;height:54px;
+  background:#f3f3f3;display:flex;align-items:center;
+  justify-content:center;gap:22px;
+}
+.btn{font-size:26px;width:42px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:6px;background:white;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+#time{position:absolute;right:14px;font-size:12px}
+</style>
+</head>
+<body>
+<div id="icons">
+  <div class="icon"><b>🗑️</b><p>Lixeira</p></div>
+  <div class="icon"><b>🌐</b><p>Edge</p></div>
+  <div class="icon"><b>📁</b><p>Arquivos</p></div>
+</div>
+<div id="taskbar">
+  <div class="btn">⊞</div>
+  <div>🔍</div>
+  <div>📁</div>
+  <div>🌐</div>
+  <div id="time">23:35<br>26/09</div>
+</div>
+</body>
+</html>
