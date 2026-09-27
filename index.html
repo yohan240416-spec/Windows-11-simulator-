@@ -1,78 +1,10 @@
-
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Legacy Pack OS - FINAL FIX</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-body{height:100vh;background:#0a0a0a url('https://4kwallpapers.com/images/wallpapers/windows-11-dark-mode-3840x2400-9263.jpg') center/cover no-repeat;display:flex;justify-content:center;align-items:center}
-#desktop{width:95vw;height:90vh;background:rgba(20,20,20,.6);backdrop-filter:blur(20px);border-radius:16px;border:1px solid rgba(255,255,255,.1);position:relative;overflow:hidden}
-#taskbar{position:absolute;bottom:0;left:0;right:0;height:55px;background:rgba(30,30,30,.85);display:flex;justify-content:center;align-items:center;gap:12px;backdrop-filter:blur(20px)}
-.app{width:44px;height:44px;background:rgba(255,255,255,.15);border-radius:10px;display:grid;place-items:center;font-size:22px;cursor:pointer;color:#fff;transition:.2s}
-.app:hover{background:rgba(255,255,255,.3);transform:translateY(-3px)}
-.win{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:380px;max-width:90%;background:#202020;border-radius:14px;padding:22px;display:none;box-shadow:0 20px 60px #000;color:#fff;border:1px solid rgba(255,255,255,.1)}
-.win.show{display:block}
-.win h2{text-align:center;margin-bottom:12px}
-.btn{width:100%;padding:12px;background:#0078d4;color:#fff;border:0;border-radius:8px;margin:6px 0;font-weight:700;cursor:pointer;font-size:15px}
-.btn:hover{background:#106ebe}
-.btn.gray{background:#3a3a3a}
-#log{margin-top:14px;padding:10px;background:#000;border-radius:8px;text-align:center;color:#4cff4c;font-weight:700;min-height:20px}
-</style>
-</head>
-<body>
-<div id="desktop">
-<div id="taskbar">
-<div class="app" onclick="openWin('store')">🛒</div>
-<div class="app" onclick="openWin('roblox')">🎮</div>
-<div class="app" onclick="openWin('sobre')">ℹ️</div>
-</div>
-
-<div class="win" id="store">
-<h2>Legacy Pack Store</h2>
-<p style="text-align:center;opacity:.7;font-size:13px">Versões antigas funcionando</p>
-<br>
-<button class="btn" onclick="rodar('1.5.0')">▶ RODAR v1.5.0</button>
-<button class="btn" onclick="rodar('1.6.0')">▶ RODAR v1.6.0</button>
-<button class="btn" onclick="rodar('1.6.2')">▶ RODAR v1.6.2</button>
-<button class="btn" onclick="rodar('1.6.3')">▶ RODAR v1.6.3</button>
-<div id="log">Nenhuma versão rodando</div>
-<button class="btn gray" onclick="closeWin('store')">Fechar</button>
-</div>
-
-<div class="win" id="roblox">
-<h2>Roblox</h2>
-<br>
-<button class="btn" onclick="window.open('https://www.roblox.com','_blank')">Abrir Roblox Oficial</button>
-<button class="btn gray" onclick="closeWin('roblox')">Fechar</button>
-</div>
-
-<div class="win" id="sobre">
-<h2>FINAL FIX</h2>
-<p style="text-align:center;margin-top:10px;line-height:1.5">Essa versão usa sua base antiga que já funcionava. Sem bug de data-run. Tudo é onclick direto. Impossível quebrar.</p>
-<button class="btn gray" onclick="closeWin('sobre')" style="margin-top:15px">Fechar</button>
-</div>
-
-</div>
-
-<script>
-function openWin(id){
- document.querySelectorAll('.win').forEach(w=>w.classList.remove('show'));
- document.getElementById(id).classList.add('show');
-}
-function closeWin(id){
- document.getElementById(id).classList.remove('show');
-}
-function rodar(v){
- const log = document.getElementById('log');
- log.innerHTML = '✅ Rodando v' + v + '... AGORA!';
- log.style.color = '#4cff4c';
- if(navigator.vibrate) navigator.vibrate([100,50,100]);
- alert('FUNCIONOU! v' + v + ' está rodando!');
- console.log('Rodando versão', v);
-}
-</script>
-</div>
+<html>
+<body style="background:#111;display:flex;justify-content:center;align-items:center;height:100vh;flex-direction:column;gap:12px;font-family:Arial">
+<h1 style="color:white">LEGACY PACK - TESTE</h1>
+<button onclick="alert('v1.5.0 RODANDO!')" style="padding:20px 40px;font-size:20px;background:lime;border:0;border-radius:10px;font-weight:900;cursor:pointer">RODAR v1.5.0</button>
+<button onclick="alert('v1.6.0 RODANDO!')" style="padding:20px 40px;font-size:20px;background:lime;border:0;border-radius:10px;font-weight:900;cursor:pointer">RODAR v1.6.0</button>
+<button onclick="alert('v1.6.2 RODANDO!')" style="padding:20px 40px;font-size:20px;background:lime;border:0;border-radius:10px;font-weight:900;cursor:pointer">RODAR v1.6.2</button>
+<button onclick="alert('v1.6.3 RODANDO!')" style="padding:20px 40px;font-size:20px;background:lime;border:0;border-radius:10px;font-weight:900;cursor:pointer">RODAR v1.6.3</button>
 </body>
 </html>
