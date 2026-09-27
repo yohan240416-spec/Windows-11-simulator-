@@ -1,57 +1,39 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Windows 11</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui}
-body{height:100vh;overflow:hidden;background:#000}
-.bg{position:absolute;inset:0;background:url('https://4kwallpapers.com/images/wallpapers/windows-11-dark-mode-3840x2400-9263.jpg') center/cover}
-.desktop{position:relative;z-index:1;height:calc(100vh - 48px);padding:12px;display:grid;grid-template-columns:80px;gap:12px;align-content:start}
-.app{display:flex;flex-direction:column;align-items:center;gap:4px;color:white;font-size:11px;text-shadow:0 1px 3px #000;cursor:pointer;padding:6px;border-radius:6px;user-select:none}
-.app i{width:48px;height:48px;background:linear-gradient(180deg,#3aa0ff,#0067c0);border-radius:10px;display:grid;place-items:center;font-size:24px;box-shadow:0 4px 10px rgba(0,0,0,.3)}
-.taskbar{position:absolute;bottom:0;left:0;right:0;height:48px;background:rgba(32,32,32,.85);backdrop-filter:blur(30px);border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;z-index:50}
-.center{display:flex;gap:8px}
-.tb-icon{width:36px;height:36px;display:grid;place-items:center;border-radius:6px;cursor:pointer;color:white;font-size:20px}
-.start-menu{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);width:620px;max-width:94vw;background:rgba(37,37,37,.92);backdrop-filter:blur(40px);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.5);display:none;z-index:40}
-.start-menu.open{display:block}
-.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
-.grid div{background:rgba(255,255,255,.07);border-radius:8px;padding:14px 6px;text-align:center;color:white;font-size:11px;cursor:pointer}
-.legacy{margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.1)}
-.legacy button{background:#0078d4;color:white;border:0;padding:8px 14px;border-radius:6px;font-weight:600;cursor:pointer;margin:4px}
-.win{position:absolute;top:50%;left:50%;transform:translate(-50%,-55%);width:700px;max-width:92vw;height:420px;background:rgba(32,32,32,.97);border:1px solid rgba(255,255,255,.12);border-radius:10px;display:none;flex-direction:column;z-index:60}
-.win.open{display:flex !important}
-.win-header{height:40px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;padding:0 12px;color:white;font-size:13px}
-.close{width:28px;height:28px;display:grid;place-items:center;border-radius:5px;cursor:pointer}
-.close:hover{background:#e81123}
-.win-body{flex:1;padding:20px;color:white;overflow:auto}
-.win-body button{background:#0078d4;color:white;border:0;padding:8px 14px;border-radius:6px;margin:5px;cursor:pointer}
+body{margin:0;background:#000;color:#fff;font-family:sans-serif}
+.app{width:80px;text-align:center;padding:10px;margin:10px;background:#0078d4;border-radius:10px;cursor:pointer}
+.win{position:fixed;top:20%;left:5%;right:5%;background:#222;padding:20px;border-radius:10px;display:none}
+.win.on{display:block}
+button{padding:10px;margin:5px;background:#0078d4;color:#fff;border:0;border-radius:5px}
 </style>
 </head>
 <body>
-<div class="bg"></div>
-<div class="desktop">
-  <div class="app" onclick="openWin('explorer')"><i>📁</i>Explorador</div>
-  <div class="app" onclick="openWin('store')"><i style="background:linear-gradient(180deg,#00d1ff,#0078d4)">🛒</i>Store</div>
-  <div class="app" onclick="openWin('roblox')"><i style="background:linear-gradient(180deg,#222,#000)">🎮</i>Roblox</div>
-</div>
-<div class="win" id="win-explorer"><div class="win-header"><span>📁 Explorador</span><div class="close" onclick="closeWin('explorer')">✕</div></div><div class="win-body">Meus arquivos funcionando! ✅</div></div>
-<div class="win" id="win-store"><div class="win-header"><span>🛒 Microsoft Store - Legacy</span><div class="close" onclick="closeWin('store')">✕</div></div><div class="win-body"><h3>Windows 11 - Legacy Pack</h3><br>
+<div class="app" onclick="abrir('store')">🛒 Store</div>
+<div class="app" onclick="abrir('roblox')">🎮 Roblox</div>
+
+<div class="win" id="store">
+<h3>VERSÕES - CLICA QUE FUNCIONA</h3>
 <button onclick="rodar('1.5.0')">Rodar v1.5.0</button>
 <button onclick="rodar('1.6.0')">Rodar v1.6.0</button>
 <button onclick="rodar('1.6.2')">Rodar v1.6.2</button>
 <button onclick="rodar('1.6.3')">Rodar v1.6.3</button>
-<p id="status" style="margin-top:20px;color:#4cc2ff;font-weight:700"></p>
-</div></div>
-<div class="win" id="win-roblox"><div class="win-header"><span>🎮 Roblox</span><div class="close" onclick="closeWin('roblox')">✕</div></div><div class="win-body" style="text-align:center"><h2>Roblox Player</h2><br><button onclick="window.open('https://www.roblox.com','_blank')">▶ Jogar Roblox</button></div></div>
-<div class="start-menu" id="startMenu"><h3 style="color:white;margin-bottom:10px">Fixado</h3><div class="grid"><div onclick="openWin('explorer')">Explorador</div><div onclick="openWin('store')">Store</div><div onclick="openWin('roblox')">Roblox</div></div></div>
-<div class="taskbar"><div class="center"><div class="tb-icon" onclick="toggleStart()">⊞</div><div class="tb-icon" onclick="openWin('explorer')">📁</div><div class="tb-icon" onclick="openWin('store')">🛒</div><div class="tb-icon" onclick="openWin('roblox')">🎮</div></div></div>
+<p id="msg"></p>
+<button onclick="fechar('store')">Fechar</button>
+</div>
+
+<div class="win" id="roblox">
+<h3>Roblox</h3>
+<button onclick="window.open('https://www.roblox.com','_blank')">Jogar de verdade</button>
+<button onclick="fechar('roblox')">Fechar</button>
+</div>
+
 <script>
-function openWin(id){document.getElementById('win-'+id).classList.add('open'); document.getElementById('startMenu').classList.remove('open')}
-function closeWin(id){document.getElementById('win-'+id).classList.remove('open')}
-function toggleStart(){document.getElementById('startMenu').classList.toggle('open')}
-function rodar(v){document.getElementById('status').innerHTML='✅ Rodando v'+v+' agora!'; alert('Versão v'+v+' iniciada com sucesso!');}
+function abrir(id){document.getElementById(id).classList.add('on')}
+function fechar(id){document.getElementById(id).classList.remove('on')}
+function rodar(v){document.getElementById('msg').innerText='✅ v'+v+' RODANDO AGORA!'; alert('v'+v+' funcionando!')}
 </script>
 </body>
 </html>
