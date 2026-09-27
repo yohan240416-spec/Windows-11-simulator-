@@ -3,169 +3,142 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Windows 11 - Full Edition</title>
+<title>Windows 11 - Fixed</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
 body{height:100vh;background:#000 url('https://4kwallpapers.com/images/wallpapers/windows-11-dark-mode-3840x2400-9263.jpg') center/cover no-repeat;overflow:hidden;user-select:none}
-#desktop{width:100%;height:calc(100% - 52px);position:relative;padding:16px;display:grid;grid-template-columns:repeat(auto-fill,90px);grid-auto-rows:100px;gap:8px;align-content:start}
+#desktop{width:100%;height:calc(100% - 52px);padding:16px;display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start}
 .desk-icon{width:86px;height:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#fff;font-size:12px;text-align:center;cursor:pointer;border-radius:6px}
-.desk-icon:hover{background:rgba(255,255,255,.12)}
-.desk-icon span{font-size:32px}
-#taskbar{position:absolute;bottom:0;left:0;right:0;height:52px;background:rgba(32,32,32,.92);backdrop-filter:blur(24px);display:flex;justify-content:space-between;align-items:center;padding:0 12px;border-top:1px solid rgba(255,255,255,.08);z-index:5}
+.desk-icon:active{background:rgba(255,255,255,.2)}
+.desk-icon span{font-size:32px;pointer-events:none}
+#taskbar{position:fixed;bottom:0;left:0;right:0;height:52px;background:rgba(32,32,32,.95);backdrop-filter:blur(24px);display:flex;justify-content:space-between;align-items:center;padding:0 12px;border-top:1px solid rgba(255,255,255,.1);z-index:100}
 #center{display:flex;gap:6px;align-items:center;margin:0 auto}
 #right{display:flex;align-items:center;gap:14px;color:#fff;font-size:13px}
-.t-icon{width:40px;height:40px;display:grid;place-items:center;border-radius:6px;font-size:20px;cursor:pointer;color:#fff}
-.t-icon:hover{background:rgba(255,255,255,.12)}
-.start{width:620px;max-width:95vw;height:600px;max-height:80vh;background:#202020;border-radius:12px;position:absolute;bottom:64px;left:50%;transform:translateX(-50%);display:none;flex-direction:column;overflow:hidden;border:1px solid rgba(255,255,255,.1);box-shadow:0 20px 80px #000;color:#fff;z-index:30}
+.t-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:8px;font-size:20px;cursor:pointer;color:#fff;transition:.15s}
+.t-icon:hover{background:rgba(255,255,255,.15)}
+.t-icon.active{background:rgba(255,255,255,.25)}
+.start{width:620px;max-width:95vw;height:600px;max-height:80vh;background:#202020;border-radius:12px;position:fixed;bottom:64px;left:50%;transform:translateX(-50%);display:none;flex-direction:column;overflow:hidden;border:1px solid rgba(255,255,255,.1);box-shadow:0 20px 80px #000;color:#fff;z-index:90}
 .start.show{display:flex}
 .s-top{padding:24px;display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
-.s-app{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;cursor:pointer;padding:8px;border-radius:6px}
-.s-app:hover{background:rgba(255,255,255,.08)}
+.s-app{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;cursor:pointer;padding:8px;border-radius:8px}
+.s-app:hover{background:rgba(255,255,255,.1)}
 .s-app span:first-child{font-size:28px;width:44px;height:44px;background:#2d2d2d;border-radius:10px;display:grid;place-items:center}
-.s-bottom{margin-top:auto;padding:16px 24px;background:rgba(0,0,0,.25);display:flex;justify-content:space-between}
-.win{position:absolute;top:8%;left:50%;transform:translateX(-50%);width:800px;max-width:92vw;height:70vh;background:#202020;border-radius:10px;display:none;flex-direction:column;border:1px solid rgba(255,255,255,.12);box-shadow:0 20px 80px #000;color:#fff;overflow:hidden;z-index:20}
-.win.show{display:flex!important}
-.w-bar{height:44px;background:#2b2b2b;display:flex;justify-content:space-between;align-items:center;padding:0 14px;font-size:13px;font-weight:600}
-.w-body{flex:1;padding:18px;overflow:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;align-content:start}
-.item{background:#2b2b2b;border-radius:10px;padding:16px;text-align:center;cursor:pointer}
-.item:hover{background:#333}
-.item span{font-size:34px;display:block;margin-bottom:8px}
+.s-bottom{margin-top:auto;padding:16px 24px;background:rgba(0,0,0,.3);display:flex;justify-content:space-between}
+.win{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;max-width:94vw;height:68vh;background:#202020;border-radius:12px;display:none;flex-direction:column;border:1px solid rgba(255,255,255,.15);box-shadow:0 20px 80px rgba(0,0,0,.8);color:#fff;z-index:80;overflow:hidden}
+.win.show{display:flex}
+.w-bar{height:48px;background:#2b2b2b;display:flex;justify-content:space-between;align-items:center;padding:0 16px;font-weight:600;cursor:move}
+.w-bar div:last-child{width:32px;height:32px;display:grid;place-items:center;border-radius:6px;cursor:pointer}
+.w-bar div:last-child:hover{background:rgba(255,0,0,.7)}
+.w-body{flex:1;padding:18px;overflow:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;align-content:start}
+.item{background:#2d2d2d;border-radius:12px;padding:18px;text-align:center;cursor:pointer;transition:.15s;border:1px solid transparent}
+.item:hover{background:#363636;border-color:rgba(255,255,255,.1);transform:translateY(-2px)}
+.item span{font-size:36px;display:block;margin-bottom:8px}
 </style>
 </head>
 <body>
 
 <div id="blockScreen" style="position:fixed;inset:0;background:#0a0a0a;z-index:99999;display:none;flex-direction:column;justify-content:center;align-items:center;color:#fff;text-align:center;padding:24px;">
-<div style="font-size:64px">🚫</div>
-<h1 style="margin:16px 0">Dispositivo não compatível</h1>
-<p id="blockReason" style="opacity:.7;max-width:400px;line-height:1.5"></p>
-<br>
-<div style="background:#202020;padding:12px 20px;border-radius:10px;font-size:13px;text-align:left">
-✅ Permitido:<br>
-- Android 10+<br>
-- Windows 10 e 11<br>
-- iPhone 17 / 18 (iOS 17+)
-</div>
+<div style="font-size:64px">🚫</div><h1 style="margin:16px 0">Dispositivo não compatível</h1><p id="blockReason" style="opacity:.7;max-width:400px"></p>
+<div style="background:#202020;padding:12px 20px;border-radius:10px;font-size:13px;margin-top:16px;text-align:left">✅ Android 10+ | Windows 10/11 | iPhone 17/18</div>
 </div>
 
 <div id="desktop">
-<div class="desk-icon" onclick="openWin('files')"><span>📁</span>Arquivos</div>
-<div class="desk-icon" onclick="openWin('store')"><span>🛒</span>Store</div>
-<div class="desk-icon" onclick="openWin('roblox')"><span>🎮</span>Roblox</div>
-<div class="desk-icon"><span>🗑️</span>Lixeira</div>
+<div class="desk-icon" onclick="abrir('files')"><span>📁</span>Arquivos</div>
+<div class="desk-icon" onclick="abrir('store')"><span>🛒</span>Store</div>
+<div class="desk-icon" onclick="abrir('roblox')"><span>🎮</span>Roblox</div>
+<div class="desk-icon" onclick="abrir('files')"><span>🗑️</span>Lixeira</div>
 <div class="desk-icon"><span>🌐</span>Edge</div>
 </div>
 
 <div class="start" id="startMenu">
-<div style="padding:24px 24px 0 24px"><input placeholder="Pesquisar" style="width:100%;padding:12px 16px;border-radius:20px;border:1px solid rgba(255,255,255,.1);background:#2a2a2a;color:#fff;outline:none"></div>
+<div style="padding:20px"><input placeholder="Pesquisar apps, arquivos..." style="width:100%;padding:12px 18px;border-radius:24px;border:1px solid rgba(255,255,255,.1);background:#2a2a2a;color:#fff;outline:none"></div>
 <div class="s-top">
-<div class="s-app" onclick="openWin('files')"><span>📁</span>Explorador</div>
-<div class="s-app" onclick="openWin('store')"><span>🛒</span>Store</div>
-<div class="s-app" onclick="openWin('roblox')"><span>🎮</span>Roblox</div>
-<div class="s-app"><span>⚙️</span>Configurações</div>
+<div class="s-app" onclick="abrir('files')"><span>📁</span>Arquivos</div>
+<div class="s-app" onclick="abrir('store')"><span>🛒</span>Store</div>
+<div class="s-app" onclick="abrir('roblox')"><span>🎮</span>Roblox</div>
+<div class="s-app" onclick="alert('Configurações em breve')"><span>⚙️</span>Configs</div>
 <div class="s-app"><span>📷</span>Fotos</div>
 <div class="s-app"><span>🎵</span>Mídia</div>
 <div class="s-app"><span>🌐</span>Edge</div>
 <div class="s-app"><span>📝</span>Bloco</div>
-<div class="s-app"><span>🎨</span>Paint</div>
-<div class="s-app"><span>💻</span>Terminal</div>
 </div>
-<div class="s-bottom"><span>👤 Yohan - Android 15</span><span>⏻</span></div>
+<div class="s-bottom"><span>👤 Yohan • Android 15</span><span>⏻</span></div>
 </div>
 
-<div class="win" id="files">
-<div class="w-bar"><span>📁 Explorador</span><span onclick="closeWin('files')" style="cursor:pointer;padding:4px 10px">✕</span></div>
+<div class="win" id="filesWin">
+<div class="w-bar"><span>📁 Explorador de Arquivos</span><div onclick="fechar('filesWin')">✕</div></div>
 <div class="w-body">
-<div class="item"><span>📂</span>Downloads</div>
-<div class="item"><span>📂</span>Documentos</div>
-<div class="item"><span>📂</span>Legacy Pack</div>
-<div class="item"><span>📷</span>Imagens</div>
+<div class="item" onclick="alert('Abrindo Downloads')"><span>📂</span>Downloads</div>
+<div class="item" onclick="alert('Abrindo Documentos')"><span>📄</span>Documentos</div>
+<div class="item" onclick="abrir('store')"><span>📦</span>Legacy Pack<br><small style="opacity:.6">4 versões</small></div>
+<div class="item"><span>🖼️</span>Imagens</div>
+<div class="item"><span>🎮</span>Jogos</div>
 </div>
 </div>
 
-<div class="win" id="store">
-<div class="w-bar"><span>🛒 Store - Legacy Pack</span><span onclick="closeWin('store')" style="cursor:pointer;padding:4px 10px">✕</span></div>
+<div class="win" id="storeWin">
+<div class="w-bar"><span>🛒 Microsoft Store</span><div onclick="fechar('storeWin')">✕</div></div>
 <div class="w-body">
-<div class="item"><span>🎮</span>Legacy v1.5.0</div>
-<div class="item"><span>🎮</span>Legacy v1.6.0</div>
-<div class="item"><span>🎮</span>Legacy v1.6.2</div>
-<div class="item"><span>🎮</span>Legacy v1.6.3</div>
+<div class="item"><span>🎮</span>Legacy v1.5.0<br><button style="margin-top:8px;padding:6px 12px;background:#0078d4;color:#fff;border:0;border-radius:6px;cursor:pointer">Abrir</button></div>
+<div class="item"><span>🎮</span>Legacy v1.6.0<br><button style="margin-top:8px;padding:6px 12px;background:#0078d4;color:#fff;border:0;border-radius:6px;cursor:pointer">Abrir</button></div>
+<div class="item"><span>🎮</span>Legacy v1.6.2<br><button style="margin-top:8px;padding:6px 12px;background:#0078d4;color:#fff;border:0;border-radius:6px;cursor:pointer">Abrir</button></div>
+<div class="item"><span>🎮</span>Legacy v1.6.3<br><button style="margin-top:8px;padding:6px 12px;background:#0078d4;color:#fff;border:0;border-radius:6px;cursor:pointer">Abrir</button></div>
 </div>
 </div>
 
-<div class="win" id="roblox">
-<div class="w-bar"><span>🎮 Roblox</span><span onclick="closeWin('roblox')" style="cursor:pointer;padding:4px 10px">✕</span></div>
-<div class="w-body" style="display:grid;place-items:center">
-<div style="text-align:center">
-<div style="font-size:64px">🎮</div>
-<h2>Roblox Player</h2>
-<br>
-<button onclick="window.open('https://www.roblox.com','_blank')" style="padding:12px 24px;background:#fff;color:#000;border:0;border-radius:6px;font-weight:800;cursor:pointer">JOGAR AGORA</button>
-</div>
+<div class="win" id="robloxWin">
+<div class="w-bar"><span>🎮 Roblox</span><div onclick="fechar('robloxWin')">✕</div></div>
+<div class="w-body" style="display:flex;align-items:center;justify-content:center">
+<div style="text-align:center"><div style="font-size:72px">🎮</div><h2 style="margin:12px 0">Roblox Player</h2><p style="opacity:.6;margin-bottom:16px">Clique para jogar no site oficial</p><button onclick="window.open('https://www.roblox.com','_blank')" style="padding:14px 28px;background:#00a2ff;color:#fff;border:0;border-radius:8px;font-weight:800;cursor:pointer;font-size:15px">▶ JOGAR AGORA</button></div>
 </div>
 </div>
 
 <div id="taskbar">
 <div id="center">
-<div class="t-icon" onclick="toggleStart(event)" style="background:rgba(255,255,255,.15)">🪟</div>
-<div class="t-icon">🔍</div>
-<div class="t-icon" onclick="openWin('files')">📁</div>
-<div class="t-icon" onclick="openWin('store')">🛒</div>
-<div class="t-icon" onclick="openWin('roblox')">🎮</div>
+<div class="t-icon" id="winBtn" onclick="toggleStart(event)">🪟</div>
+<div class="t-icon" onclick="abrir('files')">📁</div>
+<div class="t-icon" onclick="abrir('store')">🛒</div>
+<div class="t-icon" onclick="abrir('roblox')">🎮</div>
 <div class="t-icon">🌐</div>
+<div class="t-icon">🔍</div>
 </div>
-<div id="right">
-<span>PTB</span>
-<span id="clock">--:--</span>
-<span>🔊 📶 🔋</span>
-</div>
+<div id="right"><span id="clock">--:--</span></div>
 </div>
 
 <script>
-(function(){
-  const ua = navigator.userAgent;
-  let allowed = false; let reason = "";
-  const androidMatch = ua.match(/Android\s+(\d+)/);
-  if(androidMatch){
-    const ver = parseInt(androidMatch[1]);
-    if(ver >= 10){ allowed = true; }
-    else { reason = `Seu Android é ${ver}. Precisa ser 10 ou superior.`; }
-  } else if(ua.includes("Windows NT")){
-    const ntMatch = ua.match(/Windows NT (\d+\.\d+)/);
-    if(ntMatch && ntMatch[1] === "10.0"){ allowed = true; }
-    else { reason = "Apenas Windows 10 e 11 são suportados."; }
-  } else if(/iPhone/.test(ua)){
-    const iosMatch = ua.match(/OS (\d+)_/);
-    const iosVer = iosMatch? parseInt(iosMatch[1]) : 0;
-    if(iosVer >= 17){ allowed = true; }
-    else { reason = `Seu iPhone está no iOS ${iosVer}. Precisa de iOS 17+.`; }
-  } else if(/Mac|Linux/.test(ua) &&!/Android|iPhone/.test(ua)){ allowed = true; }
-  else { reason = "Dispositivo não reconhecido."; }
-  if(!allowed){
-    document.getElementById('blockScreen').style.display = 'flex';
-    document.getElementById('blockReason').innerText = reason;
-  }
-})();
-
-function toggleStart(e){
-  if(e) e.stopPropagation();
-  document.getElementById('startMenu').classList.toggle('show');
+function bloquear(){
+  const ua=navigator.userAgent;let ok=false;let why="";
+  const and=ua.match(/Android\s+(\d+)/);
+  if(and){const v=parseInt(and[1]);if(v>=10)ok=true;else why=`Android ${v} - precisa 10+`;}
+  else if(ua.includes("Windows NT")){const m=ua.match(/Windows NT (\d+\.\d+)/);if(m&&m[1]==="10.0")ok=true;else why="Só Windows 10/11";}
+  else if(/iPhone/.test(ua)){const m=ua.match(/OS (\d+)_/);const v=m?parseInt(m[1]):0;if(v>=17)ok=true;else why=`iOS ${v} - precisa 17+`;}
+  else if(/Mac|Linux/.test(ua))ok=true;
+  else why="Dispositivo não reconhecido";
+  if(!ok){document.getElementById('blockScreen').style.display='flex';document.getElementById('blockReason').innerText=why;}
 }
-function openWin(id){
-  document.querySelectorAll('.win').forEach(w=>w.classList.remove('show'));
+bloquear();
+
+function abrir(app){
+  fecharTudo();
+  const id = app==='files'?'filesWin':app==='store'?'storeWin':'robloxWin';
   document.getElementById(id).classList.add('show');
   document.getElementById('startMenu').classList.remove('show');
+  // ativa icone da taskbar
+  document.querySelectorAll('.t-icon').forEach(i=>i.classList.remove('active'));
 }
-function closeWin(id){ document.getElementById(id).classList.remove('show'); }
-setInterval(()=>{
-  const el = document.getElementById('clock');
-  if(el) el.textContent=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
-},1000);
-
-// CORREÇÃO: só fecha o iniciar se clicar fora
+function fechar(id){document.getElementById(id).classList.remove('show');}
+function fecharTudo(){document.querySelectorAll('.win').forEach(w=>w.classList.remove('show'));}
+function toggleStart(e){
+  if(e){e.stopPropagation();}
+  const m=document.getElementById('startMenu');
+  m.classList.toggle('show');
+  document.getElementById('winBtn').classList.toggle('active');
+}
+setInterval(()=>{const c=document.getElementById('clock');if(c)c.textContent=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})},1000);
 document.addEventListener('click',e=>{
-  const start = document.getElementById('startMenu');
-  if(!e.target.closest('#startMenu') &&!e.target.closest('#center')){
-    start.classList.remove('show');
+  if(!e.target.closest('#startMenu') &&!e.target.closest('#winBtn')){
+    document.getElementById('startMenu').classList.remove('show');
+    document.getElementById('winBtn').classList.remove('active');
   }
 });
 </script>
