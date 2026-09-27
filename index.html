@@ -1,58 +1,67 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Windows 11 Simulator - v1.6.1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Windows 11 - v1.6.2</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-body{height:100vh;overflow:hidden;background:#000}
-#desktop{
-  width:100%;height:100vh;
-  background: url('https://cdn.wallpapersafari.com/43/71/e29uQ2.jpg') no-repeat center/cover;
-  background-color:#0078d4;
-  position:relative;
+body{width:100vw;height:100vh;overflow:hidden;background:#0b53d6;position:relative}
+/* PAPEL DE PAREDE FEITO EM CSS - NÃO PRECISA DE LINK */
+#wallpaper{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  background: radial-gradient(ellipse at 50% 100%, #1a7ee8 0%, #0b53d6 40%, #08285e 100%);
 }
-.icon{
-  width:80px;text-align:center;color:white;margin:15px 10px;cursor:pointer;user-select:none;
-  text-shadow:0 1px 3px rgba(0,0,0,.6);padding:5px;border-radius:5px;
+#wallpaper::before{
+  content:'';position:absolute;bottom:-20%;left:50%;transform:translateX(-50%);
+  width:80%;height:70%;background: radial-gradient(ellipse, #6ec6ff 0%, #1a7ee8 50%, transparent 70%);
+  filter:blur(30px);opacity:0.8;
 }
-.icon:hover{background:rgba(255,255,255,.15)}
-.icon img{width:48px;height:48px;display:block;margin:0 auto 5px}
-.icon span{font-size:12px}
+#wallpaper::after{
+  content:'';position:absolute;bottom:10%;left:50%;transform:translateX(-50%) rotate(0deg);
+  width:120%;height:120%;background: linear-gradient(180deg, transparent 0%, #0a3a8a 80%);
+  clip-path: ellipse(40% 30% at 50% 100%);
+}
+/* DESKTOP */
+#desktop{position:relative;width:100%;height:calc(100% - 48px);padding:10px;z-index:1}
+.icon{width:75px;text-align:center;padding:8px 2px;border-radius:5px;color:white;margin-bottom:5px}
+.icon.selected{background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3)}
+.icon img{width:44px;height:44px;filter:drop-shadow(0 2px 3px rgba(0,0,0,0.3))}
+.icon span{font-size:12px;display:block;margin-top:4px;text-shadow:0 1px 3px black}
+/* TASKBAR WINDOWS 11 */
 #taskbar{
-  position:absolute;bottom:0;left:0;right:0;height:52px;
-  background:rgba(243,243,243,.85);backdrop-filter:blur(20px);
-  display:flex;align-items:center;justify-content:space-between;padding:0 15px;z-index:100;
+  position:absolute;bottom:0;left:0;width:100%;height:48px;
+  background:rgba(242,242,242,0.85);backdrop-filter: blur(20px);
+  display:flex;align-items:center;justify-content:center;
+  border-top:1px solid rgba(255,255,255,0.5);z-index:10;
 }
-.center{flex:1;display:flex;justify-content:center;align-items:center;gap:10px}
-.task-btn{width:38px;height:38px;border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer}
-.task-btn:hover{background:rgba(0,0,0,.08)}
-.search{width:200px;height:32px;background:white;border-radius:20px;display:flex;align-items:center;padding:0 12px;gap:8px}
-.search input{border:none;outline:none;width:100%;font-size:13px}
-.right{display:flex;align-items:center;gap:12px;font-size:12px;color:#222}
-#startMenu{
-  position:absolute;bottom:60px;left:50%;transform:translateX(-50%);
-  width:600px;max-width:95%;height:600px;background:rgba(243,243,243,.96);
-  backdrop-filter:blur(30px);border-radius:10px;box-shadow:0 10px 40px rgba(0,0,0,.3);
-  display:none;z-index:90;padding:25px;
-}
-#startMenu.show{display:block}
-.app-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:15px;margin-top:20px}
-.app{text-align:center;padding:10px;border-radius:6px;cursor:pointer}
-.app:hover{background:rgba(0,0,0,.06)}
-.app-icon{width:40px;height:40px;margin:0 auto 6px;background:#0078d4;border-radius:8px;display:flex;align-items:center;justify-content:center;color:white}
-.window{
-  position:absolute;top:10%;left:15%;width:70%;height:65%;background:white;border-radius:8px;
-  box-shadow:0 10px 30px rgba(0,0,0,.4);display:none;flex-direction:column;overflow:hidden;z-index:50
-}
-.window.show{display:flex}
-.titlebar{height:38px;background:#f3f3f3;display:flex;align-items:center;justify-content:space-between;padding:0 12px}
-.content{flex:1;padding:20px;overflow:auto}
+#taskbar-center{display:flex;align-items:center;gap:14px}
+.task-icon{width:32px;height:32px;border-radius:4px;display:flex;align-items:center;justify-content:center;transition:0.2s}
+.task-icon:active{background:rgba(0,0,0,0.1);transform:scale(0.9)}
+.task-icon img{width:24px;height:24px}
+#start-btn img{width:20px}
+#widgets{position:absolute;left:12px;display:flex;gap:8px}
+#tray{position:absolute;right:12px;display:flex;align-items:center;gap:10px;font-size:12px;color:#000}
 </style>
 </head>
 <body>
+<div id="wallpaper"></div>
 <div id="desktop">
-  <div class="icon" onclick="openWin('lixeira')"><img src="https://cdn-icons-png.flaticon.com/512/484/484560.png"><span>Lixeira</span></div>
-  <div class="icon" onclick="openWin('config')"><img src="https://cdn-icons-png.flaticon.com/512/2092/2092663.png"><span>Config</span></div>
-  <div class="icon" onclick="openWin('edge
+  <div class="icon" onclick="this.classList.toggle('selected')">
+    <img src="https://cdn-icons-png.flaticon.com/512/2891/2891491.png">
+    <span>Lixeira</span>
+  </div>
+  <div class="icon" onclick="this.classList.toggle('selected')">
+    <img src="https://cdn-icons-png.flaticon.com/512/1087/1087815.png">
+    <span>Edge</span>
+  </div>
+  <div class="icon" onclick="this.classList.toggle('selected')">
+    <img src="https://cdn-icons-png.flaticon.com/512/3178/3178287.png">
+    <span>Pastas</span>
+  </div>
+</div>
+
+<div id="taskbar">
+  <div id="widgets"><span style="font-size:18px">☁️ 24°</span></div>
+  <div id="taskbar-center">
+    <div class="task-icon" id="start-btn"><img src="https://cdn-icons-png.flaticon.com/512/732
