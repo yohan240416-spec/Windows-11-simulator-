@@ -4,29 +4,42 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <style>
-body{margin:0;height:100vh;background:linear-gradient(135deg,#1e88e5,#0d47a1);font-family:Arial}
-.icone{width:90px;text-align:center;color:white;margin:20px;cursor:pointer}
-.icone div{font-size:50px}
-.janela{display:none;position:fixed;top:30%;left:10%;right:10%;background:white;border-radius:12px;padding:0;box-shadow:0 10px 30px black;z-index:99}
-.janela b{display:block;background:#ddd;padding:10px;border-radius:12px 12px 0 0}
-.janela p{padding:20px}
-#barra{position:fixed;bottom:0;left:0;right:0;height:60px;background:#eee;display:flex;align-items:center;justify-content:space-around}
+body{margin:0;height:100vh;background:linear-gradient(135deg,#1e88e5,#0d47a1);font-family:Segoe UI,Arial;overflow:hidden}
+.icone{width:90px;text-align:center;color:white;margin:18px;cursor:pointer;user-select:none}
+.icone div{font-size:48px}
+.janela{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:92%;max-width:400px;height:400px;background:white;border-radius:12px;box-shadow:0 15px 40px rgba(0,0,0,.5);z-index:100;flex-direction:column;overflow:hidden}
+.janela.show{display:flex}
+.top{height:40px;background:#e7e7e7;display:flex;align-items:center;justify-content:space-between;padding:0 12px;font-weight:600}
+.top span{cursor:pointer;background:#ff5a5a;color:white;padding:2px 8px;border-radius:50%}
+.cont{flex:1;padding:14px;overflow:auto;font-size:14px}
+#barra{position:fixed;bottom:0;left:0;right:0;height:58px;background:#f3f3f3;display:flex;align-items:center;justify-content:center;gap:20px}
+.item{padding:6px 12px;border:1px dashed #ccc;cursor:pointer;border-radius:8px;margin:6px 0}
+.item:hover{background:#eef}
 </style>
 </head>
 <body>
 
-<div class="icone" onclick="document.getElementById('j1').style.display='block'"><div>🗑️</div>Lixeira</div>
-<div class="icone" onclick="document.getElementById('j2').style.display='block'"><div>💻</div>Meu PC</div>
-<div class="icone" onclick="document.getElementById('j3').style.display='block'"><div>📁</div>Pastas</div>
-<div class="icone" onclick="document.getElementById('j4').style.display='block'"><div>🌐</div>Edge</div>
+<div class="icone" onclick="abrir('lixeira')"><div>🗑️</div>Lixeira</div>
+<div class="icone" onclick="abrir('pc')"><div>💻</div>Meu PC</div>
+<div class="icone" onclick="abrir('pasta')"><div>📁</div>Pastas</div>
+<div class="icone" onclick="abrir('edge')"><div>🌐</div>Edge</div>
 
-<div class="janela" id="j1"><b>Lixeira <span onclick="this.parentElement.parentElement.style.display='none'" style="float:right;cursor:pointer">X</span></b><p>Lixeira vazia!</p></div>
-<div class="janela" id="j2"><b>Meu PC <span onclick="this.parentElement.parentElement.style.display='none'" style="float:right;cursor:pointer">X</span></b><p>Seu PC: 120GB livres</p></div>
-<div class="janela" id="j3"><b>Arquivos <span onclick="this.parentElement.parentElement.style.display='none'" style="float:right;cursor:pointer">X</span></b><p>📄 Documentos<br>🖼️ Fotos</p></div>
-<div class="janela" id="j4"><b>Edge <span onclick="this.parentElement.parentElement.style.display='none'" style="float:right;cursor:pointer">X</span></b><p>Edge funcionando! ✅</p></div>
+<!-- LIXEIRA FUNCIONANDO -->
+<div class="janela" id="w-lixeira"><div class="top">Lixeira <span onclick="fechar('lixeira')">X</span></div><div class="cont" id="lixeira-cont">Carregando...</div></div>
 
-<div id="barra"><span>⊞</span><span>🔍</span><span>📁</span><span>🌐</span><span id="hora"></span></div>
+<!-- MEU PC FUNCIONANDO -->
+<div class="janela" id="w-pc"><div class="top">Este Computador <span onclick="fechar('pc')">X</span></div><div class="cont">
+💾 Disco C:<div style="height:12px;background:#ddd;border-radius:10px;margin:8px 0"><div style="width:65%;height:100%;background:#0078d4;border-radius:10px"></div></div>65% usado - 90GB livres<br><br>
+<button onclick="alert('Limpando arquivos temporários... ✅ 2GB liberados!')" style="padding:8px 12px;border:none;background:#0078d4;color:white;border-radius:8px">Limpar PC</button>
+</div></div>
 
-<script>setInterval(()=>{document.getElementById('hora').innerHTML=new Date().toLocaleTimeString().slice(0,5)},1000)</script>
-</body>
-</html>
+<!-- PASTAS FUNCIONANDO -->
+<div class="janela" id="w-pasta"><div class="top"><span id="pasta-titulo">📁 Arquivos</span> <span onclick="fechar('pasta')">X</span></div><div class="cont" id="pasta-cont"></div></div>
+
+<!-- EDGE FUNCIONANDO -->
+<div class="janela" id="w-edge" style="height:70%;max-width:95%"><div class="top">🌐 Edge <span onclick="fechar('edge')">X</span></div>
+<div style="display:flex;padding:6px;gap:6px;background:#f0f0f0"><input id="url" value="https://www.bing.com" style="flex:1;padding:6px;border-radius:20px;border:1px solid #ccc"><button onclick="document.getElementById('frame').src=document.getElementById('url').value" style="background:#0078d4;color:white;border:none;padding:6px 12px;border-radius:20px">Ir</button></div>
+<iframe id="frame" src="https://www.bing.com" style="flex:1;border:none"></iframe>
+</div>
+
+<div id="barra"><span>⊞</span><span onclick="abrir('pasta')">📁</span><span
