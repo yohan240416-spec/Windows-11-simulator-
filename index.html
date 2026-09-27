@@ -3,63 +3,145 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Windows 11</title>
+<title>Windows 11 - Tudo Funcionando</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
-body{background:#000 url('https://4kwallpapers.com/images/wallpapers/windows-11-dark-mode-3840x2400-9263.jpg') center/cover fixed;height:100vh;overflow:hidden}
-#desk{padding:15px;display:flex;gap:10px}
-.ico{width:80px;text-align:center;color:#fff;font-size:11px;padding:8px;border-radius:8px}
-.ico div{font-size:34px}
-#bar{position:fixed;bottom:0;left:0;right:0;height:50px;background:#111;display:flex;justify-content:center;align-items:center;gap:8px;z-index:10}
-.b{width:42px;height:42px;background:#222;border-radius:8px;display:grid;place-items:center;font-size:20px;color:#fff}
-.janela{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:92%;max-width:700px;height:60vh;background:#1e1e1e;border-radius:12px;display:none;border:1px solid #333;color:#fff;z-index:20;flex-direction:column}
-.topo{padding:14px 16px;background:#2a2a2a;display:flex;justify-content:space-between;font-weight:bold}
-.fechar{background:#ff3b30;padding:4px 12px;border-radius:6px}
-.conteudo{padding:16px;overflow:auto}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.card{background:#2d2d2d;padding:16px;border-radius:10px;text-align:center}
-#bloqueio{position:fixed;inset:0;background:#000;z-index:9999;display:none;place-items:center;color:#fff;text-align:center;padding:20px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#000 url('https://4kwallpapers.com/images/wallpapers/windows-11-dark-mode-3840x2400-9263.jpg') center/cover fixed;height:100vh;overflow:hidden;color:#fff}
+#desk{padding:16px;display:flex;gap:12px;flex-wrap:wrap}
+.ico{width:80px;text-align:center;font-size:11px;cursor:pointer;padding:8px;border-radius:8px}
+.ico div{font-size:36px}
+.ico:hover{background:rgba(255,255,255,.1)}
+#bar{position:fixed;bottom:0;left:0;right:0;height:52px;background:#151515;display:flex;justify-content:center;align-items:center;gap:10px;z-index:100;border-top:1px solid #222}
+.b{width:44px;height:44px;background:#222;border-radius:8px;display:grid;place-items:center;font-size:20px;cursor:pointer}
+.b:hover{background:#333}
+.win{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:94%;max-width:800px;height:70vh;background:#1e1e1e;border-radius:14px;display:none;flex-direction:column;border:1px solid #333;z-index:50;overflow:hidden}
+.win.open{display:flex}
+.top{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:#2a2a2a;font-weight:700}
+.x{width:32px;height:32px;background:#ff3b30;border-radius:6px;display:grid;place-items:center;cursor:pointer}
+.body{flex:1;padding:16px;overflow:auto}
+.grid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.item{background:#2b2b2b;padding:18px;border-radius:12px;text-align:center;cursor:pointer;transition:.15s}
+.item:hover{background:#353535;transform:translateY(-2px)}
+.item span{font-size:36px;display:block;margin-bottom:6px}
+.item small{opacity:.6;font-size:11px}
+.lista{display:flex;flex-direction:column;gap:8px}
+.linha{background:#2b2b2b;padding:14px 16px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+.linha:hover{background:#333}
+.btn{padding:8px 16px;background:#0078d4;color:#fff;border:0;border-radius:6px;cursor:pointer;font-weight:700}
+#bloq{position:fixed;inset:0;background:#000;z-index:9999;display:none;place-items:center;text-align:center;padding:20px}
 </style>
 </head>
 <body>
 
-<div id="bloqueio"><div><div style="font-size:60px">🚫</div><h2>Não compatível</h2><p id="motivo"></p></div></div>
+<div id="bloq"><div><div style="font-size:64px">🚫</div><h2>Não compatível</h2><p id="mot"></p><p style="margin-top:10px;opacity:.5;font-size:13px">Permitido: Android 10+, Windows 10/11, iOS 17+</p></div></div>
 
 <div id="desk">
-<div class="ico" onclick="document.getElementById('arquivos').style.display='flex'"><div>📁</div>Arquivos</div>
-<div class="ico" onclick="document.getElementById('store').style.display='flex'"><div>🛒</div>Store</div>
-<div class="ico" onclick="document.getElementById('roblox').style.display='flex'"><div>🎮</div>Roblox</div>
+<div class="ico" onclick="openWin('files')"><div>📁</div>Arquivos</div>
+<div class="ico" onclick="openWin('store')"><div>🛒</div>Store</div>
+<div class="ico" onclick="openWin('roblox')"><div>🎮</div>Roblox</div>
+<div class="ico" onclick="openWin('files')"><div>📂</div>Legacy Pasta</div>
 </div>
 
-<div class="janela" id="arquivos">
-<div class="topo"><span>📁 Arquivos - FUNCIONANDO</span><span class="fechar" onclick="this.parentElement.parentElement.style.display='none'">X</span></div>
-<div class="conteudo"><div class="grid"><div class="card">📂 Downloads</div><div class="card">📂 Legacy Pack</div><div class="card">🖼️ Imagens</div><div class="card">🎵 Músicas</div></div></div>
+<!-- ARQUIVOS FUNCIONANDO -->
+<div class="win" id="files">
+<div class="top"><span>📁 Explorador - <span id="caminho">Este Computador</span></span><div class="x" onclick="closeWin('files')">✕</div></div>
+<div class="body" id="filesBody">
+<div class="grid2">
+<div class="item" onclick="entrarPasta('Downloads')"><span>📥</span>Downloads<small>3 arquivos</small></div>
+<div class="item" onclick="entrarPasta('Legacy')"><span>📦</span>Legacy Pack<small>4 versões</small></div>
+<div class="item" onclick="entrarPasta('Imagens')"><span>🖼️</span>Imagens<small>12 fotos</small></div>
+<div class="item" onclick="entrarPasta('Roblox')"><span>🎮</span>Roblox Files<small>2 itens</small></div>
+</div>
+</div>
 </div>
 
-<div class="janela" id="store">
-<div class="topo"><span>🛒 Store - FUNCIONANDO</span><span class="fechar" onclick="this.parentElement.parentElement.style.display='none'">X</span></div>
-<div class="conteudo"><div class="grid"><div class="card">🎮 v1.5.0</div><div class="card">🎮 v1.6.0</div><div class="card">🎮 v1.6.2</div><div class="card">🎮 v1.6.3</div></div></div>
+<!-- STORE FUNCIONANDO -->
+<div class="win" id="store">
+<div class="top"><span>🛒 Microsoft Store</span><div class="x" onclick="closeWin('store')">✕</div></div>
+<div class="body">
+<div class="grid2">
+<div class="item" onclick="instalar(this,'Legacy v1.5.0')"><span>🎮</span>Legacy v1.5.0<small>Clique para instalar</small></div>
+<div class="item" onclick="instalar(this,'Legacy v1.6.0')"><span>🔥</span>Legacy v1.6.0<small>Mais popular</small></div>
+<div class="item" onclick="instalar(this,'Legacy v1.6.2')"><span>⭐</span>Legacy v1.6.2<small>Novo</small></div>
+<div class="item" onclick="instalar(this,'Legacy v1.6.3')"><span>💎</span>Legacy v1.6.3<small>Última versão</small></div>
+</div>
+<div id="storeStatus" style="margin-top:20px;padding:14px;background:#252525;border-radius:10px;display:none"></div>
+</div>
 </div>
 
-<div class="janela" id="roblox">
-<div class="topo"><span>🎮 Roblox - FUNCIONANDO</span><span class="fechar" onclick="this.parentElement.parentElement.style.display='none'">X</span></div>
-<div class="conteudo" style="display:grid;place-items:center;height:100%"><div style="text-align:center"><div style="font-size:60px">🎮</div><br><button onclick="window.open('https://roblox.com','_blank')" style="padding:14px 24px;background:#00a2ff;color:#fff;border:0;border-radius:8px;font-weight:bold">JOGAR</button></div></div>
+<!-- ROBLOX FUNCIONANDO -->
+<div class="win" id="roblox">
+<div class="top"><span>🎮 Roblox</span><div class="x" onclick="closeWin('roblox')">✕</div></div>
+<div class="body" style="display:grid;place-items:center">
+<div style="text-align:center">
+<div style="font-size:70px">🎮</div>
+<h2 style="margin:10px 0">Roblox Player</h2>
+<p style="opacity:.6;margin-bottom:20px">Tá funcionando!</p>
+<button class="btn" style="padding:14px 26px;font-size:16px" onclick="window.open('https://www.roblox.com','_blank')">JOGAR AGORA</button>
+</div>
+</div>
 </div>
 
 <div id="bar">
-<div class="b" onclick="document.getElementById('arquivos').style.display='flex'">📁</div>
-<div class="b" onclick="document.getElementById('store').style.display='flex'">🛒</div>
-<div class="b" onclick="document.getElementById('roblox').style.display='flex'">🎮</div>
+<div class="b" onclick="openWin('files')">📁</div>
+<div class="b" onclick="openWin('store')">🛒</div>
+<div class="b" onclick="openWin('roblox')">🎮</div>
 </div>
 
 <script>
-// BLOQUEIO
-var ua=navigator.userAgent;var bloqueado=false;
-var m=ua.match(/Android\s+(\d+)/);
-if(m&&parseInt(m[1])<10){bloqueado=true;document.getElementById('motivo').innerText='Android '+m[1]+' precisa 10+';}
-else if(ua.indexOf('Windows NT')>-1){var n=ua.match(/Windows NT (\d+\.\d+)/);if(!n||n[1]!='10.0'){bloqueado=true;}}
-else if(ua.indexOf('iPhone')>-1){var i=ua.match(/OS (\d+)_/);if(!i||parseInt(i[1])<17){bloqueado=true;}}
-if(bloqueado){document.getElementById('bloqueio').style.display='grid';}
+function openWin(id){
+  document.querySelectorAll('.win').forEach(w=>w.classList.remove('open'));
+  document.getElementById(id).classList.add('open');
+}
+function closeWin(id){document.getElementById(id).classList.remove('open');}
+
+function entrarPasta(nome){
+  document.getElementById('caminho').innerText = nome;
+  const body = document.getElementById('filesBody');
+  if(nome==='Legacy'){
+    body.innerHTML = `<div style="margin-bottom:12px"><button onclick="voltar()" class="btn">← Voltar</button></div><div class="lista">
+    <div class="linha" onclick="alert('Abrindo Legacy v1.5.0.zip')"><span>📦 Legacy v1.5.0.zip</span><span class="btn">Abrir</span></div>
+    <div class="linha" onclick="alert('Abrindo Legacy v1.6.0.zip')"><span>📦 Legacy v1.6.0.zip</span><span class="btn">Abrir</span></div>
+    <div class="linha" onclick="alert('Abrindo Legacy v1.6.2.zip')"><span>📦 Legacy v1.6.2.zip</span><span class="btn">Abrir</span></div>
+    <div class="linha" onclick="alert('Abrindo Legacy v1.6.3.zip')"><span>📦 Legacy v1.6.3.zip</span><span class="btn">Abrir</span></div>
+    </div>`;
+  } else if(nome==='Downloads'){
+    body.innerHTML = `<div style="margin-bottom:12px"><button onclick="voltar()" class="btn">← Voltar</button></div><div class="lista">
+    <div class="linha"><span>📄 setup.exe</span><small>45MB</small></div>
+    <div class="linha"><span>📄 legacy-pack.rar</span><small>120MB</small></div>
+    </div>`;
+  } else {
+    body.innerHTML = `<div style="margin-bottom:12px"><button onclick="voltar()" class="btn">← Voltar</button></div><div class="lista"><div class="linha"><span>📄 Arquivo em ${nome}</span><span>✔️</span></div></div>`;
+  }
+}
+function voltar(){
+  document.getElementById('caminho').innerText='Este Computador';
+  document.getElementById('filesBody').innerHTML=`<div class="grid2">
+  <div class="item" onclick="entrarPasta('Downloads')"><span>📥</span>Downloads<small>3 arquivos</small></div>
+  <div class="item" onclick="entrarPasta('Legacy')"><span>📦</span>Legacy Pack<small>4 versões</small></div>
+  <div class="item" onclick="entrarPasta('Imagens')"><span>🖼️</span>Imagens<small>12 fotos</small></div>
+  <div class="item" onclick="entrarPasta('Roblox')"><span>🎮</span>Roblox Files<small>2 itens</small></div>
+  </div>`;
+}
+function instalar(el,nome){
+  const status=document.getElementById('storeStatus');
+  status.style.display='block';
+  status.innerHTML=`⏳ Instalando ${nome}... 0%`;
+  let p=0;
+  const iv=setInterval(()=>{
+    p+=20;
+    status.innerHTML=`⏳ Instalando ${nome}... ${p}%`;
+    if(p>=100){clearInterval(iv);status.innerHTML=`✅ ${nome} instalado com sucesso! <button class="btn" style="margin-left:10px" onclick="openWin('files');entrarPasta('Legacy')">Ver na pasta</button>`; el.innerHTML=`<span>✅</span>${nome}<small>Instalado</small>`; el.style.background='#1a4d1a';}
+  },300);
+}
+
+// BLOQUEIO - seu Android 15 passa
+let ua=navigator.userAgent, block=false, txt='';
+let am=ua.match(/Android\s+(\d+)/);
+if(am){if(parseInt(am[1])<10){block=true;txt='Android '+am[1]+' precisa ser 10+';}}
+else if(ua.includes('Windows NT')){let m=ua.match(/Windows NT (\d+\.\d+)/);if(!m||m[1]!=='10.0'){block=true;txt='Só Win10/11';}}
+else if(ua.includes('iPhone')){let m=ua.match(/OS (\d+)_/);if(!m||parseInt(m[1])<17){block=true;txt='iOS precisa 17+';}}
+if(block){document.getElementById('bloq').style.display='grid';document.getElementById('mot').innerText=txt;}
 </script>
 </body>
 </html>
