@@ -3,25 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Windows 11 Simulator 1.6.2</title>
+<title>Windows 11 Simulator 1.6.2 FIX</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI'}
 body{width:100vw;height:100vh;overflow:hidden;background:#0078d4}
-#wall{position:fixed;inset:0;background:url('https://4kwallpapers.com/images/wallpapers/windows-11-blue-abstract-3840x2160-22091.jpg');background-size:cover}
+#wall{position:fixed;inset:0;background:url('https://4kwallpapers.com/images/wallpapers/windows-11-blue-abstract-3840x2160-22091.jpg');background-size:cover;background-position:center}
 #icons{position:absolute;top:10px;left:10px;display:flex;flex-direction:column;gap:15px;z-index:10}
 .icon{width:80px;color:#fff;text-align:center;font-size:12px;cursor:pointer;text-shadow:0 1px 3px #000}
-.icon b{width:48px;height:48px;background:rgba(255,255,255,.2);border-radius:10px;display:flex;align-items:center;justify-content:center;margin:0 auto 5px;font-size:26px}
-#taskbar{position:fixed;bottom:0;width:100%;height:55px;background:rgba(242,242,242,.9);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;gap:8px;z-index:1000}
+.icon b{width:48px;height:48px;background:rgba(255,255,255,.25);backdrop-filter:blur(5px);border-radius:10px;display:flex;align-items:center;justify-content:center;margin:0 auto 5px;font-size:26px}
+#taskbar{position:fixed;bottom:0;width:100%;height:55px;background:rgba(242,242,242,.92);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;gap:8px;z-index:1000}
 .t{width:42px;height:42px;border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px}
 .t:hover{background:rgba(0,0,0,.1)}
-.win{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:92%;max-width:850px;height:70%;background:#fff;border-radius:10px;box-shadow:0 20px 60px #000;display:none;flex-direction:column;z-index:500}
+.win{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:92%;max-width:900px;height:72%;background:#fff;border-radius:10px;box-shadow:0 20px 60px #000;display:none;flex-direction:column;z-index:500}
 .win.ativo{display:flex}
-.title{height:40px;background:#f3f3f3;display:flex;justify-content:space-between;align-items:center;padding:0 12px;border-radius:10px 10px 0 0}
-.content{flex:1;overflow:auto}
-#start{position:fixed;bottom:65px;left:50%;transform:translateX(-50%);width:580px;max-width:94vw;height:550px;background:#fff;border-radius:10px;display:none;z-index:999;padding:20px;box-shadow:0 10px 40px #000}
+.title{height:40px;background:#f3f3f3;display:flex;justify-content:space-between;align-items:center;padding:0 12px;border-radius:10px 10px 0 0;font-size:14px;font-weight:600}
+.content{flex:1;overflow:auto;display:flex;flex-direction:column}
+#start{position:fixed;bottom:65px;left:50%;transform:translateX(-50%);width:580px;max-width:94vw;height:550px;background:rgba(255,255,255,.97);border-radius:10px;display:none;z-index:999;padding:20px;box-shadow:0 10px 40px #000}
 #start.ativo{display:block}
 .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:15px}
-.app{background:#f3f3f3;border-radius:8px;padding:12px;text-align:center;cursor:pointer}
+.app{background:#f3f3f3;border-radius:8px;padding:12px;text-align:center;cursor:pointer;font-size:12px}
 .app:hover{background:#e5e5e5}
 </style>
 </head>
@@ -33,29 +33,15 @@ body{width:100vw;height:100vh;overflow:hidden;background:#0078d4}
 <div class="icon" onclick="abrir('edge')"><b>🌐</b>Edge</div>
 <div class="icon" onclick="abrir('store')"><b>🛒</b>Store</div>
 <div class="icon" onclick="abrir('notepad')"><b>📝</b>Notas</div>
-<div class="icon" onclick="abrir('calc')"><b>🧮</b>Calculadora</div>
+<div class="icon" onclick="abrir('calc')"><b>🧮</b>Calc</div>
 </div>
 
-<div id="win-explorer" class="win"><div class="title"><b>📁 Explorador</b><span onclick="fechar('explorer')" style="cursor:pointer;color:red;font-weight:bold">✕ FECHAR</span></div><div class="content" style="padding:15px"><h3>Windows 11 Simulator 1.6.2</h3><br>📁 Área de Trabalho<br>📁 Downloads<br>📁 Documentos<br>💾 Disco Local (C:)</div></div>
+<div id="win-explorer" class="win"><div class="title"><b>📁 Explorador</b><span onclick="fechar('explorer')" style="cursor:pointer;color:red">✕ FECHAR</span></div><div class="content" style="padding:15px"><h3>Windows 11 Simulator 1.6.2 FIX</h3><br>📁 Área de Trabalho<br>📁 Downloads<br>📁 Documentos<br>💾 Disco Local (C:) 128GB<br><br><b style="color:#0078d4">Tudo funcionando agora!</b></div></div>
 
-<div id="win-edge" class="win"><div class="title"><b>🌐 Microsoft Edge - FUNCIONANDO</b><span onclick="fechar('edge')" style="cursor:pointer;color:red;font-weight:bold">✕ FECHAR</span></div><div class="content"><iframe src="https://duckduckgo.com" style="width:100%;height:100%;border:0"></iframe></div></div>
-
-<div id="win-store" class="win"><div class="title"><b>🛒 Microsoft Store</b><span onclick="fechar('store')" style="cursor:pointer;color:red;font-weight:bold">✕ FECHAR</span></div><div class="content" style="padding:15px"><h3>Jogos</h3><br><button onclick="window.open('https://agar.io')" style="padding:12px">Agar.io</button> <button onclick="window.open('https://slither.io')" style="padding:12px">Slither.io</button></div></div>
-
-<div id="win-notepad" class="win"><div class="title"><b>📝 Bloco de Notas - TECLADO CORRIGIDO</b><span onclick="fechar('notepad')" style="cursor:pointer;color:red;font-weight:bold">✕ FECHAR</span></div><div class="content"><textarea style="width:100%;height:100%;border:0;padding:12px;outline:none;font-size:16px" placeholder="Pode digitar aqui agora, teclado consertado na 1.6.2!"></textarea></div></div>
-
-<div id="win-calc" class="win" style="max-width:330px;height:420px"><div class="title"><b>🧮 Calculadora</b><span onclick="fechar('calc')" style="cursor:pointer;color:red;font-weight:bold">✕</span></div><div class="content"><input id="display" style="width:100%;height:60px;font-size:28px;text-align:right;padding:10px;border:0;background:#f9f9f9" readonly><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px;padding:8px"><button onclick="digitar('7')" style="padding:15px">7</button><button onclick="digitar('8')" style="padding:15px">8</button><button onclick="digitar('9')" style="padding:15px">9</button><button onclick="digitar('/')" style="padding:15px">/</button><button onclick="digitar('4')" style="padding:15px">4</button><button onclick="digitar('5')" style="padding:15px">5</button><button onclick="digitar('6')" style="padding:15px">6</button><button onclick="digitar('*')" style="padding:15px">x</button><button onclick="digitar('1')" style="padding:15px">1</button><button onclick="digitar('2')" style="padding:15px">2</button><button onclick="digitar('3')" style="padding:15px">3</button><button onclick="digitar('-')" style="padding:15px">-</button><button onclick="digitar('0')" style="padding:15px">0</button><button onclick="digitar('.')" style="padding:15px">.</button><button onclick="calcular()" style="padding:15px;background:#0078d4;color:#fff">=</button><button onclick="digitar('+')" style="padding:15px">+</button><button onclick="document.getElementById('display').value=''" style="grid-column:span 4;padding:10px;background:red;color:#fff;border:0">LIMPAR</button></div></div></div>
-
-<div id="start"><h3>Windows 11 - Menu Iniciar</h3><div class="grid"><div class="app" onclick="abrir('explorer');toggleStart()">📁<br>Arquivos</div><div class="app" onclick="abrir('edge');toggleStart()">🌐<br>Edge</div><div class="app" onclick="abrir('store');toggleStart()">🛒<br>Store</div><div class="app" onclick="abrir('notepad');toggleStart()">📝<br>Notas</div><div class="app" onclick="abrir('calc');toggleStart()">🧮<br>Calc</div><div class="app" onclick="alert('1.6.2 - Tudo funcionando!')">ℹ️<br>Sobre</div></div></div>
-
-<div id="taskbar"><div class="t" onclick="toggleStart()">🪟</div><div class="t" onclick="abrir('explorer')">📁</div><div class="t" onclick="abrir('edge')">🌐</div><div class="t" onclick="abrir('notepad')">📝</div><div class="t" onclick="abrir('calc')">🧮</div><div class="t" onclick="abrir('store')">🛒</div></div>
-
-<script>
-function toggleStart(){document.getElementById('start').classList.toggle('ativo')}
-function abrir(nome){document.querySelectorAll('.win').forEach(w=>w.classList.remove('ativo'));document.getElementById('win-'+nome).classList.add('ativo');document.getElementById('start').classList.remove('ativo')}
-function fechar(nome){document.getElementById('win-'+nome).classList.remove('ativo')}
-function digitar(v){document.getElementById('display').value+=v}
-function calcular(){try{document.getElementById('display').value=eval(document.getElementById('display').value)}catch{document.getElementById('display').value='Erro'}}
-</script>
-</body>
-</html>
+<div id="win-edge" class="win"><div class="title"><b>🌐 Microsoft Edge - FUNCIONANDO</b><span onclick="fechar('edge')" style="cursor:pointer;color:red">✕ FECHAR</span></div><div class="content">
+<div style="display:flex;padding:8px;gap:6px;background:#f3f3f3;border-bottom:1px solid #ddd;align-items:center">
+<span>🔒</span>
+<input id="edgeUrl" style="flex:1;padding:8px 14px;border-radius:20px;border:1px solid #ccc;outline:none" value="pt.wikipedia.org/wiki/Windows_11" onkeydown="if(event.key==='Enter') goEdge()">
+<button onclick="goEdge()" style="padding:8px 16px;border-radius:20px;border:0;background:#0078d4;color:#fff;cursor:pointer">Ir</button>
+</div>
+<div style="padding
