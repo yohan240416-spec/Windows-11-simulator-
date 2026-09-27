@@ -1,39 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Windows 11 - FUNCIONA</title>
 <style>
-body{margin:0;background:#000;color:#fff;font-family:sans-serif}
-.app{width:80px;text-align:center;padding:10px;margin:10px;background:#0078d4;border-radius:10px;cursor:pointer}
-.win{position:fixed;top:20%;left:5%;right:5%;background:#222;padding:20px;border-radius:10px;display:none}
-.win.on{display:block}
-button{padding:10px;margin:5px;background:#0078d4;color:#fff;border:0;border-radius:5px}
-</style>
-</head>
-<body>
-<div class="app" onclick="abrir('store')">🛒 Store</div>
-<div class="app" onclick="abrir('roblox')">🎮 Roblox</div>
-
-<div class="win" id="store">
-<h3>VERSÕES - CLICA QUE FUNCIONA</h3>
-<button onclick="rodar('1.5.0')">Rodar v1.5.0</button>
-<button onclick="rodar('1.6.0')">Rodar v1.6.0</button>
-<button onclick="rodar('1.6.2')">Rodar v1.6.2</button>
-<button onclick="rodar('1.6.3')">Rodar v1.6.3</button>
-<p id="msg"></p>
-<button onclick="fechar('store')">Fechar</button>
-</div>
-
-<div class="win" id="roblox">
-<h3>Roblox</h3>
-<button onclick="window.open('https://www.roblox.com','_blank')">Jogar de verdade</button>
-<button onclick="fechar('roblox')">Fechar</button>
-</div>
-
-<script>
-function abrir(id){document.getElementById(id).classList.add('on')}
-function fechar(id){document.getElementById(id).classList.remove('on')}
-function rodar(v){document.getElementById('msg').innerText='✅ v'+v+' RODANDO AGORA!'; alert('v'+v+' funcionando!')}
-</script>
-</body>
-</html>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI}
+body{height:100vh;background:#000 url('https://4kwallpapers.com/images/wallpapers/windows-11-dark-mode-3840x2400-9263.jpg') center/cover;overflow:hidden}
+.taskbar{position:fixed;bottom:0;left:0;right:0;height:50px;background:rgba(30,30,30,.9);display:flex;justify-content:center;align-items:center;gap:10px}
+.icon{width:40px;height:40px;background:rgba(255,255,255,.2);border-radius:8px;display:grid;place-items:center;color:#fff;font-size:22px;cursor:pointer}
+.janela{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:360px;background:#2b2b2b;border-radius:12px;padding:20px;display:none;color:#fff;box-shadow:0 0 40px #000}
+.janela.on{display:block}
+.janela button{background:#0078d
