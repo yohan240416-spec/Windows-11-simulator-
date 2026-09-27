@@ -2,15 +2,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Windows 11 FINAL</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Windows 11 Simulator 1.6.1</title>
 <style>
-body{margin:0;height:100vh;background:linear-gradient(135deg,#1e88e5,#0d47a1);font-family:Arial;overflow:hidden}
-.icon{width:90px;text-align:center;color:white;margin:20px;cursor:pointer}
-.icon div{font-size:50px}
-.win{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:380px;height:380px;background:white;border-radius:12px;z-index:99;flex-direction:column;box-shadow:0 20px 50px black;overflow:hidden}
-.win.on{display:flex}
-.bar{height:40px;background:#ddd;display:flex;justify-content:space-between;align-items:center;padding:0 12px;font-weight:bold}
-.ct{flex:1;padding:15px;overflow:auto}
-#task{position:fixed;bottom:0;left:0;right:0;height:55px;background:#eee;display:flex;align-items:center;justify-content:center;gap:20px}
-.item{padding:8px;border:1px dashed #
+body { margin:0; background:url('https://wallpaperaccess.com/full/3175012.jpg'); background-size:cover; font-family:Segoe UI, Arial; overflow:hidden; }
+#desktop { width:100vw; height:100vh; position:relative; }
+#taskbar { position:fixed; bottom:0; width:100%; height:50px; background:rgba(30,30,30,0.9); display:flex; align-items:center; justify-content:center; gap:15px; backdrop-filter:blur(10px); }
+.app { width:40px; height:40px; background:white; border-radius:8px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:20px; }
+.window { position:absolute; top:10%; left:10%; width:80%; height:70%; background:white; border-radius:10px; display:none; flex-direction:column; box-shadow:0 10px 30px rgba(0,0,0,0.5); }
+.window-header { background:#eee; padding:8px; display:flex; justify-content:space-between; border-radius:10px 10px 0 0; }
+.window-content { flex:1; padding:10px; overflow:auto; }
+#startMenu { position:fixed; bottom:60
