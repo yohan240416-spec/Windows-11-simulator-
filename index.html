@@ -11,25 +11,27 @@ body{height:100vh;overflow:hidden;background:#000}
 .desktop{position:relative;z-index:1;height:calc(100vh - 48px);padding:12px;display:grid;grid-template-columns:80px;gap:12px;align-content:start}
 .app{display:flex;flex-direction:column;align-items:center;gap:4px;color:white;font-size:11px;text-shadow:0 1px 3px #000;cursor:pointer;padding:6px;border-radius:6px;user-select:none}
 .app:active{background:rgba(255,255,255,.25)}
-.app i{width:48px;height:48px;background:linear-gradient(180deg,#3aa0ff,#0067c0);border-radius:10px;display:grid;place-items:center;font-size:24px;box-shadow:0 4px 10px rgba(0,0,0,.3)}
+.app i{width:48px;height:48px;background:linear-gradient(180deg,#3aa0ff,#0067c0);border-radius:10px;display:grid;place-items:center;font-size:24px}
 .taskbar{position:absolute;bottom:0;left:0;right:0;height:48px;background:rgba(32,32,32,.85);backdrop-filter:blur(30px);border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;z-index:50}
 .center{display:flex;gap:8px}
 .tb-icon{width:36px;height:36px;display:grid;place-items:center;border-radius:6px;cursor:pointer;color:white;font-size:20px}
-.tb-icon:active{background:rgba(255,255,255,.25)}
-.start-menu{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);width:620px;max-width:94vw;background:rgba(37,37,37,.92);backdrop-filter:blur(40px);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.5);display:none;z-index:40}
+.start-menu{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);width:620px;max-width:94vw;background:rgba(37,37,37,.92);backdrop-filter:blur(40px);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px;display:none;z-index:40}
 .start-menu.open{display:block}
 .grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
 .grid div{background:rgba(255,255,255,.07);border-radius:8px;padding:14px 6px;text-align:center;color:white;font-size:11px;cursor:pointer}
 .legacy{margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.1)}
-.legacy button{background:#0078d4;color:white;border:0;padding:8px 14px;border-radius:6px;font-weight:600;cursor:pointer;margin:4px}
-.legacy button.sec{background:rgba(255,255,255,.12)}
-.win{position:absolute;top:50%;left:50%;transform:translate(-50%,-55%);width:700px;max-width:92vw;height:420px;background:rgba(32,32,32,.97);border:1px solid rgba(255,255,255,.12);border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.6);display:none;flex-direction:column;z-index:60}
+.win{position:absolute;top:50%;left:50%;transform:translate(-50%,-55%);width:700px;max-width:92vw;height:420px;background:rgba(32,32,32,.97);border:1px solid rgba(255,255,255,.12);border-radius:10px;display:none;flex-direction:column;z-index:60}
 .win.open{display:flex !important}
-.win-header{height:40px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;padding:0 12px;color:white;font-size:13px}
+.win-header{height:40px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;padding:0 12px;color:white}
 .close{width:32px;height:32px;display:grid;place-items:center;border-radius:5px;cursor:pointer}
 .close:hover{background:#e81123}
 .win-body{flex:1;padding:20px;color:white;overflow:auto}
-.win-body button{background:#0078d4;color:white;border:0;padding:8px 14px;border-radius:6px;margin:5px;cursor:pointer}
+.win-body button{background:#0078d4;color:white;border:0;padding:10px 16px;border-radius:6px;margin:5px;cursor:pointer;font-weight:600}
+.win-body button.sec{background:rgba(255,255,255,.15)}
+#boot{position:absolute;inset:0;background:#0078d4;display:none;flex-direction:column;align-items:center;justify-content:center;z-index:200;color:white}
+#boot.on{display:flex}
+#barWrap{width:300px;height:6px;background:rgba(255,255,255,.3);border-radius:10px;margin-top:20px;overflow:hidden}
+#bar{height:100%;width:0%;background:white;transition:width .1s}
 </style>
 </head>
 <body>
@@ -38,54 +40,50 @@ body{height:100vh;overflow:hidden;background:#000}
 <div class="desktop">
   <div class="app" onclick="openWin('explorer')"><i>📁</i>Explorador</div>
   <div class="app" onclick="openWin('store')"><i style="background:linear-gradient(180deg,#00d1ff,#0078d4)">🛒</i>Store</div>
-  <div class="app" onclick="openWin('roblox')"><i style="background:linear-gradient(180deg,#222,#000)">🎮</i>Roblox</div>
+  <div class="app" onclick="openWin('roblox')"><i style="background:#111">🎮</i>Roblox</div>
 </div>
 
-<div class="win" id="win-explorer"><div class="win-header"><span>📁 Explorador</span><div class="close" onclick="closeWin('explorer')">✕</div></div><div class="win-body">Meus arquivos funcionando! ✅<br><br>📁 Documentos<br>📁 Downloads<br>📁 Legacy Pack</div></div>
-<div class="win" id="win-store"><div class="win-header"><span>🛒 Microsoft Store - Legacy</span><div class="close" onclick="closeWin('store')">✕</div></div><div class="win-body"><h3>Windows 11 - Legacy Pack</h3><button onclick="rodar('1.5.0')">Rodar v1.5.0</button><button onclick="rodar('1.6.0')">Rodar v1.6.0</button><button onclick="rodar('1.6.2')">Rodar v1.6.2</button><button onclick="rodar('1.6.3')">Rodar v1.6.3</button><p id="status" style="margin-top:15px;color:#4cc2ff"></p></div></div>
-<div class="win" id="win-roblox"><div class="win-header"><span>🎮 Roblox</span><div class="close" onclick="closeWin('roblox')">✕</div></div><div class="win-body" style="text-align:center"><h2>Roblox Player</h2><br><button onclick="alert('Roblox iniciado!')">▶ Jogar Agora</button></div></div>
+<div class="win" id="win-explorer"><div class="win-header"><span>📁 Explorador</span><div class="close" onclick="closeWin('explorer')">✕</div></div><div class="win-body">📁 Documentos<br>📁 Downloads<br>📁 Legacy Pack</div></div>
 
-<div class="start-menu" id="startMenu">
-  <h3>Fixado</h3>
-  <div class="grid">
-    <div onclick="openWin('explorer')">Explorador</div>
-    <div onclick="openWin('store')">Store</div>
-    <div onclick="openWin('roblox')">Roblox</div>
-  </div>
-  <div class="legacy"><h3>Windows 11 - Legacy Pack</h3><button onclick="rodar('1.5.0')">Rodar v1.5.0</button><button onclick="rodar('1.6.2')">Rodar v1.6.2</button></div>
-</div>
+<div class="win" id="win-store"><div class="win-header"><span>🛒 Microsoft Store - Legacy</span><div class="close" onclick="closeWin('store')">✕</div></div><div class="win-body"><h3>Escolha a versão:</h3><br><button class="sec" onclick="rodar('1.5.0')">Rodar v1.5.0</button><button class="sec" onclick="rodar('1.6.0')">Rodar v1.6.0</button><button onclick="rodar('1.6.2')">Rodar v1.6.2</button><button class="sec" onclick="rodar('1.6.3')">Rodar v1.6.3</button><p id="status" style="margin-top:20px;color:#4cc2ff;font-weight:600"></p></div></div>
 
-<div class="taskbar">
-  <div class="center">
-    <div class="tb-icon" onclick="toggleStart()" style="background:rgba(255,255,255,.18)">⊞</div>
-    <div class="tb-icon" onclick="openWin('explorer')">📁</div>
-    <div class="tb-icon" onclick="openWin('store')">🛒</div>
-    <div class="tb-icon" onclick="openWin('roblox')">🎮</div>
-  </div>
-</div>
+<div class="win" id="win-roblox"><div class="win-header"><span>🎮 Roblox</span><div class="close" onclick="closeWin('roblox')">✕</div></div><div class="win-body" style="text-align:center"><h2>Roblox</h2><br><button onclick="window.open('https://www.roblox.com','_blank')">▶ Abrir Roblox Oficial</button><br><br><small>Vai abrir o Roblox de verdade em nova aba</small></div></div>
+
+<div id="boot"><h1 id="bootTitle">Instalando...</h1><div id="barWrap"><div id="bar"></div></div><h2 id="pct" style="margin-top:10px">0%</h2></div>
+
+<div class="start-menu" id="startMenu"><h3 style="color:white;margin-bottom:10px">Fixado</h3><div class="grid"><div onclick="openWin('explorer')">Explorador</div><div onclick="openWin('store')">Store</div><div onclick="openWin('roblox')">Roblox</div></div></div>
+
+<div class="taskbar"><div class="center"><div class="tb-icon" onclick="toggleStart()" style="background:rgba(255,255,255,.18)">⊞</div><div class="tb-icon" onclick="openWin('explorer')">📁</div><div class="tb-icon" onclick="openWin('store')">🛒</div><div class="tb-icon" onclick="openWin('roblox')">🎮</div></div></div>
 
 <script>
-function openWin(id){
-  document.getElementById('win-'+id).classList.add('open');
-  document.getElementById('startMenu').classList.remove('open');
-}
-function closeWin(id){
-  document.getElementById('win-'+id).classList.remove('open');
-}
-function toggleStart(){
-  document.getElementById('startMenu').classList.toggle('open');
-}
+function openWin(id){document.getElementById('win-'+id).classList.add('open'); document.getElementById('startMenu').classList.remove('open')}
+function closeWin(id){document.getElementById('win-'+id).classList.remove('open')}
+function toggleStart(){document.getElementById('startMenu').classList.toggle('open')}
 function rodar(v){
-  var s=document.getElementById('status');
-  if(s) s.innerText='Rodando v'+v+'...';
-  alert('Windows 11 Legacy v'+v+' iniciado!');
+  // fecha store e mostra boot
+  closeWin('store');
+  let boot=document.getElementById('boot');
+  boot.classList.add('on');
+  document.getElementById('bootTitle').innerText='Instalando Windows 11 Legacy v'+v+'...';
+  let pct=0;
+  let bar=document.getElementById('bar');
+  let txt=document.getElementById('pct');
+  let timer=setInterval(()=>{
+    pct+=4;
+    if(pct>100)pct=100;
+    bar.style.width=pct+'%';
+    txt.innerText=pct+'%';
+    if(pct>=100){
+      clearInterval(timer);
+      setTimeout(()=>{
+        boot.classList.remove('on');
+        document.getElementById('status').innerText='v'+v+' rodando agora!';
+        openWin('explorer');
+        alert('Versão v'+v+' carregada! (simulação funcionando)');
+      },600);
+    }
+  },80);
 }
-// fecha menu ao clicar fora
-document.addEventListener('click',function(e){
-  if(!e.target.closest('#startMenu') && !e.target.closest('.taskbar')){
-    document.getElementById('startMenu').classList.remove('open');
-  }
-});
 </script>
 </body>
 </html>
