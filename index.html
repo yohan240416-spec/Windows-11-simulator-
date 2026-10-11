@@ -3,118 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Windows 11 Simulator - Yohan Full</title>
+<title>Windows 11 - Yohan</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial}
-body{height:100vh;overflow:hidden;background:#1a1a1a url('https://4kwallpapers.com/images/wallpapers/windows-11-dark-mode-4480x2520-12026.jpg') center/cover no-repeat}
-#desktop{position:absolute;top:0;left:0;right:0;bottom:52px;padding:12px;display:flex;flex-direction:column;flex-wrap:wrap;gap:8px;align-content:flex-start}
-.icon{width:80px;padding:8px;text-align:center;color:white;text-shadow:0 1px 3px black;border-radius:5px;cursor:pointer}
-.icon:hover{background:rgba(255,255,255,.15)}.icon i{font-size:32px;display:block}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{
+ height:100vh;overflow:hidden;
+ /* AQUI ESTÁ SUA FOTO DO WINDOWS 11 */
+ background: #0a1930 url('https://4kwallpapers.com/images/wallpapers/windows-11-dark-mode-elastic-4480x2520-12026.jpg') center/cover no-repeat fixed;
+}
+#desktop{position:absolute;top:12px;left:12px;display:flex;flex-direction:column;gap:16px}
+.icon{width:82px;color:white;text-align:center;cursor:pointer;padding:8px;border-radius:8px;text-shadow:0 1px 5px black}
+.icon:hover{background:rgba(255,255,255,.18)}
+.icon p{font-size:12px;margin-top:4px}
 
-#taskbar{position:fixed;bottom:0;width:100%;height:52px;background:rgba(32,32,32,.85);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;gap:6px;z-index:1000}
-.tbtn{width:40px;height:40px;border-radius:5px;display:grid;place-items:center;cursor:pointer;font-size:20px;color:white}
-.tbtn:hover{background:rgba(255,255,255,.12)}.tbtn.start{background:white;color:black;font-weight:bold}
-
-#startMenu{position:fixed;bottom:62px;left:50%;transform:translateX(-50%);width:650px;max-width:95vw;background:#f3f3f3;border-radius:8px;box-shadow:0 8px 30px rgba(0,0,0,.4);display:none;padding:24px;z-index:999;max-height:80vh;overflow:auto}
-#startMenu.open{display:block}
-.search{width:100%;padding:12px 16px;border-radius:24px;border:1px solid #ddd;outline:none}
-.grid6{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:20px 0}
-.app{padding:14px 4px;text-align:center;border-radius:6px;cursor:pointer}.app:hover{background:white}.app b{font-size:11px;display:block;margin-top:4px}
-
-.win{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;max-width:95vw;height:600px;max-height:85vh;background:white;border-radius:8px;box-shadow:0 10px 50px rgba(0,0,0,.5);display:none;flex-direction:column;z-index:900;border:1px solid #ddd}
-.win.open{display:flex}
-.wTitle{height:40px;background:#f3f3f3;display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:1px solid #e5e5e5;border-radius:8px 8px 0 0}
-.wBody{flex:1;overflow:auto}
+#taskbar{position:fixed;bottom:0;width:100%;height:52px;background:rgba(32,32,32,.85);backdrop-filter:blur(20px);display:flex;justify-content:center;align-items:center;gap:10px;border-top:1px solid rgba(255,255,255,.1)}
+.task{width:42px;height:42px;display:grid;place-items:center;border-radius:6px;cursor:pointer;color:white;font-size:22px}
+.task:hover{background:rgba(255,255,255,.15)}
+.win{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:850px;max-width:95vw;height:560px;background:white;border-radius:10px;display:none;flex-direction:column;box-shadow:0 20px 60px black;overflow:hidden}
+.win.show{display:flex}
+.wtop{height:42px;background:#f3f3f3;display:flex;justify-content:space-between;align-items:center;padding:0 14px;border-bottom:1px solid #ddd}
+.wbody{flex:1}
+iframe{width:100%;height:100%;border:none}
 </style>
 </head>
 <body>
-<div id="desktop"></div>
+
+<div id="desktop">
+<div class="icon" onclick="window.open('https://www.roblox.com/pt')"><div style="font-size:40px">🟥</div><p>Roblox</p></div>
+<div class="icon" onclick="window.open('https://www.pkxdgame.com')"><div style="font-size:40px">🎮</div><p>PK XD</p></div>
+<div class="icon" onclick="window.open('https://www.crazygames.com/game/craftsman-building-craft')"><div style="font-size:40px">⛏️</div><p>Craftsman</p></div>
+<div class="icon" onclick="openWin('chrome')"><div style="font-size:40px">🌐</div><p>Chrome 115</p></div>
+</div>
 
 <div id="taskbar">
-<div class="tbtn start" onclick="toggleStart()">⊞</div>
-<div class="tbtn" onclick="openWin('explorer')">📁</div>
-<div class="tbtn" onclick="openWin('store')">🛒</div>
-<div class="tbtn" onclick="openWin('edge')">🌐</div>
-<div class="tbtn" onclick="openWin('settings')">⚙️</div>
-<div class="tbtn" onclick="openWin('notepad')">📝</div>
-<div class="tbtn" onclick="openWin('calc')">🧮</div>
+<div class="task" style="background:white;color:black" onclick="alert('Menu Iniciar')">⊞</div>
+<div class="task" onclick="openWin('chrome')">🌐</div>
+<div class="task" onclick="openWin('explorer')">📁</div>
+<div class="task" onclick="openWin('store')">🛒</div>
 </div>
 
-<div id="startMenu">
-<input class="search" id="searchInput" placeholder="Pesquisar apps, arquivos e na web" onkeyup="if(event.key==='Enter'){doSearch(this.value)}">
-<h4 style="margin:18px 0 8px">Fixados</h4>
-<div class="grid6" id="pinned"></div>
-<h4 style="margin:10px 0 8px">Sistema - Trocar Windows</h4>
-<div style="display:flex;gap:8px;flex-wrap:wrap">
-<button onclick="setWall('xp')" style="padding:8px 12px;border-radius:6px;border:1px solid #ccc;cursor:pointer">Windows XP</button>
-<button onclick="setWall('vista')" style="padding:8px 12px;border-radius:6px;border:1px solid #ccc;cursor:pointer">Windows Vista</button>
-<button onclick="setWall('w7')" style="padding:8px 12px;border-radius:6px;border:1px solid #ccc;cursor:pointer">Windows 7</button>
-<button onclick="setWall('w11')" style="padding:8px 12px;border-radius:6px;border:1px solid #ccc;cursor:pointer">Windows 11</button>
-</div>
-</div>
-
-<div id="explorer" class="win"><div class="wTitle"><span>📁 Explorador de Arquivos</span><span onclick="closeWin('explorer')" style="cursor:pointer;padding:5px">✕</span></div><div class="wBody" style="display:flex"><div style="width:180px;background:#f9f9f9;padding:12px;border-right:1px solid #eee">Acesso rápido<br><br>📄 Documentos<br>🖼️ Imagens<br>🎮 Jogos<br>💾 Este Computador</div><div style="flex:1;padding:12px" id="explorerFiles"></div></div></div>
-
-<div id="store" class="win"><div class="wTitle"><span>🛒 Microsoft Store - Yohan Edition</span><span onclick="closeWin('store')" style="cursor:pointer">✕</span></div><div class="wBody" style="padding:16px"><div id="storeGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px"></div></div></div>
-
-<div id="edge" class="win" style="width:95%;height:85%"><div class="wTitle"><span>🌐 Windows Chrome 115 - Meu Google</span><span onclick="closeWin('edge')" style="cursor:pointer">✕</span></div><div class="wBody" style="display:flex;flex-direction:column"><div style="padding:8px;display:flex;gap:6px;background:#f3f3f3"><input id="urlBar" style="flex:1;padding:8px 12px;border-radius:20px;border:1px solid #ccc" placeholder="Pesquisar no Windows Chrome 115" value="https://duckduckgo.com"><button onclick="nav()" style="padding:8px 16px;border-radius:20px;border:none;background:#0078d4;color:white;cursor:pointer">Ir</button></div><iframe id="web" src="https://duckduckgo.com" style="flex:1;border:none"></iframe></div></div>
-
-<div id="settings" class="win"><div class="wTitle"><span>⚙️ Configurações</span><span onclick="closeWin('settings')" style="cursor:pointer">✕</span></div><div class="wBody" style="padding:20px"><h2>Personalização</h2><br><p>Papel de parede:</p><br><button onclick="setWall('w11')" style="padding:10px">Windows 11</button> <button onclick="setWall('w7')" style="padding:10px">Windows 7</button> <button onclick="setWall('xp')" style="padding:10px">Windows XP</button> <button onclick="setWall('vista')" style="padding:10px">Vista</button><br><br><p>✅ Modo APK Pesado: Ativado<br>✅ Todos os recursos do Windows 11: Ativado<br>✅ Sem homem gordo: Ativado</p></div></div>
-
-<div id="notepad" class="win" style="width:600px;height:400px"><div class="wTitle"><span>📝 Bloco de Notas</span><span onclick="closeWin('notepad')" style="cursor:pointer">✕</span></div><div class="wBody"><textarea style="width:100%;height:100%;border:none;outline:none;padding:12px">Windows 11 Simulator by Yohan - 2026</textarea></div></div>
-
-<div id="calc" class="win" style="width:320px;height:420px"><div class="wTitle"><span>🧮 Calculadora</span><span onclick="closeWin('calc')" style="cursor:pointer">✕</span></div><div class="wBody" style="padding:12px"><input id="calcD" style="width:100%;padding:12px;font-size:22px;text-align:right"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px" id="calcKeys"></div></div></div>
+<div id="chrome" class="win" style="width:92%;height:80%"><div class="wtop"><span>Chrome 115</span><span onclick="closeWin('chrome')" style="cursor:pointer">✕ Fechar</span></div><div class="wbody"><iframe src="https://duckduckgo.com"></iframe></div></div>
+<div id="explorer" class="win"><div class="wtop"><span>Explorador</span><span onclick="closeWin('explorer')" style="cursor:pointer">✕</span></div><div class="wbody" style="padding:20px">Seus apps: Roblox, PK XD, Craftsman, Chrome 115<br><br>SEM HOMEM OBESO - 100% LIMPO</div></div>
+<div id="store" class="win"><div class="wtop"><span>Microsoft Store</span><span onclick="closeWin('store')" style="cursor:pointer">✕</span></div><div class="wbody" style="padding:20px">Loja - Clique para instalar seus jogos</div></div>
 
 <script>
-const desktop=document.getElementById('desktop');
-const pinned=document.getElementById('pinned');
-const storeGrid=document.getElementById('storeGrid');
-const explorerFiles=document.getElementById('explorerFiles');
-
-let myApps=[
-{n:'Roblox',e:'🟥',link:'https://www.roblox.com/pt'},
-{n:'PK XD',e:'🎮',link:'https://play.pkxdgame.com'},
-{n:'Craftsman',e:'⛏️',link:'https://www.crazygames.com/game/craftsman-building-craft'},
-{n:'Chrome 115',e:'🌐',link:'EDGE'}
-];
-
-function refreshDesktop(){
-desktop.innerHTML='';
-myApps.forEach(a=>{
-let d=document.createElement('div');d.className='icon';d.innerHTML=`<i>${a.e}</i>${a.n}`;
-d.onclick=()=>{if(a.link==='EDGE')openWin('edge');else window.open(a.link,'_blank')};
-desktop.appendChild(d);
-});
-explorerFiles.innerHTML=myApps.map(a=>`<div style="padding:8px"> ${a.e} ${a.n}</div>`).join('');
-}
-
-function renderPinned(){
-pinned.innerHTML=myApps.map((a,i)=>`<div class="app" onclick="desktop.children[${i}]?.click()"><div style="font-size:28px">${a.e}</div><b>${a.n}</b></div>`).join('')+
-`<div class="app" onclick="openWin('explorer')"><div style="font-size:28px">📁</div><b>Arquivos</b></div>
-<div class="app" onclick="openWin('settings')"><div style="font-size:28px">⚙️</div><b>Config</b></div>`;
-storeGrid.innerHTML=myApps.map((a,i)=>`<div style="background:#f9f9f9;padding:16px;border-radius:8px;text-align:center;cursor:pointer;border:1px solid #eee" onclick="install(${i})"><div style="font-size:36px">${a.e}</div><b>${a.n}</b><br><span style="color:#0078d4;font-size:12px">Instalar</span></div>`).join('');
-}
-function install(i){alert(myApps[i].n+' já está instalado na área de trabalho!');}
-
-function toggleStart(){document.getElementById('startMenu').classList.toggle('open')}
-function openWin(id){document.getElementById(id).classList.add('open');document.getElementById('startMenu').classList.remove('open')}
-function closeWin(id){document.getElementById(id).classList.remove('open')}
-function setWall(w){
-if(w==='w11')document.body.style.backgroundImage="url('https://4kwallpapers.com/images/wallpapers/windows-11-dark-mode-4480x2520-12026.jpg')";
-if(w==='w7')document.body.style.backgroundImage="url('https://wallpaperaccess.com/full/1223057.jpg')";
-if(w==='xp')document.body.style.backgroundImage="url('https://wallpaperaccess.com/full/1532470.jpg')";
-if(w==='vista')document.body.style.backgroundImage="url('https://c4.wallpaperflare.com/wallpaper/650/883/624/macos-big-sur-apple-layers-fluidic-colorful-dark-wwdc-2020-hd-wallpaper-preview.jpg')";
-}
-function nav(){let u=document.getElementById('urlBar').value;if(!u.startsWith('http'))u='https://duckduckgo.com/?q='+encodeURIComponent(u);document.getElementById('web').src=u}
-function doSearch(q){document.getElementById('urlBar').value=q;nav();openWin('edge')}
-
-// Calculadora
-let keys=['7','8','9','/','4','5','6','*','1','2','3','-','0','.','=','+','C'];
-document.getElementById('calcKeys').innerHTML=keys.map(k=>`<button onclick="calcAct('${k}')" style="padding:14px;font-size:16px;border-radius:6px;border:1px solid #ddd;cursor:pointer">${k}</button>`).join('');
-function calcAct(k){let d=document.getElementById('calcD');if(k==='C')d.value='';else if(k==='='){try{d.value=eval(d.value)}catch(e){d.value='Erro'}}else d.value+=k}
-
-refreshDesktop();renderPinned();
-document.addEventListener('click',e=>{if(!e.target.closest('#startMenu')&&!e.target.closest('.start'))document.getElementById('startMenu').classList.remove('open')});
+function openWin(id){document.getElementById(id).classList.add('show')}
+function closeWin(id){document.getElementById(id).classList.remove('show')}
 </script>
 </body>
 </html>
