@@ -1,11 +1,106 @@
-<div style="position:fixed; top:20px; right:20px; background:white; padding:15px; border-radius:10px; box-shadow:0 0 10px black; font-family:Arial">
-<h3>🐟 Calculadora de Guppy</h3>
-<input id="barriga" type="range" min="1" max="10" value="5" oninput="calcGuppy(this.value)">
-<p>Tamanho da barriga: <span id="val">5</span></p>
-<h2 id="resultado">Vai nascer: 15 filhotes</h2>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Windows 11 - Yohan Simulator</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{height:100vh;overflow:hidden;background-size:cover;background-position:center;transition:0.5s}
+.w11{background-image:url('https://4kwallpapers.com/images/wallpapers/windows-11-dark-mode-4480x2520-12026.jpg')}
+.xp{background-image:url('https://wallpaperaccess.com/full/1532470.jpg')}
+.vista{background-image:url('https://wallpapers.com/images/hd/windows-vista-4k-qv6i2bpe6b7l2a3a.jpg')}
+.w7{background-image:url('https://wallpaperaccess.com/full/1223057.jpg')}
+
+#desktop{display:flex;flex-wrap:wrap;gap:12px;padding:15px;align-content:flex-start;height:calc(100vh - 55px)}
+.icon{width:85px;text-align:center;color:white;text-shadow:1px 1px 3px #000;cursor:pointer;padding:8px;border-radius:6px}
+.icon:hover{background:rgba(255,255,255,0.2)}.icon span{font-size:38px;display:block}
+
+#taskbar{position:fixed;bottom:0;width:100%;height:55px;background:rgba(30,30,30,0.85);backdrop-filter:blur(15px);display:flex;justify-content:center;align-items:center;gap:10px;z-index:999}
+.taskbtn{width:45px;height:45px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;background:transparent;border:none;color:white}
+.taskbtn:hover{background:rgba(255,255,255,0.15)}
+
+#start{position:fixed;bottom:65px;left:50%;transform:translateX(-50%);width:640px;height:550px;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-radius:12px;display:none;flex-direction:column;padding:20px;box-shadow:0 10px 40px rgba(0,0,0,0.5);z-index:998}
+#start.show{display:flex}
+.start-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:15px}
+.app{padding:15px 5px;text-align:center;border-radius:8px;cursor:pointer}.app:hover{background:#e5e5e5}.app span{font-size:30px;display:block}
+.list{margin-top:15px}.list button{width:100%;text-align:left;padding:12px;border:none;background:#f0f0f0;margin:3px 0;border-radius:6px;cursor:pointer}
+.list button:hover{background:#0078d4;color:white}
+
+.window{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:80%;max-width:800px;height:70%;background:white;border-radius:10px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 0 50px rgba(0,0,0,0.6);z-index:997}
+.window.show{display:flex}
+.wheader{background:#f3f3f3;padding:12px 15px;display:flex;justify-content:space-between;font-weight:bold;border-bottom:1px solid #ddd}
+.wbody{flex:1;overflow:auto;padding:15px}
+</style>
+</head>
+<body class="w11">
+<div id="desktop"></div>
+
+<div id="taskbar">
+<button class="taskbtn" onclick="toggleStart()">⊞</button>
+<button class="taskbtn" onclick="openW('explorer')">📁</button>
+<button class="taskbtn" onclick="openW('store')">🛒</button>
+<button class="taskbtn" onclick="openW('chrome')">🌐</button>
+<button class="taskbtn" onclick="openW('settings')">⚙️</button>
+<button class="taskbtn" onclick="openW('notepad')">📝</button>
 </div>
 
+<div id="start">
+<h2>Windows 11 - Yohan</h2>
+<input placeholder="Pesquisar no Windows..." style="width:100%;padding:10px;border-radius:20px;border:1px solid #ccc;margin:10px 0">
+<div class="start-grid">
+<div class="app" onclick="openW('explorer')"><span>📁</span>Arquivos</div>
+<div class="app" onclick="openW('store')"><span>🛒</span>Loja</div>
+<div class="app" onclick="openW('chrome')"><span>🌐</span>Chrome 115</div>
+<div class="app" onclick="openW('settings')"><span>⚙️</span>Config</div>
+<div class="app" onclick="openW('calc')"><span>🧮</span>Calculadora</div>
+<div class="app" onclick="install('Roblox','🟥','https://roblox.com')"><span>🟥</span>Roblox</div>
+<div class="app" onclick="install('PK XD','🎮','https://pkxdgame.com')"><span>🎮</span>PK XD</div>
+<div class="app" onclick="install('Craftsman','⛏️','https://crazygames.com')"><span>⛏️</span>Craftsman</div>
+</div>
+<div class="list">
+<button onclick="changeBG('w11')">🖥️ Windows 11 (Padrão)</button>
+<button onclick="changeBG('w7')">🖥️ Windows 7 (Pesado)</button>
+<button onclick="changeBG('vista')">🖥️ Windows Vista (Pesado)</button>
+<button onclick="changeBG('xp')">🖥️ Windows XP (Pesado)</button>
+</div>
+</div>
+
+<div id="explorer" class="window"><div class="wheader"><span>📁 Explorador de Arquivos</span><b onclick="closeW('explorer')" style="cursor:pointer">✕</b></div><div class="wbody"><p>📄 Meus Documentos</p><p>🖼️ Imagens</p><p>🎵 Músicas</p><p>🎮 Jogos Instalados</p><div id="installed"></div></div></div>
+
+<div id="store" class="window"><div class="wheader"><span>🛒 Microsoft Store</span><b onclick="closeW('store')" style="cursor:pointer">✕</b></div><div class="wbody" id="storeBody"></div></div>
+
+<div id="chrome" class="window" style="width:90%;height:80%"><div class="wheader"><span>🌐 Windows Chrome 115 - Meu Google</span><b onclick="closeW('chrome')" style="cursor:pointer">✕</b></div><div class="wbody" style="padding:0;display:flex;flex-direction:column"><div style="padding:10px;display:flex;gap:5px"><input id="q" style="flex:1;padding:10px;border-radius:20px;border:1px solid #ccc" placeholder="Pesquisar no Windows Chrome 115"><button onclick="search()" style="padding:10px 20px;border-radius:20px;border:none;background:#0078d4;color:white">Ir</button></div><iframe id="frame" src="https://duckduckgo.com" style="flex:1;border:none"></iframe></div></div>
+
+<div id="settings" class="window"><div class="wheader"><span>⚙️ Configurações</span><b onclick="closeW('settings')" style="cursor:pointer">✕</b></div><div class="wbody"><h3>Personalização > Papel de Parede</h3><br><button onclick="changeBG('w11')" style="padding:10px;margin:5px">Windows 11</button><button onclick="changeBG('w7')" style="padding:10px;margin:5px">Windows 7</button><button onclick="changeBG('xp')" style="padding:10px;margin:5px">Windows XP</button><button onclick="changeBG('vista')" style="padding:10px;margin:5px">Vista</button><br><br><p>✅ Suporte para APK pesado: ATIVADO</p><p>✅ Todos os Windows: ATIVADO</p></div></div>
+
+<div id="notepad" class="window"><div class="wheader"><span>📝 Bloco de Notas</span><b onclick="closeW('notepad')" style="cursor:pointer">✕</b></div><div class="wbody"><textarea style="width:100%;height:100%;border:none;outline:none">Bem-vindo ao Windows 11 Simulator 2.0 - Yohan!</textarea></div></div>
+
+<div id="calc" class="window" style="width:300px;height:400px"><div class="wheader"><span>🧮 Calculadora</span><b onclick="closeW('calc')" style="cursor:pointer">✕</b></div><div class="wbody"><input id="calcIn" style="width:100%;padding:15px;font-size:20px"><br><br><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px"><button onclick="calcIn.value+='7'">7</button><button onclick="calcIn.value+='8'">8</button><button onclick="calcIn.value+='9'">9</button><button onclick="calcIn.value=''">C</button><button onclick="calcIn.value+='4'">4</button><button onclick="calcIn.value+='5'">5</button><button onclick="calcIn.value+='6'">6</button><button onclick="calcIn.value+='+'">+</button><button onclick="calcIn.value+='1'">1</button><button onclick="calcIn.value+='2'">2</button><button onclick="calcIn.value+='3'">3</button><button onclick="try{calcIn.value=eval(calcIn.value)}catch(e){}">=</button></div></div></div>
+
 <script>
-function calcGuppy(v){
-document.getElementById('val').innerText=v;
-let filhotes = v*3 +
+let desk=document.getElementById('desktop');
+let installedDiv=document.getElementById('installed');
+let storeBody=document.getElementById('storeBody');
+let apps=[{n:'Roblox',e:'🟥',l:'https://www.roblox.com/pt'},{n:'PK XD',e:'🎮',l:'https://www.pkxdgame.com/'},{n:'Craftsman',e:'⛏️',l:'https://www.crazygames.com/game/craftsman-building-craft'},{n:'Chrome 115',e:'🌐',l:'chrome'}];
+
+function renderStore(){
+storeBody.innerHTML='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">'+apps.map((a,i)=>`<div style="background:#f5f5f5;padding:20px;border-radius:10px;text-align:center;cursor:pointer" onclick="install('${a.n}','${a.e}','${a.l}')"><div style="font-size:40px">${a.e}</div><b>${a.n}</b><br><small style="color:#0078d4">Instalar</small></div>`).join('')+'</div>';
+}
+renderStore();
+
+function install(n,e,l){
+if(l=='chrome'){openW('chrome');return}
+let id='app'+Date.now();
+desk.innerHTML+=`<div class="icon" onclick="window.open('${l}','_blank')"><span>${e}</span>${n}</div>`;
+installedDiv.innerHTML+=`<p>${e} ${n} - Instalado!</p>`;
+alert(n+' instalado na área de trabalho!');
+}
+
+function toggleStart(){document.getElementById('start').classList.toggle('show')}
+function openW(id){document.getElementById(id).classList.add('show');document.getElementById('start').classList.remove('show')}
+function closeW(id){document.getElementById(id).classList.remove('show')}
+function changeBG(c){document.body.className=c}
+function search(){let q=document.getElementById('q').value;if(q)document.getElementById('frame').src='https://duckduckgo.com/?q='+encodeURIComponent(q)}
+</script>
+</body>
+</html>
