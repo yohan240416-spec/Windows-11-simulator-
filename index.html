@@ -2,146 +2,131 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Windows 11 - Tudo Funcionando</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Windows 11 Simulator 2.0 - Yohan</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-body{background:#000 url('https://4kwallpapers.com/images/wallpapers/windows-11-dark-mode-3840x2400-9263.jpg') center/cover fixed;height:100vh;overflow:hidden;color:#fff}
-#desk{padding:16px;display:flex;gap:12px;flex-wrap:wrap}
-.ico{width:80px;text-align:center;font-size:11px;cursor:pointer;padding:8px;border-radius:8px}
-.ico div{font-size:36px}
-.ico:hover{background:rgba(255,255,255,.1)}
-#bar{position:fixed;bottom:0;left:0;right:0;height:52px;background:#151515;display:flex;justify-content:center;align-items:center;gap:10px;z-index:100;border-top:1px solid #222}
-.b{width:44px;height:44px;background:#222;border-radius:8px;display:grid;place-items:center;font-size:20px;cursor:pointer}
-.b:hover{background:#333}
-.win{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:94%;max-width:800px;height:70vh;background:#1e1e1e;border-radius:14px;display:none;flex-direction:column;border:1px solid #333;z-index:50;overflow:hidden}
-.win.open{display:flex}
-.top{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:#2a2a2a;font-weight:700}
-.x{width:32px;height:32px;background:#ff3b30;border-radius:6px;display:grid;place-items:center;cursor:pointer}
-.body{flex:1;padding:16px;overflow:auto}
-.grid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
-.item{background:#2b2b2b;padding:18px;border-radius:12px;text-align:center;cursor:pointer;transition:.15s}
-.item:hover{background:#353535;transform:translateY(-2px)}
-.item span{font-size:36px;display:block;margin-bottom:6px}
-.item small{opacity:.6;font-size:11px}
-.lista{display:flex;flex-direction:column;gap:8px}
-.linha{background:#2b2b2b;padding:14px 16px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
-.linha:hover{background:#333}
-.btn{padding:8px 16px;background:#0078d4;color:#fff;border:0;border-radius:6px;cursor:pointer;font-weight:700}
-#bloq{position:fixed;inset:0;background:#000;z-index:9999;display:none;place-items:center;text-align:center;padding:20px}
+body { margin:0; font-family:Segoe UI; overflow:hidden; transition:0.3s; }
+body.windows11 { background: url('https://wallpapercave.com/wp/wp12069614.jpg') no-repeat center/cover; }
+body.windowsxp { background: url('https://wallpaperaccess.com/full/782188.jpg') no-repeat center/cover; }
+body.windowsvista { background: url('https://wallpapercave.com/wp/wp3614174.jpg') no-repeat center/cover; }
+body.windows7 { background: url('https://wallpaperaccess.com/full/1223057.jpg') no-repeat center/cover; }
+
+#desktop { width:100vw; height:100vh; display:flex; flex-wrap:wrap; padding:10px; gap:15px; }
+.icone { width:80px; text-align:center; cursor:pointer; color:white; text-shadow:1px 1px 2px black; }
+.icone img { width:50px; height:50px; }
+
+#taskbar { position:fixed; bottom:0; width:100%; height:50px; background:rgba(0,0,0,0.8); display:flex; align-items:center; padding:0 10px; }
+#start-btn { background:white; border:none; padding:8px 15px; border-radius:5px; cursor:pointer; font-weight:bold; }
+
+#start-menu { position:fixed; bottom:55px; left:10px; width:300px; background:white; border-radius:10px; padding:15px; display:none; box-shadow:0 0 20px rgba(0,0,0,0.5); }
+#start-menu button { width:100%; padding:10px; margin:5px 0; border:none; background:#eee; cursor:pointer; border-radius:5px; text-align:left; }
+#start-menu button:hover { background:#0078d4; color:white; }
+
+.janela { position:fixed; top:10%; left:20%; width:60%; height:70%; background:white; border-radius:10px; display:none; flex-direction:column; overflow:hidden; box-shadow:0 0 30px rgba(0,0,0,0.5); }
+.janela .barra { background:#0078d4; color:white; padding:10px; display:flex; justify-content:space-between; }
+.janela iframe { width:100%; height:100%; border:none; }
+
+#store-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:15px; }
+.app-card { background:#f3f3f3; padding:15px; border-radius:10px; text-align:center; cursor:pointer; }
+.app-card img { width:60px; }
 </style>
 </head>
-<body>
+<body class="windows11">
 
-<div id="bloq"><div><div style="font-size:64px">🚫</div><h2>Não compatível</h2><p id="mot"></p><p style="margin-top:10px;opacity:.5;font-size:13px">Permitido: Android 10+, Windows 10/11, iOS 17+</p></div></div>
+<div id="desktop"></div>
 
-<div id="desk">
-<div class="ico" onclick="openWin('files')"><div>📁</div>Arquivos</div>
-<div class="ico" onclick="openWin('store')"><div>🛒</div>Store</div>
-<div class="ico" onclick="openWin('roblox')"><div>🎮</div>Roblox</div>
-<div class="ico" onclick="openWin('files')"><div>📂</div>Legacy Pasta</div>
-</div>
-
-<!-- ARQUIVOS FUNCIONANDO -->
-<div class="win" id="files">
-<div class="top"><span>📁 Explorador - <span id="caminho">Este Computador</span></span><div class="x" onclick="closeWin('files')">✕</div></div>
-<div class="body" id="filesBody">
-<div class="grid2">
-<div class="item" onclick="entrarPasta('Downloads')"><span>📥</span>Downloads<small>3 arquivos</small></div>
-<div class="item" onclick="entrarPasta('Legacy')"><span>📦</span>Legacy Pack<small>4 versões</small></div>
-<div class="item" onclick="entrarPasta('Imagens')"><span>🖼️</span>Imagens<small>12 fotos</small></div>
-<div class="item" onclick="entrarPasta('Roblox')"><span>🎮</span>Roblox Files<small>2 itens</small></div>
-</div>
-</div>
+<!-- MENU INICIAR -->
+<div id="start-menu">
+  <h3>Escolher Windows</h3>
+  <button onclick="mudarTema('windowsxp')">🖥️ Windows XP</button>
+  <button onclick="mudarTema('windowsvista')">💎 Windows Vista</button>
+  <button onclick="mudarTema('windows7')">✨ Windows 7</button>
+  <button onclick="mudarTema('windows11')">🚀 Windows 11</button>
+  <hr>
+  <button onclick="abrirJanela('store')">🛒 Loja de Apps</button>
+  <button onclick="abrirJanela('chrome115')">🌐 Windows Chrome 115</button>
 </div>
 
-<!-- STORE FUNCIONANDO -->
-<div class="win" id="store">
-<div class="top"><span>🛒 Microsoft Store</span><div class="x" onclick="closeWin('store')">✕</div></div>
-<div class="body">
-<div class="grid2">
-<div class="item" onclick="instalar(this,'Legacy v1.5.0')"><span>🎮</span>Legacy v1.5.0<small>Clique para instalar</small></div>
-<div class="item" onclick="instalar(this,'Legacy v1.6.0')"><span>🔥</span>Legacy v1.6.0<small>Mais popular</small></div>
-<div class="item" onclick="instalar(this,'Legacy v1.6.2')"><span>⭐</span>Legacy v1.6.2<small>Novo</small></div>
-<div class="item" onclick="instalar(this,'Legacy v1.6.3')"><span>💎</span>Legacy v1.6.3<small>Última versão</small></div>
-</div>
-<div id="storeStatus" style="margin-top:20px;padding:14px;background:#252525;border-radius:10px;display:none"></div>
-</div>
+<!-- LOJA -->
+<div id="store" class="janela" style="display:none">
+  <div class="barra"><span>Windows Store - Fake mas instala de verdade</span><span onclick="fecharJanela('store')" style="cursor:pointer">X</span></div>
+  <div id="store-grid"></div>
 </div>
 
-<!-- ROBLOX FUNCIONANDO -->
-<div class="win" id="roblox">
-<div class="top"><span>🎮 Roblox</span><div class="x" onclick="closeWin('roblox')">✕</div></div>
-<div class="body" style="display:grid;place-items:center">
-<div style="text-align:center">
-<div style="font-size:70px">🎮</div>
-<h2 style="margin:10px 0">Roblox Player</h2>
-<p style="opacity:.6;margin-bottom:20px">Tá funcionando!</p>
-<button class="btn" style="padding:14px 26px;font-size:16px" onclick="window.open('https://www.roblox.com','_blank')">JOGAR AGORA</button>
-</div>
-</div>
+<!-- WINDOWS CHROME 115 -->
+<div id="chrome115" class="janela" style="display:none">
+  <div class="barra"><span>🌐 Windows Chrome 115 - Seu Google</span><span onclick="fecharJanela('chrome115')" style="cursor:pointer">X</span></div>
+  <div style="padding:10px; display:flex; gap:5px;">
+    <input id="pesquisa" type="text" placeholder="Pesquisar no Windows Chrome 115..." style="flex:1; padding:10px; border-radius:20px; border:1px solid #ccc;">
+    <button onclick="pesquisar()" style="padding:10px 20px; background:#0078d4; color:white; border:none; border-radius:20px;">Pesquisar</button>
+  </div>
+  <iframe id="resultado" src="https://duckduckgo.com/"></iframe>
 </div>
 
-<div id="bar">
-<div class="b" onclick="openWin('files')">📁</div>
-<div class="b" onclick="openWin('store')">🛒</div>
-<div class="b" onclick="openWin('roblox')">🎮</div>
+<!-- BARRA DE TAREFAS -->
+<div id="taskbar">
+  <button id="start-btn" onclick="toggleStart()">⊞ Iniciar</button>
 </div>
 
 <script>
-function openWin(id){
-  document.querySelectorAll('.win').forEach(w=>w.classList.remove('open'));
-  document.getElementById(id).classList.add('open');
-}
-function closeWin(id){document.getElementById(id).classList.remove('open');}
-
-function entrarPasta(nome){
-  document.getElementById('caminho').innerText = nome;
-  const body = document.getElementById('filesBody');
-  if(nome==='Legacy'){
-    body.innerHTML = `<div style="margin-bottom:12px"><button onclick="voltar()" class="btn">← Voltar</button></div><div class="lista">
-    <div class="linha" onclick="alert('Abrindo Legacy v1.5.0.zip')"><span>📦 Legacy v1.5.0.zip</span><span class="btn">Abrir</span></div>
-    <div class="linha" onclick="alert('Abrindo Legacy v1.6.0.zip')"><span>📦 Legacy v1.6.0.zip</span><span class="btn">Abrir</span></div>
-    <div class="linha" onclick="alert('Abrindo Legacy v1.6.2.zip')"><span>📦 Legacy v1.6.2.zip</span><span class="btn">Abrir</span></div>
-    <div class="linha" onclick="alert('Abrindo Legacy v1.6.3.zip')"><span>📦 Legacy v1.6.3.zip</span><span class="btn">Abrir</span></div>
-    </div>`;
-  } else if(nome==='Downloads'){
-    body.innerHTML = `<div style="margin-bottom:12px"><button onclick="voltar()" class="btn">← Voltar</button></div><div class="lista">
-    <div class="linha"><span>📄 setup.exe</span><small>45MB</small></div>
-    <div class="linha"><span>📄 legacy-pack.rar</span><small>120MB</small></div>
-    </div>`;
-  } else {
-    body.innerHTML = `<div style="margin-bottom:12px"><button onclick="voltar()" class="btn">← Voltar</button></div><div class="lista"><div class="linha"><span>📄 Arquivo em ${nome}</span><span>✔️</span></div></div>`;
-  }
-}
-function voltar(){
-  document.getElementById('caminho').innerText='Este Computador';
-  document.getElementById('filesBody').innerHTML=`<div class="grid2">
-  <div class="item" onclick="entrarPasta('Downloads')"><span>📥</span>Downloads<small>3 arquivos</small></div>
-  <div class="item" onclick="entrarPasta('Legacy')"><span>📦</span>Legacy Pack<small>4 versões</small></div>
-  <div class="item" onclick="entrarPasta('Imagens')"><span>🖼️</span>Imagens<small>12 fotos</small></div>
-  <div class="item" onclick="entrarPasta('Roblox')"><span>🎮</span>Roblox Files<small>2 itens</small></div>
-  </div>`;
-}
-function instalar(el,nome){
-  const status=document.getElementById('storeStatus');
-  status.style.display='block';
-  status.innerHTML=`⏳ Instalando ${nome}... 0%`;
-  let p=0;
-  const iv=setInterval(()=>{
-    p+=20;
-    status.innerHTML=`⏳ Instalando ${nome}... ${p}%`;
-    if(p>=100){clearInterval(iv);status.innerHTML=`✅ ${nome} instalado com sucesso! <button class="btn" style="margin-left:10px" onclick="openWin('files');entrarPasta('Legacy')">Ver na pasta</button>`; el.innerHTML=`<span>✅</span>${nome}<small>Instalado</small>`; el.style.background='#1a4d1a';}
-  },300);
+// TEMAS
+function mudarTema(tema){
+  document.body.className = tema;
+  toggleStart();
 }
 
-// BLOQUEIO - seu Android 15 passa
-let ua=navigator.userAgent, block=false, txt='';
-let am=ua.match(/Android\s+(\d+)/);
-if(am){if(parseInt(am[1])<10){block=true;txt='Android '+am[1]+' precisa ser 10+';}}
-else if(ua.includes('Windows NT')){let m=ua.match(/Windows NT (\d+\.\d+)/);if(!m||m[1]!=='10.0'){block=true;txt='Só Win10/11';}}
-else if(ua.includes('iPhone')){let m=ua.match(/OS (\d+)_/);if(!m||parseInt(m[1])<17){block=true;txt='iOS precisa 17+';}}
-if(block){document.getElementById('bloq').style.display='grid';document.getElementById('mot').innerText=txt;}
+// MENU INICIAR
+function toggleStart(){
+  let menu = document.getElementById("start-menu");
+  menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+
+// JANELAS
+function abrirJanela(id){ document.getElementById(id).style.display = "flex"; }
+function fecharJanela(id){ document.getElementById(id).style.display = "none"; }
+
+// LOJA DE APPS
+const apps = [
+  { nome:"Roblox", img:"https://upload.wikimedia.org/wikipedia/commons/3/3a/Roblox_player_icon_black.svg", link:"https://www.roblox.com/pt/" },
+  { nome:"PK XD", img:"https://play-lh.googleusercontent.com/Ur0P9zM0fNf3a8G0e7d0-2d0_example", link:"https://playpkxd.com/" },
+  { nome:"Craftsman", img:"https://play-lh.googleusercontent.com/9-0_example", link:"https://craftsman-game.com/" }
+];
+
+// Imagens reais pra não quebrar
+const appsFix = [
+  { nome:"Roblox", img:"https://cdn-icons-png.flaticon.com/512/5968/5968751.png", link:"https://www.roblox.com/pt/" },
+  { nome:"PK XD", img:"https://cdn-icons-png.flaticon.com/512/5968/5968751.png", link:"https://www.roblox.com/pt/" },
+  { nome:"Craftsman", img:"https://cdn-icons-png.flaticon.com/512/5968/5968751.png", link:"https://www.roblox.com/pt/" }
+];
+
+let grid = document.getElementById("store-grid");
+let desktop = document.getElementById("desktop");
+
+appsFix.forEach((app, i)=>{
+  grid.innerHTML += `
+    <div class="app-card" onclick="instalarApp(${i})">
+      <img src="${app.img}"><p>${app.nome}</p><small>Clique para instalar</small>
+    </div>`;
+});
+
+function instalarApp(i){
+  let app = appsFix[i];
+  desktop.innerHTML += `<div class="icone" onclick="window.open('${app.link}','_blank')"><img src="${app.img}"><p>${app.nome}</p></div>`;
+  alert(app.nome + " instalado na área de trabalho! Clique nele pra jogar à vontade!");
+  fecharJanela('store');
+}
+
+// WINDOWS CHROME 115
+function pesquisar(){
+  let termo = document.getElementById("pesquisa").value;
+  if(!termo) return;
+  document.getElementById("resultado").src = "https://duckduckgo.com/?q=" + encodeURIComponent(termo) + "&ia=web";
+}
+
+// DETECTAR WINDOWS ANTIGO
+window.onload = ()=>{
+  alert("Windows 11 Simulator 2.0 carregado! Suporte: XP, Vista, 7+ e 11. Versão pesada ativada! Windows Chrome 115 pronto!");
+}
 </script>
 </body>
 </html>
