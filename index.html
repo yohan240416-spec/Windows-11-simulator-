@@ -3,52 +3,108 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Windows 11 - Yohan</title>
+<title>Windows 11 Simulator 1.6.6</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-body{
- height:100vh;overflow:hidden;
- /* AQUI ESTÁ SUA FOTO DO WINDOWS 11 */
- background: #0a1930 url('https://4kwallpapers.com/images/wallpapers/windows-11-dark-mode-elastic-4480x2520-12026.jpg') center/cover no-repeat fixed;
-}
-#desktop{position:absolute;top:12px;left:12px;display:flex;flex-direction:column;gap:16px}
-.icon{width:82px;color:white;text-align:center;cursor:pointer;padding:8px;border-radius:8px;text-shadow:0 1px 5px black}
-.icon:hover{background:rgba(255,255,255,.18)}
-.icon p{font-size:12px;margin-top:4px}
-
-#taskbar{position:fixed;bottom:0;width:100%;height:52px;background:rgba(32,32,32,.85);backdrop-filter:blur(20px);display:flex;justify-content:center;align-items:center;gap:10px;border-top:1px solid rgba(255,255,255,.1)}
-.task{width:42px;height:42px;display:grid;place-items:center;border-radius:6px;cursor:pointer;color:white;font-size:22px}
-.task:hover{background:rgba(255,255,255,.15)}
-.win{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:850px;max-width:95vw;height:560px;background:white;border-radius:10px;display:none;flex-direction:column;box-shadow:0 20px 60px black;overflow:hidden}
-.win.show{display:flex}
-.wtop{height:42px;background:#f3f3f3;display:flex;justify-content:space-between;align-items:center;padding:0 14px;border-bottom:1px solid #ddd}
-.wbody{flex:1}
-iframe{width:100%;height:100%;border:none}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Segoe UI,Arial; height:100vh; overflow:hidden; background:url('https://4kwallpapers.com/images/wallpapers/windows-11-blue-4480x2520-14542.jpg'); background-size:cover}
+#desktop{padding:12px; display:flex; gap:10px; flex-wrap:wrap; height:calc(100% - 50px); align-content:flex-start}
+.icon{width:80px; text-align:center; color:white; text-shadow:1px 1px 2px black; cursor:pointer; padding:5px; border-radius:4px}
+.icon:hover{background:rgba(255,255,255,0.3)}
+.icon div{font-size:32px}
+#taskbar{position:fixed; bottom:0; width:100%; height:48px; background:#202020; display:flex; align-items:center; padding:0 10px; gap:8px}
+#btnStart{background:white; border:none; padding:7px 14px; border-radius:4px; font-weight:bold; cursor:pointer}
+#ver{color:#888; margin-left:auto; font-size:11px}
+#startMenu{position:fixed; bottom:52px; left:5px; width:280px; background:white; border-radius:8px; padding:8px; display:none; box-shadow:0 8px 20px rgba(0,0,0,0.5)}
+#startMenu button{width:100%; text-align:left; padding:9px; margin:2px 0; border:none; background:#f2f2f2; border-radius:5px; cursor:pointer}
+#startMenu button:hover{background:#0078d4; color:white}
+.window{position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); width:92%; max-width:800px; height:82%; background:white; border-radius:8px; display:none; flex-direction:column; overflow:hidden; box-shadow:0 0 25px black}
+.winHeader{background:#0078d4; color:white; padding:9px 12px; display:flex; justify-content:space-between; font-weight:bold; font-size:14px}
+.winContent{flex:1; overflow:auto}
+.storeTop{padding:10px; background:#f5f5f5; display:flex; gap:6px; border-bottom:1px solid #ddd}
+.storeTop input{flex:1; padding:7px 12px; border-radius:15px; border:1px solid #ccc}
+.tabs{display:flex; gap:5px; padding:8px 10px; background:#fff; border-bottom:1px solid #eee}
+.tabs button{padding:5px 12px; border:none; border-radius:15px; background:#eee; cursor:pointer; font-size:12px}
+.tabs button.active{background:#0078d4; color:white}
+.grid{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; padding:10px}
+.card{background:#f9f9f9; padding:10px; border-radius:6px; text-align:center; cursor:pointer; border:1px solid #e0e0e0}
+.card:hover{border-color:#0078d4; background:#eef6ff}
+.card div{font-size:28px}
+.verItem{padding:10px; background:#f9f9f9; margin:6px 10px; border-radius:6px; border-left:4px solid #0078d4; font-size:13px}
 </style>
 </head>
 <body>
+<div id="desktop"></div>
+<div id="taskbar"><button id="btnStart" onclick="toggleStart()">⊞ Start</button><span style="color:white;font-size:12px">1.6.6 Chrome 109</span><span id="ver">v1.6.6</span></div>
 
-<div id="desktop">
-<div class="icon" onclick="window.open('https://www.roblox.com/pt')"><div style="font-size:40px">🟥</div><p>Roblox</p></div>
-<div class="icon" onclick="window.open('https://www.pkxdgame.com')"><div style="font-size:40px">🎮</div><p>PK XD</p></div>
-<div class="icon" onclick="window.open('https://www.crazygames.com/game/craftsman-building-craft')"><div style="font-size:40px">⛏️</div><p>Craftsman</p></div>
-<div class="icon" onclick="openWin('chrome')"><div style="font-size:40px">🌐</div><p>Chrome 115</p></div>
+<div id="startMenu">
+<button onclick="openWin('storeWin')">🛒 Windows Store</button>
+<button onclick="openWin('chromeWin')">🌐 Windows Chrome 109</button>
+<button onclick="openWin('versoesWin')">📜 Todas as Versões</button>
 </div>
 
-<div id="taskbar">
-<div class="task" style="background:white;color:black" onclick="alert('Menu Iniciar')">⊞</div>
-<div class="task" onclick="openWin('chrome')">🌐</div>
-<div class="task" onclick="openWin('explorer')">📁</div>
-<div class="task" onclick="openWin('store')">🛒</div>
+<div id="storeWin" class="window">
+<div class="winHeader"><span>Microsoft Store - v1.6.6</span><span onclick="closeWin('storeWin')" style="cursor:pointer">✕</span></div>
+<div class="storeTop"><input id="storeSearch" type="text" placeholder="Pesquisar apps, jogos..." oninput="filterStore()"></div>
+<div class="tabs"><button class="active" onclick="setTab('todos',this)">Todos</button><button onclick="setTab('jogos',this)">Jogos</button><button onclick="setTab('apps',this)">Apps</button><button onclick="setTab('nav',this)">Navegadores</button></div>
+<div class="winContent"><div class="grid" id="storeGrid"></div></div>
 </div>
 
-<div id="chrome" class="win" style="width:92%;height:80%"><div class="wtop"><span>Chrome 115</span><span onclick="closeWin('chrome')" style="cursor:pointer">✕ Fechar</span></div><div class="wbody"><iframe src="https://duckduckgo.com"></iframe></div></div>
-<div id="explorer" class="win"><div class="wtop"><span>Explorador</span><span onclick="closeWin('explorer')" style="cursor:pointer">✕</span></div><div class="wbody" style="padding:20px">Seus apps: Roblox, PK XD, Craftsman, Chrome 115<br><br>SEM HOMEM OBESO - 100% LIMPO</div></div>
-<div id="store" class="win"><div class="wtop"><span>Microsoft Store</span><span onclick="closeWin('store')" style="cursor:pointer">✕</span></div><div class="wbody" style="padding:20px">Loja - Clique para instalar seus jogos</div></div>
+<div id="chromeWin" class="window">
+<div class="winHeader"><span>Windows Chrome 109</span><span onclick="closeWin('chromeWin')" style="cursor:pointer">✕</span></div>
+<div style="padding:6px; display:flex; gap:5px; background:#eee"><input id="searchBox" type="text" placeholder="Pesquisar no Chrome 109..." style="flex:1; padding:6px; border-radius:12px; border:1px solid #ccc"><button onclick="doSearch()" style="padding:6px 12px; border-radius:12px; border:none; background:#0078d4; color:white">Ir</button></div>
+<div class="winContent" style="display:flex; flex-direction:column"><iframe id="chromeFrame" src="https://duckduckgo.com/" style="flex:1; border:none; width:100%; height:100%"></iframe></div>
+</div>
+
+<div id="versoesWin" class="window">
+<div class="winHeader"><span>Histórico</span><span onclick="closeWin('versoesWin')" style="cursor:pointer">✕</span></div>
+<div class="winContent">
+<div class="verItem"><b>v1.0</b> - Primeira versão</div>
+<div class="verItem"><b>v1.1</b> - Meus Apps</div>
+<div class="verItem"><b>v2.0</b> - Loja + Chrome 115</div>
+<div class="verItem" style="background:#dff0ff; border-color:green"><b>v1.6.6 ATUAL</b> - Store completa + Chrome 109 otimizado pro MyPal / XP - 15/10/2026</div>
+</div>
+</div>
 
 <script>
-function openWin(id){document.getElementById(id).classList.add('show')}
-function closeWin(id){document.getElementById(id).classList.remove('show')}
+let desktop=document.getElementById('desktop');
+let allApps=[
+{nome:'Roblox', emoji:'🟥', cat:'jogos', link:'https://www.roblox.com/pt'},
+{nome:'PK XD', emoji:'🎮', cat:'jogos', link:'https://www.pkxdgame.com/'},
+{nome:'Agar.io', emoji:'🔵', cat:'jogos', link:'https://agar.io'},
+{nome:'Slither', emoji:'🐍', cat:'jogos', link:'https://slither.io'},
+{nome:'2048', emoji:'🔢', cat:'jogos', link:'https://play2048.co'},
+{nome:'Craftsman', emoji:'⛏️', cat:'jogos', link:'https://www.crazygames.com/game/craftsman-building-craft'},
+{nome:'Chrome 109', emoji:'🌐', cat:'nav', link:'CHROME'},
+{nome:'Bing', emoji:'🔍', cat:'apps', link:'https://www.bing.com'},
+{nome:'Calculadora', emoji:'🧮', cat:'apps', link:'CALC'}
+];
+let curTab='todos';
+function renderStore(list){
+let grid=document.getElementById('storeGrid'); grid.innerHTML='';
+list.forEach((a,i)=>{grid.innerHTML+=`<div class="card" onclick="installApp('${a.nome}')"><div>${a.emoji}</div><b style="font-size:12px">${a.nome}</b><br><small style="color:#0078d4">Instalar</small></div>`});
+}
+renderStore(allApps);
+function filterStore(){
+let q=document.getElementById('storeSearch').value.toLowerCase();
+let filtered=allApps.filter(a=>a.nome.toLowerCase().includes(q) && (curTab==='todos' || a.cat===curTab));
+renderStore(filtered);
+}
+function setTab(t,btn){
+curTab=t; document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); filterStore();
+}
+function installApp(nome){
+let app=allApps.find(a=>a.nome===nome);
+if(!app) return;
+if(app.link==='CHROME'){openWin('chromeWin'); return;}
+if(app.link==='CALC'){alert('2+2=4 kkkk Calculadora da 1.6.6'); return;}
+desktop.innerHTML+=`<div class="icon" onclick="window.open('${app.link}','_blank')"><div>${app.emoji}</div>${app.nome}</div>`;
+alert(app.nome+' instalado!');
+closeWin('storeWin');
+}
+function toggleStart(){let m=document.getElementById('startMenu'); m.style.display=m.style.display==='block'?'none':'block';}
+function openWin(id){document.getElementById(id).style.display='flex';}
+function closeWin(id){document.getElementById(id).style.display='none';}
+function doSearch(){let q=document.getElementById('searchBox').value; if(!q) return; document.getElementById('chromeFrame').src='https://duckduckgo.com/?q='+encodeURIComponent(q);}
 </script>
 </body>
 </html>
