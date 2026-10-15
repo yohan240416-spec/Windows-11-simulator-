@@ -1,110 +1,116 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Windows 11 Simulator 1.6.6</title>
+<title>Yohan OS 1.6.7 - Start</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Segoe UI,Arial; height:100vh; overflow:hidden; background:url('https://4kwallpapers.com/images/wallpapers/windows-11-blue-4480x2520-14542.jpg'); background-size:cover}
-#desktop{padding:12px; display:flex; gap:10px; flex-wrap:wrap; height:calc(100% - 50px); align-content:flex-start}
-.icon{width:80px; text-align:center; color:white; text-shadow:1px 1px 2px black; cursor:pointer; padding:5px; border-radius:4px}
-.icon:hover{background:rgba(255,255,255,0.3)}
-.icon div{font-size:32px}
-#taskbar{position:fixed; bottom:0; width:100%; height:48px; background:#202020; display:flex; align-items:center; padding:0 10px; gap:8px}
-#btnStart{background:white; border:none; padding:7px 14px; border-radius:4px; font-weight:bold; cursor:pointer}
-#ver{color:#888; margin-left:auto; font-size:11px}
-#startMenu{position:fixed; bottom:52px; left:5px; width:280px; background:white; border-radius:8px; padding:8px; display:none; box-shadow:0 8px 20px rgba(0,0,0,0.5)}
-#startMenu button{width:100%; text-align:left; padding:9px; margin:2px 0; border:none; background:#f2f2f2; border-radius:5px; cursor:pointer}
-#startMenu button:hover{background:#0078d4; color:white}
-.window{position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); width:92%; max-width:800px; height:82%; background:white; border-radius:8px; display:none; flex-direction:column; overflow:hidden; box-shadow:0 0 25px black}
-.winHeader{background:#0078d4; color:white; padding:9px 12px; display:flex; justify-content:space-between; font-weight:bold; font-size:14px}
-.winContent{flex:1; overflow:auto}
-.storeTop{padding:10px; background:#f5f5f5; display:flex; gap:6px; border-bottom:1px solid #ddd}
-.storeTop input{flex:1; padding:7px 12px; border-radius:15px; border:1px solid #ccc}
-.tabs{display:flex; gap:5px; padding:8px 10px; background:#fff; border-bottom:1px solid #eee}
-.tabs button{padding:5px 12px; border:none; border-radius:15px; background:#eee; cursor:pointer; font-size:12px}
-.tabs button.active{background:#0078d4; color:white}
-.grid{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; padding:10px}
-.card{background:#f9f9f9; padding:10px; border-radius:6px; text-align:center; cursor:pointer; border:1px solid #e0e0e0}
-.card:hover{border-color:#0078d4; background:#eef6ff}
-.card div{font-size:28px}
-.verItem{padding:10px; background:#f9f9f9; margin:6px 10px; border-radius:6px; border-left:4px solid #0078d4; font-size:13px}
+    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif; }
+  body {
+    height:100vh;
+    background: url('https://images.unsplash.com/photo-1519681393784-d120267933ba') center/cover;
+    display:flex; flex-direction:column; justify-content:flex-end; align-items:center;
+    overflow:hidden;
+  }
+  /* START MENU - igual da foto */
+  .start-menu {
+    width:520px; background: rgba(45,45,55,0.85);
+    backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:24px; padding:20px 24px;
+    margin-bottom:20px; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    animation: open .3s ease;
+  }
+  @keyframes open { from{ transform:translateY(20px) scale(.97); opacity:0 } to{ transform:translateY(0) scale(1); opacity:1 } }
+  
+  .header { display:flex; justify-content:space-between; align-items:center; }
+  .header h1 { color:white; font-size:26px; font-weight:600; }
+  .header span { color:#8bb4ff; font-size:14px; }
+  .icons { display:flex; gap:12px; }
+  .search {
+    width:100%; margin:18px 0; background:rgba(255,255,255,0.15);
+    border:none; border-radius:20px; padding:12px 16px; color:white;
+    font-size:15px; outline:none;
+  }
+  .section-title { color:white; font-size:18px; margin:16px 0 12px; font-weight:600; }
+  .pinned { display:grid; grid-template-columns:repeat(6,1fr); gap:12px; }
+  .app { text-align:center; cursor:pointer; transition:.2s; }
+  .app:hover { transform:scale(1.05); }
+  .app-icon {
+    width:56px; height:56px; border-radius:14px; margin:0 auto 6px;
+    display:flex; align-items:center; justify-content:center; font-size:28px;
+    background: linear-gradient(135deg, #fff, #ddd);
+  }
+  .app p { color:white; font-size:11px; white-space:nowrap; }
+  
+  .recommended-item {
+    display:flex; align-items:center; gap:12px;
+    background:rgba(255,255,255,0.08); padding:10px 12px;
+    border-radius:12px; margin-bottom:8px; color:white;
+  }
+  .recommended-item small { color:#aaa; }
+  .user-bar { display:flex; justify-content:space-between; align-items:center; margin-top:16px; border-top:1px solid rgba(255,255,255,0.1); padding-top:14px; }
+  .user { display:flex; align-items:center; gap:10px; color:white; }
+  .avatar { width:42px; height:42px; border-radius:50%; background: linear-gradient(135deg, #00d4ff, #0055ff); display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:20px; }
+
+  /* TASKBAR */
+  .taskbar {
+    width:92%; max-width:900px; background:rgba(30,30,40,0.85);
+    backdrop-filter: blur(20px); border:1px solid rgba(255,255,255,0.15);
+    border-radius:20px; padding:8px 18px; display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:12px;
+  }
+  .task-left { display:flex; align-items:center; gap:12px; }
+  .task-search { background:rgba(255,255,255,0.12); border:none; border-radius:20px; padding:8px 14px; color:white; width:220px; }
+  .task-icons { display:flex; gap:14px; font-size:22px; }
 </style>
 </head>
 <body>
-<div id="desktop"></div>
-<div id="taskbar"><button id="btnStart" onclick="toggleStart()">⊞ Start</button><span style="color:white;font-size:12px">1.6.6 Chrome 109</span><span id="ver">v1.6.6</span></div>
 
-<div id="startMenu">
-<button onclick="openWin('storeWin')">🛒 Windows Store</button>
-<button onclick="openWin('chromeWin')">🌐 Windows Chrome 109</button>
-<button onclick="openWin('versoesWin')">📜 Todas as Versões</button>
+<div class="start-menu">
+  <div class="header">
+    <div><h1>Yohan OS</h1><span>version 1.6.7</span></div>
+    <div class="icons">🔔 ⓘ</div>
+  </div>
+  <input class="search" placeholder="🔍 Search apps, settings, documents">
+  <div class="section-title">Pinned</div>
+  <div class="pinned">
+    <div class="app"><div class="app-icon">🌐</div><p>Chrome 90 • by Yohan</p></div>
+    <div class="app"><div class="app-icon" style="background:#e0f2ff">🛍️</div><p>Store</p></div>
+    <div class="app"><div class="app-icon" style="background:#fff0f5">🌸</div><p>Photos</p></div>
+    <div class="app"><div class="app-icon" style="background:#ddd">⚙️</div><p>Settings</p></div>
+    <div class="app"><div class="app-icon" style="background:#5aa9ff">✉️</div><p>Mail</p></div>
+    <div class="app"><div class="app-icon" style="background:#a0d8ff">📅 15</div><p>Calendar</p></div>
+    <div class="app"><div class="app-icon" style="background:#6aa8ff">📁</div><p>File Explorer</p></div>
+    <div class="app"><div class="app-icon" style="background:#2a4b8d; color:white">VS</div><p>VS Code</p></div>
+    <div class="app"><div class="app-icon" style="background:#1ed760">🎵</div><p>Spotify</p></div>
+    <div class="app"><div class="app-icon">📝</div><p>Notepad</p></div>
+    <div class="app"><div class="app-icon" style="background:#ff9a3c">🧮</div><p>Calculator</p></div>
+    <div class="app"><div class="app-icon" style="background:#111; color:#0f0; font-size:10px">Terminal</div><p>Terminal</p></div>
+  </div>
+  <div class="section-title">Recommended</div>
+  <div class="recommended-item">📄 <div><b>YohanOS_1.6.7.exe</b><br><small>Download • Today</small></div></div>
+  <div class="user-bar">
+    <div class="user"><div class="avatar">Y</div><div><b>Yohan</b><br><small>Admin • Signed in</small></div></div>
+    <div>⏻ ⚙️</div>
+  </div>
 </div>
 
-<div id="storeWin" class="window">
-<div class="winHeader"><span>Microsoft Store - v1.6.6</span><span onclick="closeWin('storeWin')" style="cursor:pointer">✕</span></div>
-<div class="storeTop"><input id="storeSearch" type="text" placeholder="Pesquisar apps, jogos..." oninput="filterStore()"></div>
-<div class="tabs"><button class="active" onclick="setTab('todos',this)">Todos</button><button onclick="setTab('jogos',this)">Jogos</button><button onclick="setTab('apps',this)">Apps</button><button onclick="setTab('nav',this)">Navegadores</button></div>
-<div class="winContent"><div class="grid" id="storeGrid"></div></div>
-</div>
-
-<div id="chromeWin" class="window">
-<div class="winHeader"><span>Windows Chrome 109</span><span onclick="closeWin('chromeWin')" style="cursor:pointer">✕</span></div>
-<div style="padding:6px; display:flex; gap:5px; background:#eee"><input id="searchBox" type="text" placeholder="Pesquisar no Chrome 109..." style="flex:1; padding:6px; border-radius:12px; border:1px solid #ccc"><button onclick="doSearch()" style="padding:6px 12px; border-radius:12px; border:none; background:#0078d4; color:white">Ir</button></div>
-<div class="winContent" style="display:flex; flex-direction:column"><iframe id="chromeFrame" src="https://duckduckgo.com/" style="flex:1; border:none; width:100%; height:100%"></iframe></div>
-</div>
-
-<div id="versoesWin" class="window">
-<div class="winHeader"><span>Histórico</span><span onclick="closeWin('versoesWin')" style="cursor:pointer">✕</span></div>
-<div class="winContent">
-<div class="verItem"><b>v1.0</b> - Primeira versão</div>
-<div class="verItem"><b>v1.1</b> - Meus Apps</div>
-<div class="verItem"><b>v2.0</b> - Loja + Chrome 115</div>
-<div class="verItem" style="background:#dff0ff; border-color:green"><b>v1.6.6 ATUAL</b> - Store completa + Chrome 109 otimizado pro MyPal / XP - 15/10/2026</div>
-</div>
+<div class="taskbar">
+  <div class="task-left">
+    <div class="avatar" style="width:36px;height:36px">YO</div>
+    <input class="task-search" placeholder="🔍 Search">
+  </div>
+  <div class="task-icons">🗂️ 🌐 🛍️ ✉️ ⚙️</div>
+  <div style="color:white; text-align:right; font-size:13px;">72% 🔊 📶<br><b>9:41 PM</b></div>
 </div>
 
 <script>
-let desktop=document.getElementById('desktop');
-let allApps=[
-{nome:'Roblox', emoji:'🟥', cat:'jogos', link:'https://www.roblox.com/pt'},
-{nome:'PK XD', emoji:'🎮', cat:'jogos', link:'https://www.pkxdgame.com/'},
-{nome:'Agar.io', emoji:'🔵', cat:'jogos', link:'https://agar.io'},
-{nome:'Slither', emoji:'🐍', cat:'jogos', link:'https://slither.io'},
-{nome:'2048', emoji:'🔢', cat:'jogos', link:'https://play2048.co'},
-{nome:'Craftsman', emoji:'⛏️', cat:'jogos', link:'https://www.crazygames.com/game/craftsman-building-craft'},
-{nome:'Chrome 109', emoji:'🌐', cat:'nav', link:'CHROME'},
-{nome:'Bing', emoji:'🔍', cat:'apps', link:'https://www.bing.com'},
-{nome:'Calculadora', emoji:'🧮', cat:'apps', link:'CALC'}
-];
-let curTab='todos';
-function renderStore(list){
-let grid=document.getElementById('storeGrid'); grid.innerHTML='';
-list.forEach((a,i)=>{grid.innerHTML+=`<div class="card" onclick="installApp('${a.nome}')"><div>${a.emoji}</div><b style="font-size:12px">${a.nome}</b><br><small style="color:#0078d4">Instalar</small></div>`});
+// clique pra abrir/fechar igual Win11
+document.querySelector('.taskbar').onclick = () => {
+  document.querySelector('.start-menu').style.display = 
+    document.querySelector('.start-menu').style.display === 'none' ? 'block' : 'none';
 }
-renderStore(allApps);
-function filterStore(){
-let q=document.getElementById('storeSearch').value.toLowerCase();
-let filtered=allApps.filter(a=>a.nome.toLowerCase().includes(q) && (curTab==='todos' || a.cat===curTab));
-renderStore(filtered);
-}
-function setTab(t,btn){
-curTab=t; document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); filterStore();
-}
-function installApp(nome){
-let app=allApps.find(a=>a.nome===nome);
-if(!app) return;
-if(app.link==='CHROME'){openWin('chromeWin'); return;}
-if(app.link==='CALC'){alert('2+2=4 kkkk Calculadora da 1.6.6'); return;}
-desktop.innerHTML+=`<div class="icon" onclick="window.open('${app.link}','_blank')"><div>${app.emoji}</div>${app.nome}</div>`;
-alert(app.nome+' instalado!');
-closeWin('storeWin');
-}
-function toggleStart(){let m=document.getElementById('startMenu'); m.style.display=m.style.display==='block'?'none':'block';}
-function openWin(id){document.getElementById(id).style.display='flex';}
-function closeWin(id){document.getElementById(id).style.display='none';}
-function doSearch(){let q=document.getElementById('searchBox').value; if(!q) return; document.getElementById('chromeFrame').src='https://duckduckgo.com/?q='+encodeURIComponent(q);}
 </script>
 </body>
 </html>
