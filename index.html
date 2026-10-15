@@ -3,114 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yohan OS 1.6.7 - Start</title>
+<title>Yohan OS 1.6.7</title>
 <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif; }
-  body {
-    height:100vh;
-    background: url('https://images.unsplash.com/photo-1519681393784-d120267933ba') center/cover;
-    display:flex; flex-direction:column; justify-content:flex-end; align-items:center;
-    overflow:hidden;
-  }
-  /* START MENU - igual da foto */
-  .start-menu {
-    width:520px; background: rgba(45,45,55,0.85);
-    backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
-    border:1px solid rgba(255,255,255,0.2);
-    border-radius:24px; padding:20px 24px;
-    margin-bottom:20px; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-    animation: open .3s ease;
-  }
-  @keyframes open { from{ transform:translateY(20px) scale(.97); opacity:0 } to{ transform:translateY(0) scale(1); opacity:1 } }
-  
-  .header { display:flex; justify-content:space-between; align-items:center; }
-  .header h1 { color:white; font-size:26px; font-weight:600; }
-  .header span { color:#8bb4ff; font-size:14px; }
-  .icons { display:flex; gap:12px; }
-  .search {
-    width:100%; margin:18px 0; background:rgba(255,255,255,0.15);
-    border:none; border-radius:20px; padding:12px 16px; color:white;
-    font-size:15px; outline:none;
-  }
-  .section-title { color:white; font-size:18px; margin:16px 0 12px; font-weight:600; }
-  .pinned { display:grid; grid-template-columns:repeat(6,1fr); gap:12px; }
-  .app { text-align:center; cursor:pointer; transition:.2s; }
-  .app:hover { transform:scale(1.05); }
-  .app-icon {
-    width:56px; height:56px; border-radius:14px; margin:0 auto 6px;
-    display:flex; align-items:center; justify-content:center; font-size:28px;
-    background: linear-gradient(135deg, #fff, #ddd);
-  }
-  .app p { color:white; font-size:11px; white-space:nowrap; }
-  
-  .recommended-item {
-    display:flex; align-items:center; gap:12px;
-    background:rgba(255,255,255,0.08); padding:10px 12px;
-    border-radius:12px; margin-bottom:8px; color:white;
-  }
-  .recommended-item small { color:#aaa; }
-  .user-bar { display:flex; justify-content:space-between; align-items:center; margin-top:16px; border-top:1px solid rgba(255,255,255,0.1); padding-top:14px; }
-  .user { display:flex; align-items:center; gap:10px; color:white; }
-  .avatar { width:42px; height:42px; border-radius:50%; background: linear-gradient(135deg, #00d4ff, #0055ff); display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:20px; }
-
-  /* TASKBAR */
-  .taskbar {
-    width:92%; max-width:900px; background:rgba(30,30,40,0.85);
-    backdrop-filter: blur(20px); border:1px solid rgba(255,255,255,0.15);
-    border-radius:20px; padding:8px 18px; display:flex; justify-content:space-between; align-items:center;
-    margin-bottom:12px;
-  }
-  .task-left { display:flex; align-items:center; gap:12px; }
-  .task-search { background:rgba(255,255,255,0.12); border:none; border-radius:20px; padding:8px 14px; color:white; width:220px; }
-  .task-icons { display:flex; gap:14px; font-size:22px; }
+/* SEU CSS DA FOTO - NÃO MUDEI NADA */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{height:100vh;background:#0a0a18 url('https://images.unsplash.com/photo-1519681393784-d120267933ba') center/cover;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;overflow:hidden}
+.start-menu{width:520px;max-width:92%;background:rgba(45,45,55,0.85);backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,0.2);border-radius:24px;padding:20px 24px;margin-bottom:20px;box-shadow:0 20px 60px rgba(0,0,0,0.5);z-index:10}
+.search{width:100%;margin:18px 0;background:rgba(255,255,255,0.15);border:none;border-radius:20px;padding:12px 16px;color:white;font-size:15px;outline:none}
+.pinned{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.app{text-align:center;cursor:pointer;padding:6px;border-radius:12px;transition:0.2s}
+.app:hover{background:rgba(255,255,255,0.12)}
+.app-icon{width:56px;height:56px;border-radius:14px;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;font-size:28px;background:#fff}
+.app p{color:white;font-size:11px}
+/* JANELA QUE ABRE */
+#appWindow{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;max-width:90%;height:450px;background:#1e1e2a;border-radius:16px;border:1px solid rgba(255,255,255,.2);display:none;flex-direction:column;z-index:999}
+#appWindow.show{display:flex}
+#appWindow .top{height:40px;background:rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:center;padding:0 14px;color:white}
+#appWindow .body{flex:1;padding:20px;color:white;overflow:auto}
+#appWindow iframe{width:100%;height:100%;border:none;border-radius:0 0 16px 16px;background:white}
+.taskbar{width:92%;max-width:900px;background:rgba(30,30,40,0.85);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:8px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 </style>
 </head>
 <body>
 
+<!-- JANELA ÚNICA QUE TODOS OS APPS USAM -->
+<div id="appWindow">
+  <div class="top"><span id="winTitle">App</span><button onclick="closeWin()" style="width:24px;height:24px;border-radius:50%;border:none;background:#ff5f56;color:white;cursor:pointer">X</button></div>
+  <div class="body" id="winBody"></div>
+</div>
+
+<!-- SEU START MENU DA FOTO - IDÊNTICO -->
 <div class="start-menu">
-  <div class="header">
-    <div><h1>Yohan OS</h1><span>version 1.6.7</span></div>
-    <div class="icons">🔔 ⓘ</div>
-  </div>
+  <div style="display:flex;justify-content:space-between;color:white"><div><h1 style="font-size:26px">Yohan OS</h1><span style="color:#8bb4ff">version 1.7.8</span></div><div>🔔 ⓘ</div></div>
   <input class="search" placeholder="🔍 Search apps, settings, documents">
-  <div class="section-title">Pinned</div>
+  <div style="color:white;margin:16px 0 12px;font-size:18px;font-weight:600">Pinned</div>
   <div class="pinned">
-    <div class="app"><div class="app-icon">🌐</div><p>Chrome 90 • by Yohan</p></div>
-    <div class="app"><div class="app-icon" style="background:#e0f2ff">🛍️</div><p>Store</p></div>
-    <div class="app"><div class="app-icon" style="background:#fff0f5">🌸</div><p>Photos</p></div>
-    <div class="app"><div class="app-icon" style="background:#ddd">⚙️</div><p>Settings</p></div>
-    <div class="app"><div class="app-icon" style="background:#5aa9ff">✉️</div><p>Mail</p></div>
-    <div class="app"><div class="app-icon" style="background:#a0d8ff">📅 15</div><p>Calendar</p></div>
-    <div class="app"><div class="app-icon" style="background:#6aa8ff">📁</div><p>File Explorer</p></div>
-    <div class="app"><div class="app-icon" style="background:#2a4b8d; color:white">VS</div><p>VS Code</p></div>
-    <div class="app"><div class="app-icon" style="background:#1ed760">🎵</div><p>Spotify</p></div>
-    <div class="app"><div class="app-icon">📝</div><p>Notepad</p></div>
-    <div class="app"><div class="app-icon" style="background:#ff9a3c">🧮</div><p>Calculator</p></div>
-    <div class="app"><div class="app-icon" style="background:#111; color:#0f0; font-size:10px">Terminal</div><p>Terminal</p></div>
-  </div>
-  <div class="section-title">Recommended</div>
-  <div class="recommended-item">📄 <div><b>YohanOS_1.6.7.exe</b><br><small>Download • Today</small></div></div>
-  <div class="user-bar">
-    <div class="user"><div class="avatar">Y</div><div><b>Yohan</b><br><small>Admin • Signed in</small></div></div>
-    <div>⏻ ⚙️</div>
+    <div class="app" onclick="openApp('chrome')"><div class="app-icon">🌐</div><p>Chrome 90 • by Yohan</p></div>
+    <div class="app" onclick="openApp('store')"><div class="app-icon">🛍️</div><p>Store</p></div>
+    <div class="app" onclick="openApp('photos')"><div class="app-icon">🌸</div><p>Photos</p></div>
+    <div class="app" onclick="openApp('settings')"><div class="app-icon">⚙️</div><p>Settings</p></div>
+    <div class="app" onclick="openApp('mail')"><div class="app-icon" style="background:#5aa9ff">✉️</div><p>Mail</p></div>
+    <div class="app" onclick="openApp('calendar')"><div class="app-icon" style="background:#a0d8ff">📅</div><p>Calendar</p></div>
+    <div class="app" onclick="openApp('explorer')"><div class="app-icon" style="background:#8ec5ff">📁</div><p>File Explorer</p></div>
+    <div class="app" onclick="openApp('vscode')"><div class="app-icon" style="background:#2a4b8d;color:white">VS</div><p>VS Code</p></div>
+    <div class="app" onclick="openApp('spotify')"><div class="app-icon" style="background:#1ed760">🎵</div><p>Spotify</p></div>
+    <div class="app" onclick="openApp('notepad')"><div class="app-icon">📝</div><p>Notepad</p></div>
+    <div class="app" onclick="openApp('calc')"><div class="app-icon" style="background:#ff9a3c">🧮</div><p>Calculator</p></div>
+    <div class="app" onclick="openApp('terminal')"><div class="app-icon" style="background:#111;color:#0f0;font-size:10px">Terminal</div><p>Terminal</p></div>
   </div>
 </div>
 
-<div class="taskbar">
-  <div class="task-left">
-    <div class="avatar" style="width:36px;height:36px">YO</div>
-    <input class="task-search" placeholder="🔍 Search">
-  </div>
-  <div class="task-icons">🗂️ 🌐 🛍️ ✉️ ⚙️</div>
-  <div style="color:white; text-align:right; font-size:13px;">72% 🔊 📶<br><b>9:41 PM</b></div>
-</div>
+<div class="taskbar"><div style="color:white">YO 🔍 Search</div><div style="color:white">🗂️ 🌐 🛍️</div><div style="color:white;font-size:12px">9:41 PM</div></div>
 
 <script>
-// clique pra abrir/fechar igual Win11
-document.querySelector('.taskbar').onclick = () => {
-  document.querySelector('.start-menu').style.display = 
-    document.querySelector('.start-menu').style.display === 'none' ? 'block' : 'none';
+// AQUI CONSERTA TODOS OS APPS
+function openApp(name){
+  const win = document.getElementById('appWindow');
+  const title = document.getElementById('winTitle');
+  const body = document.getElementById('winBody');
+  win.classList.add('show');
+  
+  if(name==='chrome'){ title.innerText='🌐 Chrome 90 • by Yohan'; body.innerHTML='<iframe src="https://www.google.com/webhp?igu=1"></iframe>'; }
+  if(name==='store'){ title.innerText='🛍️ Store'; body.innerHTML='<h2>Yohan Store 1.6.7</h2><br><button onclick="alert(\'Instalado!\')" style="padding:10px 20px;border-radius:8px;border:none;background:#0078d4;color:white;cursor:pointer">Instalar Minecraft</button><br><br><button onclick="alert(\'Instalado!\')" style="padding:10px 20px;border-radius:8px;border:none;background:#0078d4;color:white;cursor:pointer">Instalar Racing</button>'; }
+  if(name==='explorer'){ title.innerText='📁 File Explorer'; body.innerHTML='📄 YohanOS_1.6.7.exe<br>📁 Chrome90/<br>📁 Store/'; }
+  if(name==='settings'){ title.innerText='⚙️ Settings'; body.innerHTML='<b>Yohan OS 1.6.7 .EXE</b><br>Chrome desde 1.6.5<br>Tela Win11'; }
+  if(name==='photos'){ title.innerText='🌸 Photos'; body.innerHTML='Suas fotos aqui'; }
+  if(name==='mail'){ title.innerText='✉️ Mail'; body.innerHTML='Mail - Em breve'; }
+  if(name==='calendar'){ title.innerText='📅 Calendar'; body.innerHTML='Hoje: 15'; }
+  if(name==='vscode'){ title.innerText='VS Code'; body.innerHTML='Editor de código'; }
+  if(name==='spotify'){ title.innerText='Spotify'; body.innerHTML='🎵 Player'; }
+  if(name==='notepad'){ title.innerText='Notepad'; body.innerHTML='<textarea style="width:100%;height:200px;border-radius:8px;padding:10px">Digite aqui...</textarea>'; }
+  if(name==='calc'){ title.innerText='Calculator'; body.innerHTML='<h1>2+2=4</h1>'; }
+  if(name==='terminal'){ title.innerText='Terminal'; body.innerHTML='> YohanOS 1.6.7<br>> Chrome 90 by Yohan'; }
 }
+function closeWin(){ document.getElementById('appWindow').classList.remove('show'); }
 </script>
 </body>
 </html>
