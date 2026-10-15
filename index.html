@@ -2,81 +2,97 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yohan OS 1.6.7</title>
+<title>Windows 11 - 1.6.7 - Nova Iguaçu</title>
 <style>
-/* SEU CSS DA FOTO - NÃO MUDEI NADA */
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-body{height:100vh;background:#0a0a18 url('https://images.unsplash.com/photo-1519681393784-d120267933ba') center/cover;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;overflow:hidden}
-.start-menu{width:520px;max-width:92%;background:rgba(45,45,55,0.85);backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,0.2);border-radius:24px;padding:20px 24px;margin-bottom:20px;box-shadow:0 20px 60px rgba(0,0,0,0.5);z-index:10}
-.search{width:100%;margin:18px 0;background:rgba(255,255,255,0.15);border:none;border-radius:20px;padding:12px 16px;color:white;font-size:15px;outline:none}
-.pinned{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
-.app{text-align:center;cursor:pointer;padding:6px;border-radius:12px;transition:0.2s}
-.app:hover{background:rgba(255,255,255,0.12)}
-.app-icon{width:56px;height:56px;border-radius:14px;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;font-size:28px;background:#fff}
-.app p{color:white;font-size:11px}
-/* JANELA QUE ABRE */
-#appWindow{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;max-width:90%;height:450px;background:#1e1e2a;border-radius:16px;border:1px solid rgba(255,255,255,.2);display:none;flex-direction:column;z-index:999}
-#appWindow.show{display:flex}
-#appWindow .top{height:40px;background:rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:center;padding:0 14px;color:white}
-#appWindow .body{flex:1;padding:20px;color:white;overflow:auto}
-#appWindow iframe{width:100%;height:100%;border:none;border-radius:0 0 16px 16px;background:white}
-.taskbar{width:92%;max-width:900px;background:rgba(30,30,40,0.85);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:8px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+body{background:url('https://i.imgur.com/8Km9tLL.jpg');background-size:cover;background-position:center;height:100vh;overflow:hidden}
+/* WIDGETS */
+#widgets{position:absolute;top:20px;left:20px;width:320px;background:#1e1e1e;border-radius:12px;color:white;padding:15px;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+#widgets h2{font-size:18px;margin-bottom:15px}
+.card{background:#2a2a2a;border-radius:8px;padding:10px;margin-bottom:12px}
+.temp{font-size:28px;display:flex;gap:10px;align-items:center}
+/* FILE EXPLORER */
+#explorer{position:absolute;top:20px;right:30px;width:620px;height:480px;background:white;border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+#explorer-header{background:#f3f3f3;padding:12px;display:flex;justify-content:space-between;align-items:center}
+#explorer-body{display:flex;height:100%}
+#sidebar{width:180px;background:#f9f9f9;padding:15px}
+#content{padding:20px}
+.folder{margin:12px 0;display:flex;align-items:center;gap:10px}
+/* START */
+#start{position:absolute;bottom:65px;left:20px;width:380px;background:#252525;border-radius:12px;padding:18px;color:white}
+#start input{width:100%;padding:10px;border-radius:20px;border:none;background:#3a3a3a;color:white}
+.pinned{display:grid;grid-template-columns:repeat(5,1fr);gap:15px;margin-top:15px;text-align:center;font-size:11px}
+.pinned div span{font-size:26px;display:block}
+/* TASKBAR */
+#taskbar{position:fixed;bottom:0;width:100%;height:48px;background:rgba(32,32,32,.85);backdrop-filter:blur(20px);display:flex;justify-content:center;align-items:center;gap:20px;color:white}
+#taskbar .right{position:absolute;right:15px;display:flex;gap:10px;font-size:13px}
 </style>
 </head>
 <body>
 
-<!-- JANELA ÚNICA QUE TODOS OS APPS USAM -->
-<div id="appWindow">
-  <div class="top"><span id="winTitle">App</span><button onclick="closeWin()" style="width:24px;height:24px;border-radius:50%;border:none;background:#ff5f56;color:white;cursor:pointer">X</button></div>
-  <div class="body" id="winBody"></div>
+<!-- WIDGETS IGUAL FOTO -->
+<div id="widgets">
+<h2>Widgets <span style="float:right">+ ✕</span></h2>
+<div class="card">
+<div class="temp">⛅ Nova Iguaçu, RJ<br><small style="font-size:14px">24°C - Mostly sunny<br>Feels like 26°C • High 28° • Low 20°</small></div>
+</div>
+<div class="card">
+<b>Top stories</b><br><br>
+Nova Iguaçu celebrates spring with cultural festival in downtown<br>
+<small>2h ago • G1 Rio</small>
+</div>
+<div class="card">
+<b>Calendar</b><br>Today, Fri 15 - Team meeting • 11:00 AM
+</div>
+<div class="card">
+<b>Traffic</b><br>BR-116 near Nova Iguaçu • Moderate traffic • 18 min to Centro
+</div>
 </div>
 
-<!-- SEU START MENU DA FOTO - IDÊNTICO -->
-<div class="start-menu">
-  <div style="display:flex;justify-content:space-between;color:white"><div><h1 style="font-size:26px">Yohan OS</h1><span style="color:#8bb4ff">version 1.7.8</span></div><div>🔔 ⓘ</div></div>
-  <input class="search" placeholder="🔍 Search apps, settings, documents">
-  <div style="color:white;margin:16px 0 12px;font-size:18px;font-weight:600">Pinned</div>
-  <div class="pinned">
-    <div class="app" onclick="openApp('chrome')"><div class="app-icon">🌐</div><p>Chrome 90 • by Yohan</p></div>
-    <div class="app" onclick="openApp('store')"><div class="app-icon">🛍️</div><p>Store</p></div>
-    <div class="app" onclick="openApp('photos')"><div class="app-icon">🌸</div><p>Photos</p></div>
-    <div class="app" onclick="openApp('settings')"><div class="app-icon">⚙️</div><p>Settings</p></div>
-    <div class="app" onclick="openApp('mail')"><div class="app-icon" style="background:#5aa9ff">✉️</div><p>Mail</p></div>
-    <div class="app" onclick="openApp('calendar')"><div class="app-icon" style="background:#a0d8ff">📅</div><p>Calendar</p></div>
-    <div class="app" onclick="openApp('explorer')"><div class="app-icon" style="background:#8ec5ff">📁</div><p>File Explorer</p></div>
-    <div class="app" onclick="openApp('vscode')"><div class="app-icon" style="background:#2a4b8d;color:white">VS</div><p>VS Code</p></div>
-    <div class="app" onclick="openApp('spotify')"><div class="app-icon" style="background:#1ed760">🎵</div><p>Spotify</p></div>
-    <div class="app" onclick="openApp('notepad')"><div class="app-icon">📝</div><p>Notepad</p></div>
-    <div class="app" onclick="openApp('calc')"><div class="app-icon" style="background:#ff9a3c">🧮</div><p>Calculator</p></div>
-    <div class="app" onclick="openApp('terminal')"><div class="app-icon" style="background:#111;color:#0f0;font-size:10px">Terminal</div><p>Terminal</p></div>
-  </div>
+<!-- FILE EXPLORER IGUAL FOTO -->
+<div id="explorer">
+<div id="explorer-header">📁 File Explorer — Desktop <span>— □ ✕</span></div>
+<div id="explorer-body">
+<div id="sidebar">
+<div class="folder">📘 Photos</div>
+<div class="folder">💬 Chat</div>
+<div class="folder">🏙️ Nova Iguaçu</div>
+<div class="folder">🔵 Widgets</div>
+</div>
+<div id="content">
+<div class="folder">📁 Projects</div>
+<div class="folder">📁 Documents</div>
+<div class="folder">📁 Photos</div>
+<div class="folder">📄 Report_SEP2023.docx</div>
+<div class="folder">📄 Screenshot.png</div>
+<div class="folder">📄 Presentation.pptx</div>
+</div>
+</div>
 </div>
 
-<div class="taskbar"><div style="color:white">YO 🔍 Search</div><div style="color:white">🗂️ 🌐 🛍️</div><div style="color:white;font-size:12px">9:41 PM</div></div>
+<!-- START MENU COM CHROME 109 -->
+<div id="start">
+<input placeholder="Search for apps, settings, and documents">
+<div class="pinned">
+<div><span>🌐</span>Google Chrome<br>Chrome</div>
+<div><span>📁</span>File Explorer</div>
+<div><span>🌊</span>Microsoft Edge</div>
+<div><span>📄</span>Edge</div>
+<div><span>🖼️</span>Shotos</div>
+<div><span>📧</span>Mail</div>
+<div><span>📅</span>Calendar</div>
+<div><span>⚙️</span>Settings</div>
+<div><span>🟢</span>Spotify</div>
+<div><span>💚</span>WhatsApp</div>
+</div>
+<br><small>User - User | v1.6.7</small>
+</div>
 
-<script>
-// AQUI CONSERTA TODOS OS APPS
-function openApp(name){
-  const win = document.getElementById('appWindow');
-  const title = document.getElementById('winTitle');
-  const body = document.getElementById('winBody');
-  win.classList.add('show');
-  
-  if(name==='chrome'){ title.innerText='🌐 Chrome 90 • by Yohan'; body.innerHTML='<iframe src="https://www.google.com/webhp?igu=1"></iframe>'; }
-  if(name==='store'){ title.innerText='🛍️ Store'; body.innerHTML='<h2>Yohan Store 1.6.7</h2><br><button onclick="alert(\'Instalado!\')" style="padding:10px 20px;border-radius:8px;border:none;background:#0078d4;color:white;cursor:pointer">Instalar Minecraft</button><br><br><button onclick="alert(\'Instalado!\')" style="padding:10px 20px;border-radius:8px;border:none;background:#0078d4;color:white;cursor:pointer">Instalar Racing</button>'; }
-  if(name==='explorer'){ title.innerText='📁 File Explorer'; body.innerHTML='📄 YohanOS_1.6.7.exe<br>📁 Chrome90/<br>📁 Store/'; }
-  if(name==='settings'){ title.innerText='⚙️ Settings'; body.innerHTML='<b>Yohan OS 1.6.7 .EXE</b><br>Chrome desde 1.6.5<br>Tela Win11'; }
-  if(name==='photos'){ title.innerText='🌸 Photos'; body.innerHTML='Suas fotos aqui'; }
-  if(name==='mail'){ title.innerText='✉️ Mail'; body.innerHTML='Mail - Em breve'; }
-  if(name==='calendar'){ title.innerText='📅 Calendar'; body.innerHTML='Hoje: 15'; }
-  if(name==='vscode'){ title.innerText='VS Code'; body.innerHTML='Editor de código'; }
-  if(name==='spotify'){ title.innerText='Spotify'; body.innerHTML='🎵 Player'; }
-  if(name==='notepad'){ title.innerText='Notepad'; body.innerHTML='<textarea style="width:100%;height:200px;border-radius:8px;padding:10px">Digite aqui...</textarea>'; }
-  if(name==='calc'){ title.innerText='Calculator'; body.innerHTML='<h1>2+2=4</h1>'; }
-  if(name==='terminal'){ title.innerText='Terminal'; body.innerHTML='> YohanOS 1.6.7<br>> Chrome 90 by Yohan'; }
-}
-function closeWin(){ document.getElementById('appWindow').classList.remove('show'); }
-</script>
+<!-- TASKBAR IGUAL FOTO -->
+<div id="taskbar">
+<span>⊞</span><span>🔍</span><span>🗂️</span><span>🌤️</span><span>📋</span><span>💬</span><span>📁</span><span style="background:#3a3a3a;padding:4px 8px;border-radius:6px">🌐</span><span>🛍️</span><span>🌊</span>
+<div class="right">🔊 ENG &nbsp; 10:09<br>Fri, 15 Sep</div>
+</div>
+
 </body>
 </html>
